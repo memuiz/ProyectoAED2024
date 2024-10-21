@@ -327,6 +327,153 @@ fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Transformación de clases}\label{transformaciuxf3n-de-clases}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lapply}\NormalTok{(datos,class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Sexo
+## [1] "character"
+## 
+## $Duración
+## [1] "character"
+## 
+## $Destino
+## [1] "character"
+## 
+## $Periodo
+## [1] "numeric"
+## 
+## $Porcentaje_personas_categoria
+## [1] "character"
+## 
+## $Porcentaje_personas_total
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria }\OtherTok{\textless{}{-}}\FunctionTok{sub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{"."}\NormalTok{,datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria)}
+
+\CommentTok{\# Compruebo si se han introducido NA}
+\FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria))}\SpecialCharTok{==}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in which(is.na(as.numeric(datos$Porcentaje_personas_categoria)) == :
+## NAs introducidos por coerción
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 133
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria[}\DecValTok{133}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ".."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# No es posible corregirlo, es un dato faltante}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_categoria)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: NAs introducidos por coerción
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total}\OtherTok{\textless{}{-}}\FunctionTok{sub}\NormalTok{(}\StringTok{","}\NormalTok{,}\StringTok{"."}\NormalTok{,datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total)}
+
+\CommentTok{\# Compruebo si se han introducido NA}
+\FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total))}\SpecialCharTok{==}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in which(is.na(as.numeric(datos$Porcentaje_personas_total)) == TRUE):
+## NAs introducidos por coerción
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 133
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total[}\DecValTok{133}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ".."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# No es posible corregirlo, es un dato faltante}
+\end{Highlighting}
+\end{Shaded}
+
+No hay datos para mujeres que en 2021 se fueron de viaje al extranjero
+de 1 a 3 noches.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Porcentaje\_personas\_total)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: NAs introducidos por coerción
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Comprobamos que se hayan transformado correctamente}
+\FunctionTok{lapply}\NormalTok{(datos,class) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Sexo
+## [1] "character"
+## 
+## $Duración
+## [1] "character"
+## 
+## $Destino
+## [1] "character"
+## 
+## $Periodo
+## [1] "numeric"
+## 
+## $Porcentaje_personas_categoria
+## [1] "numeric"
+## 
+## $Porcentaje_personas_total
+## [1] "numeric"
+\end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

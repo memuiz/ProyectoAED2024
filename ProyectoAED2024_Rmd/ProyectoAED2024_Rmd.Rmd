@@ -61,21 +61,19 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = here::here()) # Set working directory a la carpeta del proyecto en lugar de a la sub-cartpeta del Rmd
 ```
-  
+
 # Introducción
-  
-  
+
 # Carga de librerías e importación del fichero
-  
+
 ```{r}
 rm(list=ls())  # Borrar todas las variables al principio
 ```
-  
+
 ```{r}
 library(readr)
 library(ggplot2)
 ```
-
 
 ```{r}
 viajes <- read_delim("data/viajeros_según_sexo_destino_duracion_del_viaje.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)
@@ -85,12 +83,11 @@ viajes <- read_delim("data/viajeros_según_sexo_destino_duracion_del_viaje.csv",
 any(is.na(viajes))  # Comprobación de si hay datos faltantes
 ```
 
-
 ## Transformar a tidy data
+
 ```{r}
 tipos_datos <- unique(viajes$`Tipo de dato`)
 ```
-
 
 ```{r}
 viajes_porcentaje_categoria <- subset(viajes,viajes$`Tipo de dato` == tipos_datos[1])
@@ -100,7 +97,6 @@ colnames(viajes_porcentaje_categoria)<-nombres_col_cat
 viajes_porcentaje_categoria <- subset(viajes_porcentaje_categoria, select = -`Tipo de dato`)
 ```
 
-
 ```{r}
 viajes_porcentaje_total<- subset(viajes,viajes$`Tipo de dato` == tipos_datos[2])
 nombres_col_tot <- colnames(viajes_porcentaje_total)
@@ -109,11 +105,11 @@ colnames(viajes_porcentaje_total)<-nombres_col_tot
 viajes_porcentaje_total <- subset(viajes_porcentaje_total, select = -`Tipo de dato`)
 ```
 
-
 ```{r}
 # Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
 any(viajes_porcentaje_categoria[1:length(nrow(viajes_porcentaje_categoria)-1)] !=viajes_porcentaje_total[1:length(nrow(viajes_porcentaje_total)-1)])
 ```
+
 ```{r}
 # Uno los dos datasets en un único dataset con el que trabajar
 
@@ -125,6 +121,7 @@ datos <- merge(viajes_porcentaje_categoria,viajes_porcentaje_total, by = c(colna
 ```{r}
 lapply(datos,class)
 ```
+
 ```{r}
 datos$Porcentaje_personas_categoria <-sub(",",".",datos$Porcentaje_personas_categoria)
 
@@ -138,6 +135,7 @@ datos$Porcentaje_personas_categoria[133]
 ```{r}
 datos$Porcentaje_personas_categoria <- as.numeric(datos$Porcentaje_personas_categoria)
 ```
+
 ```{r}
 datos$Porcentaje_personas_total<-sub(",",".",datos$Porcentaje_personas_total)
 
@@ -147,16 +145,16 @@ which(is.na(as.numeric(datos$Porcentaje_personas_total))==TRUE)
 datos$Porcentaje_personas_total[133]
 # No es posible corregirlo, es un dato faltante
 ```
-No hay datos para mujeres que en 2021 se fueron de viaje al extranjero de 1 a 3 noches.
 
+No hay datos para mujeres que en 2021 se fueron de viaje al extranjero de 1 a 3 noches.
 
 ```{r}
 datos$Porcentaje_personas_total <- as.numeric(datos$Porcentaje_personas_total)
 ```
+
 ```{r}
 # Comprobamos que se hayan transformado correctamente
-lapply(datos,class)
+lapply(datos,class) 
 ```
-
 
 

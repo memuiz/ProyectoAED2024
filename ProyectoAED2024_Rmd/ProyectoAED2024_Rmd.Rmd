@@ -120,8 +120,43 @@ any(viajes_porcentaje_categoria[1:length(nrow(viajes_porcentaje_categoria)-1)] !
 datos <- merge(viajes_porcentaje_categoria,viajes_porcentaje_total, by = c(colnames(viajes_porcentaje_categoria[1:length(viajes_porcentaje_categoria)-1])))
 ```
 
+## Transformación de clases
+
+```{r}
+lapply(datos,class)
+```
+```{r}
+datos$Porcentaje_personas_categoria <-sub(",",".",datos$Porcentaje_personas_categoria)
+
+# Compruebo si se han introducido NA
+which(is.na(as.numeric(datos$Porcentaje_personas_categoria))==TRUE)
+# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible
+datos$Porcentaje_personas_categoria[133]
+# No es posible corregirlo, es un dato faltante
+```
+
+```{r}
+datos$Porcentaje_personas_categoria <- as.numeric(datos$Porcentaje_personas_categoria)
+```
+```{r}
+datos$Porcentaje_personas_total<-sub(",",".",datos$Porcentaje_personas_total)
+
+# Compruebo si se han introducido NA
+which(is.na(as.numeric(datos$Porcentaje_personas_total))==TRUE)
+# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible
+datos$Porcentaje_personas_total[133]
+# No es posible corregirlo, es un dato faltante
+```
+No hay datos para mujeres que en 2021 se fueron de viaje al extranjero de 1 a 3 noches.
 
 
+```{r}
+datos$Porcentaje_personas_total <- as.numeric(datos$Porcentaje_personas_total)
+```
+```{r}
+# Comprobamos que se hayan transformado correctamente
+lapply(datos,class)
+```
 
 
 

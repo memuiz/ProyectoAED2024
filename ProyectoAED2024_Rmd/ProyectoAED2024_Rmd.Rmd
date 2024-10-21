@@ -61,16 +61,15 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = here::here()) # Set working directory a la carpeta del proyecto en lugar de a la sub-cartpeta del Rmd
 ```
-  
+
 # Introducción
-  
-  
+
 # Carga de librerías e importación del fichero
-  
+
 ```{r}
 rm(list=ls())  # Borrar todas las variables al principio
 ```
-  
+
 ```{r}
 library(readr)
 library(ggplot2)
@@ -78,46 +77,70 @@ library(ggplot2)
 
 
 ```{r}
-viajes <- read_delim("data/viajeros_según_sexo_destino_duracion_del_viaje.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)
+gastos <- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
-
+## Transformacion a tidy data
 ```{r}
-any(is.na(viajes))  # Comprobación de si hay datos faltantes
+tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
+tipos_datos
 ```
-
-
-## Transformar a tidy data
 ```{r}
-tipos_datos <- unique(viajes$`Tipo de dato`)
+gastos1 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[1])
+colnames(gastos1)[colnames(gastos1)=="Total"]<- "Gasto_total"
+gastos1<- subset(gastos1, select = -`Gastos y duración media de los viajes`)
 ```
 
-
-```{r}
-viajes_porcentaje_categoria <- subset(viajes,viajes$`Tipo de dato` == tipos_datos[1])
-nombres_col_cat <- colnames(viajes_porcentaje_categoria)
-nombres_col_cat[nombres_col_cat == "Total"] <-"Porcentaje_personas_categoria"
-colnames(viajes_porcentaje_categoria)<-nombres_col_cat
-viajes_porcentaje_categoria <- subset(viajes_porcentaje_categoria, select = -`Tipo de dato`)
-```
 
 
 ```{r}
-viajes_porcentaje_total<- subset(viajes,viajes$`Tipo de dato` == tipos_datos[2])
-nombres_col_tot <- colnames(viajes_porcentaje_total)
-nombres_col_tot[nombres_col_tot == "Total"] <-"Porcentaje_personas_total"
-colnames(viajes_porcentaje_total)<-nombres_col_tot
-viajes_porcentaje_total <- subset(viajes_porcentaje_total, select = -`Tipo de dato`)
+gastos2 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[2])
+colnames(gastos2)[colnames(gastos2)=="Total"]<- "Gasto_medio_persona"
+gastos2<- subset(gastos2, select = -`Gastos y duración media de los viajes`)
 ```
 
+```{r}
+gastos3 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[3])
+colnames(gastos3)[colnames(gastos3)=="Total"]<- "Gasto_medio_diario_persona"
+gastos3<- subset(gastos3, select = -`Gastos y duración media de los viajes`)
+```
+
+```{r}
+gastos4 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[4])
+colnames(gastos4)[colnames(gastos4)=="Total"]<- "Duracion_media"
+gastos4<- subset(gastos4, select = -`Gastos y duración media de los viajes`)
+```
+
+
+```{r}
+
+# Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
+any(gastos1[1:length(nrow(gastos1)-1)] !=gastos2[1:length(nrow(gastos2)-1)])
+any(gastos3[1:length(nrow(gastos1)-1)] !=gastos4[1:length(nrow(gastos2)-1)])
+
+```
+```{r}
+
+# Uno los dos datasets en un único dataset con el que trabajar
+
+gastos12 <- merge(gastos1,gastos2, by = c(colnames(gastos1[1:length(gastos1)-1])))
+gastos34 <- merge(gastos3,gastos4, by = c(colnames(gastos3[1:length(gastos3)-1])))
+```
 
 ```{r}
 # Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
-any(viajes_porcentaje_categoria[1:length(nrow(viajes_porcentaje_categoria)-1)] !=viajes_porcentaje_total[1:length(nrow(viajes_porcentaje_total)-1)])
-```
-```{r}
-# Uno los dos datasets en un único dataset con el que trabajar
+any(gastos12[1:length(nrow(gastos12)-2)] !=gastos34[1:length(nrow(gastos34)-2)])
 
-datos <- merge(viajes_porcentaje_categoria,viajes_porcentaje_total, by = c(colnames(viajes_porcentaje_categoria[1:length(viajes_porcentaje_categoria)-1])))
+# Uno los dos datasets
+datos <- merge(gastos12,gastos34, by = c(colnames(gastos12[1:4])))
+```
+
+```{r}
+unique(datos$`Tipo de dato`)
+
+# Nos quedamos únicamente con los datos base, quitando las tasas de variación
+datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
+# Quito la columna irrelevante
+datos <- subset(datos, select = -`Tipo de dato`)
 ```
 
 ## Transformación de clases
@@ -125,37 +148,22 @@ datos <- merge(viajes_porcentaje_categoria,viajes_porcentaje_total, by = c(colna
 ```{r}
 lapply(datos,class)
 ```
-```{r}
-datos$Porcentaje_personas_categoria <-sub(",",".",datos$Porcentaje_personas_categoria)
-
-# Compruebo si se han introducido NA
-which(is.na(as.numeric(datos$Porcentaje_personas_categoria))==TRUE)
-# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible
-datos$Porcentaje_personas_categoria[133]
-# No es posible corregirlo, es un dato faltante
-```
 
 ```{r}
-datos$Porcentaje_personas_categoria <- as.numeric(datos$Porcentaje_personas_categoria)
-```
-```{r}
-datos$Porcentaje_personas_total<-sub(",",".",datos$Porcentaje_personas_total)
-
-# Compruebo si se han introducido NA
-which(is.na(as.numeric(datos$Porcentaje_personas_total))==TRUE)
-# Compruebo que dato habia antes de la transformación para poder corregirlo si fuera posible
-datos$Porcentaje_personas_total[133]
-# No es posible corregirlo, es un dato faltante
-```
-No hay datos para mujeres que en 2021 se fueron de viaje al extranjero de 1 a 3 noches.
-
-
-```{r}
-datos$Porcentaje_personas_total <- as.numeric(datos$Porcentaje_personas_total)
-```
-```{r}
-# Comprobamos que se hayan transformado correctamente
+# Quitar punto de miles
+datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub("\\.", "", x))
+# Sustituir coma decimal por punto decimal
+datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub(",", ".", x))
+# Transformar a numerico
+datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(x))
+# Comprobar la clase
 lapply(datos,class)
+```
+
+
+```{r}
+# Comprobar si hay datos NA
+any(is.na(datos))
 ```
 
 

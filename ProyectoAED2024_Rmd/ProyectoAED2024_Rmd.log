@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  20 OCT 2024 12:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  21 OCT 2024 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1574,7 +1574,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./Definitions/logo-mdpi-eps-converted-to.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Definitions/logo-mdpi-eps-converted-to.pdf, id=37, 88.33pt x 58.2175pt>
+<Definitions/logo-mdpi-eps-converted-to.pdf, id=41, 88.33pt x 58.2175pt>
 File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-mdpi-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on in
@@ -1615,13 +1615,19 @@ Overfull \hbox (41.28839pt too wide) in paragraph at lines 271--271
  []
 
 
+Overfull \hbox (36.03967pt too wide) in paragraph at lines 271--271
+[]\T1/cmtt/m/n/10 ## chr (5): País de residencia, Total Nacional y CCAA, Tipo d
+e dato, Gastos y d...[] 
+ []
+
+
 Overfull \hbox (46.53711pt too wide) in paragraph at lines 271--271
 []\T1/cmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE`
  to quiet this message.[] 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-287.
+278.
 
 (C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
@@ -1643,19 +1649,36 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 {C:/Users/Media Service/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Us
 ers/Media Service/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <.
 /Definitions/logo-mdpi-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 364--364
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 498--498
 
  []
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 364.
+(Font)              scaled to size 9.37807pt on input line 498.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 364.
+(Font)              scaled to size 7.29405pt on input line 498.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 364.
+(Font)              scaled to size 9.37807pt on input line 498.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 364.
-(appendix.tex)
+(Font)              scaled to size 7.29405pt on input line 498.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[3] (appendix.tex)
 No file ProyectoAED2024_Rmd.bbl.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1665,20 +1688,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[2] 
+[4] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (ProyectoAED2024_Rmd.aux)
 Package rerunfilecheck Info: File `ProyectoAED2024_Rmd.out' has not changed.
-(rerunfilecheck)             Checksum: A699AA2E55C59D77B952F934ADBDF762;693.
+(rerunfilecheck)             Checksum: E591E290EAD8976E0C057CE52BBED39F;893.
  ) 
 Here is how much of TeX's memory you used:
- 33922 strings out of 476331
- 653401 string characters out of 5783953
+ 33928 strings out of 476331
+ 653512 string characters out of 5783953
  1881660 words of memory out of 5000000
- 53548 multiletter control sequences out of 15000+600000
+ 53551 multiletter control sequences out of 15000+600000
  566400 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,12n,120p,1018b,607s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,12n,120p,1018b,685s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Media Service\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 600\tctt1000.pk> <C:\Users\Media Service\AppData\Local\MiKTeX\fonts/pk/ljfour/j
 knappen/ec/dpi600\ecit1000.pk> <C:\Users\Media Service\AppData\Local\MiKTeX\fon
@@ -1688,9 +1711,9 @@ ce/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/
 Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb
 ><C:/Users/Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino
 /uplri8a.pfb>
-Output written on ProyectoAED2024_Rmd.pdf (2 pages, 146627 bytes).
+Output written on ProyectoAED2024_Rmd.pdf (4 pages, 154222 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 9 named destinations out of 1000 (max. 500000)
- 90690 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 220 PDF objects out of 1000 (max. 8388607)
+ 12 named destinations out of 1000 (max. 500000)
+ 90698 words of extra memory for PDF output out of 106986 (max. 10000000)
 

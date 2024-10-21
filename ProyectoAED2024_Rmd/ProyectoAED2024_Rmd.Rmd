@@ -155,7 +155,7 @@ datos$Porcentaje_personas_total <- as.numeric(datos$Porcentaje_personas_total)
 ```
 ```{r}
 # Comprobamos que se hayan transformado correctamente
-lapply(datos,class)
+lapply(datos,class) 
 ```
 
 

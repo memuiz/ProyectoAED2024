@@ -189,5 +189,12 @@ nombres_columnas <- c("País_residencia", "CCAA_y_total", "Periodo", colnames(da
 colnames(datos)<- nombres_columnas
 colnames(datos)
 ```
+# Prueba de ggplot
+
+```{r}
+library(ggplot2)
+g <- ggplot(data = datos[datos$CCAA_y_total!="Total" & datos$País_residencia != "Total",],aes(x=Duracion_media,color = CCAA_y_total))
+g + geom_point(aes(y = Gasto_medio_persona))
+```
 
 

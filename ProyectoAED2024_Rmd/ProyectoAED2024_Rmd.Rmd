@@ -166,5 +166,28 @@ any(is.na(datos))
 ```
 
 
+```{r}
+unique(datos$`País de residencia`)
+
+# Transformacion a factor de paises de residencia
+datos$`País de residencia` <- as.factor(datos$`País de residencia`)
+```
+
+
+```{r}
+# Transformacion a facotr de nombres de comunidades
+unique(datos$`Total Nacional y CCAA`)
+datos$`Total Nacional y CCAA`<- as.factor(datos$`Total Nacional y CCAA`)
+levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA", "Total")
+
+```
+## Cambios de nombres de las columnas
+
+```{r}
+colnames(datos)
+nombres_columnas <- c("País_residencia", "CCAA_y_total", "Periodo", colnames(datos)[4:7])
+colnames(datos)<- nombres_columnas
+colnames(datos)
+```
 
 

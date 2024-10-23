@@ -203,7 +203,7 @@ colnames(datos)
 
 ## Arreglo valores de filas
 
-Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
+
 ```{r}
 # Cambiar el nombre de las filas
 paises <- levels(datos$Pais)
@@ -214,6 +214,8 @@ levels(datos$Pais) <- paises
 
 
 ###  Arreglar valores de Gasto_total
+
+Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
 
 ```{r}
 comunidades <- levels(datos$CCAA)

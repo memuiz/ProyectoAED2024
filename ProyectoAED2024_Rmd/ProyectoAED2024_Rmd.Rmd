@@ -270,3 +270,37 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
 
 ```
 
+
+```{r}
+# Visualización de los datos e interpretación de los posibles patrones
+
+# Visualización previa para tener una idea de ciertas variables de los datos
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
+  geom_point() +
+  labs(title = "Evolución del gasto total de turistas por año", x  = "Años", y = "Gasto total en millones de euros")
+
+# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año
+ggplot(datos[datos$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
+  geom_bar(stat = "identity", aes(fill = Pais)) +
+  coord_flip() +
+  labs(title = "Gasto por país de residencia en 2023", x = "Gasto total en millones de euros", y = "País") +  
+  theme(legend.position = "none")
+
+# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.
+ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
+  geom_bar(stat = "identity", fill = "red") +
+  facet_grid(.~CCAA["i"],scales = "free") +
+  labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
+
+# Para todas las Comunidades Autónomas por separado
+ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
+  geom_bar(stat = "identity", fill = "purple") +
+  facet_wrap(~ CCAA, scales = "free_y") +  
+  labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
+       x = "País", 
+       y = "Duración media del viaje") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+

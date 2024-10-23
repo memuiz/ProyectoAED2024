@@ -141,6 +141,11 @@ datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
 
+Eliminar variables del entorno auxiliares
+```{r}
+rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)
+```
+
 ## Transformación de clases
 
 ```{r}
@@ -172,29 +177,94 @@ unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
 datos$`País de residencia` <- as.factor(datos$`País de residencia`)
 ```
+Quitar filas irrelevantes (totales que se pueden calcular a partir de los datos) para tener tidy data
+```{r}
+# Quitar filas de total de columna comunidades autonomas
+datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
+```
 
 
 ```{r}
-# Transformacion a facotr de nombres de comunidades
+# Transformacion a factor de nombres de comunidades
 unique(datos$`Total Nacional y CCAA`)
 datos$`Total Nacional y CCAA`<- as.factor(datos$`Total Nacional y CCAA`)
-levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA", "Total")
+levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
+
 
 ```
 ## Cambios de nombres de las columnas
 
 ```{r}
 colnames(datos)
-nombres_columnas <- c("País_residencia", "CCAA_y_total", "Periodo", colnames(datos)[4:7])
+nombres_columnas <- c("Pais", "CCAA", "Periodo", colnames(datos)[4:7])
 colnames(datos)<- nombres_columnas
 colnames(datos)
 ```
-# Prueba de ggplot
 
+## Arreglo valores de filas
+
+Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
 ```{r}
-library(ggplot2)
-g <- ggplot(data = datos[datos$CCAA_y_total!="Total" & datos$País_residencia != "Total",],aes(x=Duracion_media,color = CCAA_y_total))
-g + geom_point(aes(y = Gasto_medio_persona))
+# Cambiar el nombre de las filas
+paises <- levels(datos$Pais)
+paises[paises=="Total"] <- "Otros"
+levels(datos$Pais) <- paises
+
 ```
 
+
+###  Arreglar valores de Gasto_total
+
+```{r}
+comunidades <- levels(datos$CCAA)
+anos <- unique(datos$Periodo)
+for (i in comunidades){
+  for (j in anos){
+  aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_total"]
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux)] - sum(aux[1:length(aux)-1])  # Gasto del resto de paises es el gasto total - gasto de los otos paises
+  }
+}
+
+```
+
+
+### Arreglar valores de las otras 3 variables
+
+Consideramos la media ponderada. Numero de países entre 194 y 206.
+
+ media_total = media_otros x (194-5)/194 + (5/194)x sum(media_paises) Por comunidad autonoma y por año
+media_otros = (media_total - (5/194)x sum(media_paises) ) * 194/(194-5)
+
+```{r}
+# Arreglar duracion media
+for (i in comunidades){
+  for (j in anos){
+  aux <- datos[datos$CCAA==i & datos$Periodo == j, "Duracion_media"]
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_media"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+  }
+}
+
+```
+
+```{r}
+# Arreglar Gasto_medio_persona
+for (i in comunidades){
+  for (j in anos){
+  aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_persona"]
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+  }
+}
+
+```
+
+```{r}
+# Arreglar Gasto_medio_diario_persona
+for (i in comunidades){
+  for (j in anos){
+  aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_diario_persona"]
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_diario_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+  }
+}
+
+```
 

@@ -70,10 +70,12 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Título}
+\Title{Estudio del gasto y duración media de los viajes de los turistas
+extranjeros en distintas comunidades autónomas}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Título}
+\TitleCitation{Estudio del gasto y duración media de los viajes de los
+turistas extranjeros en distintas comunidades autónomas}
 
 % Author Orchid ID: enter ID or remove command
 %\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
@@ -105,7 +107,8 @@ Datos; \href{mailto:memuiz@alumni.uv.es}{\nolinkurl{memuiz@alumni.uv.es}}\\
 }
 
 % Contact information of the corresponding author
-\corres{Correspondence: }
+\corres{Correspondence: \href{mailto:email@email.com}{\nolinkurl{email@email.com}};
+Tel.: +XX-000-00-0000.}
 
 % Current address and/or shared authorship
 
@@ -119,12 +122,12 @@ Datos; \href{mailto:memuiz@alumni.uv.es}{\nolinkurl{memuiz@alumni.uv.es}}\\
 % The commands \thirdnote{} till \eighthnote{} are available for further notes
 
 % Simple summary
-\simplesumm{Resumen.}
+\simplesumm{Resumen del trabajo}
 
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\)
-\abstract{Abstract}
+\abstract{abstract}
 
 
 % Keywords
@@ -240,22 +243,50 @@ subject discipline.).}
 \section{Carga de librerías e importación del
 fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
 
+Antes de comenzar, eliminamos todas las variables guardadas.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())  }\CommentTok{\# Borrar todas las variables al principio}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())  }\CommentTok{\# Borrado de todas las variables}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(readr)}
-\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(readr)  }\CommentTok{\# Librería para importación de datos}
+\FunctionTok{library}\NormalTok{(dplyr) }\CommentTok{\# Librería para arreglo de datos}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## 
+## Adjuntando el paquete: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gastos }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,  }\AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(tidyr) }\CommentTok{\# Librería para arreglo de datos}
+\FunctionTok{library}\NormalTok{(ggplot2) }\CommentTok{\# Librería para gráficas}
+\end{Highlighting}
+\end{Shaded}
+
+Importamos los datos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gastos}\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,  }\AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -270,8 +301,9 @@ fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 \end{verbatim}
 
-\subsection{Transformacion a tidy
-data}\label{transformacion-a-tidy-data}
+\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}
+
+\subsection{Tranformación a tidydata}\label{tranformaciuxf3n-a-tidydata}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -384,6 +416,14 @@ data}\label{transformacion-a-tidy-data}
 \end{Highlighting}
 \end{Shaded}
 
+Eliminar variables del entorno auxiliares
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)}
+\end{Highlighting}
+\end{Shaded}
+
 \subsection{Transformación de clases}\label{transformaciuxf3n-de-clases}
 
 \begin{Shaded}
@@ -462,6 +502,251 @@ data}\label{transformacion-a-tidy-data}
 ## [1] FALSE
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Alemania"        "Francia"         "Italia"          "Países Nórdicos"
+## [5] "Reino Unido"     "Total"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Transformacion a factor de paises de residencia}
+\NormalTok{datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Quitar filas irrelevantes (totales que se pueden calcular a partir de
+los datos) para tener tidy data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Quitar filas de total de columna comunidades autonomas}
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos,datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Transformacion a factor de nombres de comunidades}
+\FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "01 Andalucía"                "04 Balears, Illes"          
+## [3] "05 Canarias"                 "09 Cataluña"                
+## [5] "10 Comunitat Valenciana"     "13 Madrid, Comunidad de"    
+## [7] "Otras Comunidades Autónomas"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\NormalTok{)}
+\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\NormalTok{) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andalucía"}\NormalTok{, }\StringTok{"Illes Balears"}\NormalTok{,}\StringTok{"Canarias"}\NormalTok{, }\StringTok{"Cataluña"}\NormalTok{,}\StringTok{"Comunitat Valenciana"}\NormalTok{, }\StringTok{"Comunidad de Madrid"}\NormalTok{, }\StringTok{"Otras CCAA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cambios de nombres de las
+columnas}\label{cambios-de-nombres-de-las-columnas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "País de residencia"         "Total Nacional y CCAA"     
+## [3] "Periodo"                    "Gasto_total"               
+## [5] "Gasto_medio_persona"        "Gasto_medio_diario_persona"
+## [7] "Duracion_media"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nombres\_columnas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pais"}\NormalTok{, }\StringTok{"CCAA"}\NormalTok{, }\StringTok{"Periodo"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(datos)[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{7}\NormalTok{])}
+\FunctionTok{colnames}\NormalTok{(datos)}\OtherTok{\textless{}{-}}\NormalTok{ nombres\_columnas}
+\FunctionTok{colnames}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Pais"                       "CCAA"                      
+## [3] "Periodo"                    "Gasto_total"               
+## [5] "Gasto_medio_persona"        "Gasto_medio_diario_persona"
+## [7] "Duracion_media"
+\end{verbatim}
+
+\subsection{Arreglo valores de filas}\label{arreglo-valores-de-filas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cambiar el nombre de las filas}
+\NormalTok{paises }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais)}
+\NormalTok{paises[paises}\SpecialCharTok{==}\StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Otros"}
+\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais) }\OtherTok{\textless{}{-}}\NormalTok{ paises}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Arreglar valores de
+Gasto\_total}\label{arreglar-valores-de-gasto_total}
+
+Hay que crear filas con valor en pais residencia = resto de paises y
+asignarla a total - suma del resto de paises por comunidases
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comunidades }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA)}
+\NormalTok{anos }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Periodo)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_total"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ aux[}\FunctionTok{length}\NormalTok{(aux)] }\SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{])  }\CommentTok{\# Gasto del resto de paises es el gasto total {-} gasto de los otos paises}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Arreglar valores de las otras 3
+variables}\label{arreglar-valores-de-las-otras-3-variables}
+
+Consideramos la media ponderada. Numero de países entre 194 y 206.
+
+media\_total = media\_otros x (194-5)/194 + (5/194)x sum(media\_paises)
+Por comunidad autonoma y por año media\_otros = (media\_total - (5/194)x
+sum(media\_paises) ) * 194/(194-5)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Arreglar duracion media}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Duracion\_media"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Arreglar Gasto\_medio\_persona}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Arreglar Gasto\_medio\_diario\_persona}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\FunctionTok{rm}\NormalTok{(i,j,anos,comunidades, paises, aux)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Pais                      CCAA       Periodo    
+##  Alemania       :56   Andalucía           :48   Min.   :2016  
+##  Francia        :56   Illes Balears       :48   1st Qu.:2018  
+##  Italia         :56   Canarias            :48   Median :2020  
+##  Países Nórdicos:56   Cataluña            :48   Mean   :2020  
+##  Reino Unido    :56   Comunitat Valenciana:48   3rd Qu.:2021  
+##  Otros          :56   Comunidad de Madrid :48   Max.   :2023  
+##                       Otras CCAA          :48                 
+##   Gasto_total       Gasto_medio_persona Gasto_medio_diario_persona
+##  Min.   :   22.28   Min.   : 383.0      Min.   : 56.0             
+##  1st Qu.:  396.06   1st Qu.: 832.8      1st Qu.:105.0             
+##  Median :  849.69   Median : 980.8      Median :130.5             
+##  Mean   : 1775.89   Mean   : 983.7      Mean   :133.0             
+##  3rd Qu.: 2375.74   3rd Qu.:1138.0      3rd Qu.:154.0             
+##  Max.   :14281.08   Max.   :1612.5      Max.   :277.0             
+##                                                                   
+##  Duracion_media  
+##  Min.   : 3.610  
+##  1st Qu.: 5.793  
+##  Median : 7.465  
+##  Mean   : 7.586  
+##  3rd Qu.: 9.040  
+##  Max.   :14.270  
+## 
+\end{verbatim}
+
+\section{Prueba de ggplot}\label{prueba-de-ggplot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualización de los datos e interpretación de los posibles patrones}
+
+\CommentTok{\# Visualización previa para tener una idea de ciertas variables de los datos}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Periodo, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{color =}\NormalTok{ CCAA, }\AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Evolución del gasto total de turistas por año"}\NormalTok{, }\AttributeTok{x  =} \StringTok{"Años"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto total en millones de euros"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año}
+\FunctionTok{ggplot}\NormalTok{(datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2023}\NormalTok{, ], }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Pais, }\SpecialCharTok{{-}}\NormalTok{Gasto\_total), }\AttributeTok{y =}\NormalTok{ Gasto\_total)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto por país de residencia en 2023"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Gasto total en millones de euros"}\NormalTok{, }\AttributeTok{y =} \StringTok{"País"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(.}\SpecialCharTok{\textasciitilde{}}\NormalTok{CCAA[}\StringTok{"i"}\NormalTok{],}\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en Andalucía"}\NormalTok{, }\AttributeTok{x =} \StringTok{"País"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Para todas las Comunidades Autónomas por separado}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ CCAA, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en cada Comunidad Autónoma"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"País"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \vspace{6pt}
@@ -486,16 +771,6 @@ data}\label{transformacion-a-tidy-data}
 
 %% Only for journal Encyclopedia
 
-\abbreviations{Abbreviations}{
-The following abbreviations are used in this manuscript:\\
-
-\noindent
-\begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute \\
-DOAJ & Directory of open access journals \\
-TLA & Three letter acronym \\
-LD & linear dichroism \\
-\end{tabular}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional

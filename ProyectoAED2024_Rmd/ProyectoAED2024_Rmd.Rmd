@@ -1,5 +1,5 @@
 ---
-title: Título
+title: Estudio del gasto y duración media de los viajes de los turistas extranjeros en distintas comunidades autónomas
 author:
  - name: Alejandro León Líndez
    affil: 1
@@ -22,73 +22,90 @@ affiliation:
     email: memuiz@alumni.uv.es
 
 # document options
+correspondence: |
+  email@email.com; Tel.: +XX-000-00-0000.
 journal: notspecified
 type: article
 status: submit
 # front matter
 simplesummary: |
-  Resumen.
+  Resumen del trabajo
 abstract: |
-  Abstract
+  abstract
 # back matter
 keywords: |
   keyword 1; keyword 2; keyword 3 (list three to ten pertinent keywords specific 
-                                   to the article, yet reasonably common within the subject discipline.).
+  to the article, yet reasonably common within the subject discipline.).
 
-
-abbreviations:
-  - short: MDPI
-    long: Multidisciplinary Digital Publishing Institute
-  - short: DOAJ
-    long: Directory of open access journals
-  - short: TLA
-    long: Three letter acronym
-  - short: LD 
-    long: linear dichroism
+# abbreviations:
+#   - short: MDPI
+#     long: Multidisciplinary Digital Publishing Institute
+#   - short: DOAJ
+#     long: Directory of open access journals
+#   - short: TLA
+#     long: Three letter acronym
+#   - short: LD 
+#     long: linear dichroism
 bibliography: mybibfile.bib
 appendix: appendix.tex
 endnotes: false
 output: 
   rticles::mdpi_article:
   extra_dependencies: longtable
+  fontsize: 10pt  # Tamaño de fuente ajustado a 10p
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,width = 60}
 # Setup Chunk
-library(here)
+library(here)  
 library(knitr)
 
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = here::here()) # Set working directory a la carpeta del proyecto en lugar de a la sub-cartpeta del Rmd
+knitr::opts_knit$set(root.dir = here::here()) # Setwd() a la carpeta del 
+#proyecto ProyectoAED2024 debido a que por defecto el Rmd trabaja en el working 
+#directory de la carpeta ProyectoAED2024_Rmd
+#knitr::opts_chunk$set(size = "footnotesize") # use smaller font in the chunks
+
 ```
 
 # Introducción
 
 # Carga de librerías e importación del fichero
 
+Antes de comenzar, eliminamos todas las variables guardadas.
+
 ```{r}
-rm(list=ls())  # Borrar todas las variables al principio
+rm(list=ls())  # Borrado de todas las variables
 ```
 
 ```{r}
-library(readr)
-library(ggplot2)
+library(readr)  # Librería para importación de datos
+library(dplyr) # Librería para arreglo de datos
+library(tidyr) # Librería para arreglo de datos
+library(ggplot2) # Librería para gráficas
 ```
 
+Importamos los datos
+
 ```{r}
-gastos <- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
+gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
 ```
-# Transformacion a tidy data
+
+# Preparación de los datos
+
+## Tranformación a tidydata
+
 ```{r}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
 tipos_datos
 ```
+
 ```{r}
 gastos1 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[1])
 colnames(gastos1)[colnames(gastos1)=="Total"]<- "Gasto_total"
 gastos1<- subset(gastos1, select = -`Gastos y duración media de los viajes`)
 ```
-
 
 ```{r}
 gastos2 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[2])
@@ -142,6 +159,7 @@ datos <- subset(datos, select = -`Tipo de dato`)
 ```
 
 Eliminar variables del entorno auxiliares
+
 ```{r}
 rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)
 ```
@@ -151,7 +169,6 @@ rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)
 ```{r}
 lapply(datos,class)
 ```
-
 
 ```{r}
 # Quitar punto de miles
@@ -164,12 +181,10 @@ datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(
 lapply(datos,class)
 ```
 
-
 ```{r}
 # Comprobar si hay datos NA
 any(is.na(datos))
 ```
-
 
 ```{r}
 unique(datos$`País de residencia`)
@@ -177,12 +192,13 @@ unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
 datos$`País de residencia` <- as.factor(datos$`País de residencia`)
 ```
+
 Quitar filas irrelevantes (totales que se pueden calcular a partir de los datos) para tener tidy data
+
 ```{r}
 # Quitar filas de total de columna comunidades autonomas
 datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
 ```
-
 
 ```{r}
 # Transformacion a factor de nombres de comunidades
@@ -192,6 +208,7 @@ levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canari
 
 
 ```
+
 ## Cambios de nombres de las columnas
 
 ```{r}
@@ -203,7 +220,6 @@ colnames(datos)
 
 ## Arreglo valores de filas
 
-
 ```{r}
 # Cambiar el nombre de las filas
 paises <- levels(datos$Pais)
@@ -212,8 +228,7 @@ levels(datos$Pais) <- paises
 
 ```
 
-
-###  Arreglar valores de Gasto_total
+### Arreglar valores de Gasto_total
 
 Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
 
@@ -229,13 +244,11 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]
 
 ```
 
-
 ### Arreglar valores de las otras 3 variables
 
 Consideramos la media ponderada. Numero de países entre 194 y 206.
 
- media_total = media_otros x (194-5)/194 + (5/194)x sum(media_paises) Por comunidad autonoma y por año
-media_otros = (media_total - (5/194)x sum(media_paises) ) * 194/(194-5)
+media_total = media_otros x (194-5)/194 + (5/194)x sum(media_paises) Por comunidad autonoma y por año media_otros = (media_total - (5/194)x sum(media_paises) ) \* 194/(194-5)
 
 ```{r}
 # Arreglar duracion media
@@ -271,10 +284,13 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
 rm(i,j,anos,comunidades, paises, aux)
 ```
 
+```{r}
+summary(datos)
+```
 
 # Prueba de ggplot
 
-```{r}
+```{r fig.width=5, fig.height=3}
 # Visualización de los datos e interpretación de los posibles patrones
 
 # Visualización previa para tener una idea de ciertas variables de los datos
@@ -294,7 +310,10 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
   geom_bar(stat = "identity", fill = "red") +
   facet_grid(.~CCAA["i"],scales = "free") +
   labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
+```
 
+
+```{r fig.width=5, fig.height=5}
 # Para todas las Comunidades Autónomas por separado
 ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
   geom_bar(stat = "identity", fill = "purple") +
@@ -306,4 +325,3 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 
 ```
-

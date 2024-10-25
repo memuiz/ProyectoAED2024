@@ -78,7 +78,7 @@ library(ggplot2)
 ```{r}
 gastos <- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
-## Transformacion a tidy data
+# Transformacion a tidy data
 ```{r}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
 tipos_datos
@@ -268,8 +268,11 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
   }
 }
 
+rm(i,j,anos,comunidades, paises, aux)
 ```
 
+
+# Prueba de ggplot
 
 ```{r}
 # Visualización de los datos e interpretación de los posibles patrones

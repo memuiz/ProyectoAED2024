@@ -24,7 +24,7 @@ affiliation:
 # document options
 correspondence: |
   email@email.com; Tel.: +XX-000-00-0000.
-journal: notspecified
+journal: data
 type: article
 status: submit
 # front matter
@@ -65,6 +65,7 @@ knitr::opts_knit$set(root.dir = here::here()) # Setwd() a la carpeta del
 #proyecto ProyectoAED2024 debido a que por defecto el Rmd trabaja en el working 
 #directory de la carpeta ProyectoAED2024_Rmd
 #knitr::opts_chunk$set(size = "footnotesize") # use smaller font in the chunks
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 
 ```
 
@@ -96,9 +97,11 @@ gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisres
 
 ## Tranformación a tidydata
 
+Observamos que las variables no están correctamente colocadas en columnas.
+
 ```{r}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
-tipos_datos
+tipos_datos # Vemos cuantas variables tenemos que transformar a columnas
 ```
 
 ```{r}
@@ -148,7 +151,7 @@ any(gastos12[1:length(nrow(gastos12)-2)] !=gastos34[1:length(nrow(gastos34)-2)])
 # Uno los dos datasets
 datos <- merge(gastos12,gastos34, by = c(colnames(gastos12[1:4])))
 ```
-
+Eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante,
 ```{r}
 unique(datos$`Tipo de dato`)
 
@@ -158,16 +161,17 @@ datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
 
-Eliminar variables del entorno auxiliares
-
 ```{r}
-rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)
+rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12) # Eliminamos
+# algunos variables auxiliares innecesarias a posteriori
 ```
 
 ## Transformación de clases
 
+Todas las variables han sido importadas como tipo carácter.Vamos a transformar las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente.
+
 ```{r}
-lapply(datos,class)
+# lapply(datos,class)
 ```
 
 ```{r}
@@ -177,23 +181,21 @@ datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub("\\.",
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub(",", ".", x))
 # Transformar a numerico
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(x))
-# Comprobar la clase
-lapply(datos,class)
+# Comprobamos la clase
+# lapply(datos,class)
 ```
-
+Comprobamos si al realizar la transformación se han introducido datos NA.
 ```{r}
-# Comprobar si hay datos NA
 any(is.na(datos))
 ```
-
+A continuación, transformamos a factor las variables País de residencia y Comunidades Autónomas.
 ```{r}
-unique(datos$`País de residencia`)
-
+# unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
 datos$`País de residencia` <- as.factor(datos$`País de residencia`)
 ```
 
-Quitar filas irrelevantes (totales que se pueden calcular a partir de los datos) para tener tidy data
+Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas.
 
 ```{r}
 # Quitar filas de total de columna comunidades autonomas
@@ -202,8 +204,9 @@ datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
 
 ```{r}
 # Transformacion a factor de nombres de comunidades
-unique(datos$`Total Nacional y CCAA`)
+#unique(datos$`Total Nacional y CCAA`)
 datos$`Total Nacional y CCAA`<- as.factor(datos$`Total Nacional y CCAA`)
+# Cambiamos de nombre los niveles del factor
 levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
 
 
@@ -211,14 +214,18 @@ levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canari
 
 ## Cambios de nombres de las columnas
 
+Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
+
 ```{r}
-colnames(datos)
+#colnames(datos)
 nombres_columnas <- c("Pais", "CCAA", "Periodo", colnames(datos)[4:7])
 colnames(datos)<- nombres_columnas
 colnames(datos)
 ```
 
-## Arreglo valores de filas
+## Instance engineering
+
+Vamos a trabajar con valores de las filas para obtener un dataset más apropiado al estudio que deseamos realizar. En primer lugar, queremos deshacernos del nivel "Total" en la variable Pais y transformarla en otro llamado "Otros" en que en el resto de variables contenga la información referente al resto de paises distintos de los cuáles poseemos datos concretos.
 
 ```{r}
 # Cambiar el nombre de las filas
@@ -228,30 +235,36 @@ levels(datos$Pais) <- paises
 
 ```
 
-### Arreglar valores de Gasto_total
+### Instance engineering de Gasto_total
 
-Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
+Para la variable Gasto_total, las filas correspondientes a "Otros" de la variable Pais y las filas correspondientes a "Total" se relacionan de la siguiente manera con $pais\in\{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido, Otros\}$:
 
+$$ \text{Gasto total}_{\text{Pais = total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
+Luego el gasto total de "Otros" es el gasto de "Total" menos el gasto de cada uno de los otros 5 paises disponibles por separado.
 ```{r}
 comunidades <- levels(datos$CCAA)
 anos <- unique(datos$Periodo)
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_total"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux)] - sum(aux[1:length(aux)-1])  # Gasto del resto de paises es el gasto total - gasto de los otos paises
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux)] - sum(aux[1:length(aux)-1])  
   }
 }
 
 ```
 
-### Arreglar valores de las otras 3 variables
+### Instance engineering de Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media
 
-Consideramos la media ponderada. Numero de países entre 194 y 206.
+Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el numero de paises totales es 194 tenemos que para $pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}$
 
-media_total = media_otros x (194-5)/194 + (5/194)x sum(media_paises) Por comunidad autonoma y por año media_otros = (media_total - (5/194)x sum(media_paises) ) \* 194/(194-5)
+$$
+ \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
+$$
+
+De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgandoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
 
 ```{r}
-# Arreglar duracion media
+# Duracion media
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Duracion_media"]
@@ -262,7 +275,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_medi
 ```
 
 ```{r}
-# Arreglar Gasto_medio_persona
+# Gasto_medio_persona
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_persona"]
@@ -273,7 +286,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_p
 ```
 
 ```{r}
-# Arreglar Gasto_medio_diario_persona
+# Gasto_medio_diario_persona
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_diario_persona"]
@@ -281,8 +294,10 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
   }
 }
 
-rm(i,j,anos,comunidades, paises, aux)
+rm(i,j,anos,comunidades, paises, aux) # Borrar variables auxiliares
 ```
+
+Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver un resumen de las variables.
 
 ```{r}
 summary(datos)

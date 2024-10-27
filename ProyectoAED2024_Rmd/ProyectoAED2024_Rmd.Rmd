@@ -195,10 +195,11 @@ A continuación, transformamos a factor las variables País de residencia y Comu
 datos$`País de residencia` <- as.factor(datos$`País de residencia`)
 ```
 
-Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas.
+Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
 
 ```{r}
 # Quitar filas de total de columna comunidades autonomas
+datos_total_por_residencia <- subset(datos, datos$`Total Nacional y CCAA` == "Total")
 datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
 ```
 
@@ -340,3 +341,9 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 
 ```
+
+```{r}
+
+
+```
+

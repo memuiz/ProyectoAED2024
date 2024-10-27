@@ -342,7 +342,48 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 ```
 
+Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
+
 ```{r}
+gastos_medio_residencia <- datos_total_por_residencia %>% 
+  select (`País de residencia`, `Gasto_medio_persona`, Periodo) %>%
+  filter (Periodo == '2016' & `País de residencia` != "Total")
+
+año_ref <- 2016
+
+# Datos
+countries <- gisco_get_countries(year = año_ref,
+                        resolution = 20) %>%
+  select(CNTR_ID, NAME_ENGL, geometry) %>%
+           st_transform(3035)
+
+paises_english <- c('Germany', 'France', 'Italy', 'Norway', 'Finland', 'Sweden', 'Denmark', 'Iceland', 'United Kingdom')
+countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
+paises_ids <- c('FR', 'IS', 'IT', 'DE', 'DK', 'FI', 'NO', 'SE', 'UK')
+paises_ids_dataframe <- data.frame(paises_ids, gastos_medio_residencia$`País de residencia`, row.names = c("ID_Pais", "Pais"))
+
+# Incluir columna de identificación de los países para unir con las coordenadas de los mapas
+
+
+
+# install.packages("sf")
+library(sf)
+# install.packages("giscoR")
+library(giscoR)
+
+
+
+# Mapa base
+ggplot(countries) +
+  geom_sf()
+
+# Gráfico
+choro_adv <- ggplot() +
+  # Primera capa con todos los países
+  geom_sf(data = countries, fill = "grey80", color = NA) +
+  # Establece límites
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000))
 
 
 ```

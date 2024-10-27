@@ -349,6 +349,24 @@ gastos_medio_residencia <- datos_total_por_residencia %>%
   select (`País de residencia`, `Gasto_medio_persona`, Periodo) %>%
   filter (Periodo == '2016' & `País de residencia` != "Total")
 
+gastos_medio_residencia_PN <- gastos_medio_residencia %>% 
+  select (`País de residencia`, `Gasto_medio_persona`, Periodo) %>%
+  filter(`País de residencia` == "Países Nórdicos")
+
+# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
+
+gastos_medio_residencia <- rbind(gastos_medio_residencia, gastos_medio_residencia_PN,
+                                 gastos_medio_residencia_PN, gastos_medio_residencia_PN, gastos_medio_residencia_PN)
+
+# install.packages("sf")
+library(sf)
+# install.packages("dplyr")
+library(dplyr)
+# install.packages("ggplot2")
+library(ggplot2)
+# install.packages("giscoR")
+library(giscoR)
+
 año_ref <- 2016
 
 # Datos
@@ -359,28 +377,27 @@ countries <- gisco_get_countries(year = año_ref,
 
 paises_english <- c('Germany', 'France', 'Italy', 'Norway', 'Finland', 'Sweden', 'Denmark', 'Iceland', 'United Kingdom')
 countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
-paises_ids <- c('FR', 'IS', 'IT', 'DE', 'DK', 'FI', 'NO', 'SE', 'UK')
-paises_ids_dataframe <- data.frame(paises_ids, gastos_medio_residencia$`País de residencia`, row.names = c("ID_Pais", "Pais"))
 
 # Incluir columna de identificación de los países para unir con las coordenadas de los mapas
 
+CNTR_ID <- c('DE', 'FR', 'IT', 'DK', 'UK', 'IS','FI', 'NO', 'SE')
+gastos_medio_residencia <- cbind(gastos_medio_residencia, CNTR_ID)
 
 
-# install.packages("sf")
-library(sf)
-# install.packages("giscoR")
-library(giscoR)
+gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
 
 
 
 # Mapa base
-ggplot(countries) +
-  geom_sf()
+ggplot(gastos_medio_viz) +
+  geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona)) +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000))
 
 # Gráfico
-choro_adv <- ggplot() +
+ggplot(gastos_medio_viz) +
   # Primera capa con todos los países
-  geom_sf(data = countries, fill = "grey80", color = NA) +
+  geom_sf(aes(geometry= geometry), data = gastos_medio_viz, fill = "grey80", color = NA) +
   # Establece límites
   xlim(c(2200000, 7150000)) +
   ylim(c(1380000, 5500000))

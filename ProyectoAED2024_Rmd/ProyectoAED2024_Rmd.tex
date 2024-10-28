@@ -500,11 +500,24 @@ y Comunidades Autónomas.
 \end{Shaded}
 
 Quitamos algunas filas irrelevantes que contienen datos que consisten en
-la suma total de los datos de la columna de Comunidades Autónomas.
+la suma total de los datos de la columna de Comunidades Autónomas para
+el análisis exploratorio. Sin embargo, los recogeremos en una variable a
+parte para presentarlo en una visualización más compleja.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Guardamos los datos totales por si resultan útiles en el}
+\CommentTok{\# futuro}
+\NormalTok{datos\_totales }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
+    \StringTok{"Total"} \SpecialCharTok{|}\NormalTok{ datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Quitar filas de total de columna comunidades autonomas}
+\NormalTok{datos\_total\_por\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
+    \StringTok{"Total"}\NormalTok{)}
 \NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -594,7 +607,7 @@ Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_d
 
 Como en estas variables se trata de una media, no podemos emplear el
 método usado para Gasto\_total. En su lugar consideramos una media
-ponderada. Si consideramos que el numero de paises totales es 194
+ponderada. Si consideramos que el número de paises totales es 194
 tenemos que para
 \(pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}\)
 
@@ -691,6 +704,36 @@ un resumen de las variables.
 ## 
 \end{verbatim}
 
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-27} 10 primeras filas del conjunto de datos procesados}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{lccccccc}
+\toprule
+  & Pais & CCAA & Periodo & Gasto\_total & Gasto\_medio\_persona & Gasto\_medio\_diario\_persona & Duracion\_media\\
+\midrule
+1 & Alemania & Andalucía & 2016 & 1121.33 & 1132 & 102 & 11.14\\
+2 & Alemania & Andalucía & 2017 & 1258.89 & 1123 & 105 & 10.70\\
+3 & Alemania & Andalucía & 2018 & 1256.69 & 1165 & 114 & 10.18\\
+4 & Alemania & Andalucía & 2019 & 1168.38 & 1048 & 117 & 8.96\\
+5 & Alemania & Andalucía & 2020 & 255.96 & 1056 & 102 & 10.34\\
+6 & Alemania & Andalucía & 2021 & 464.01 & 1040 & 100 & 10.39\\
+7 & Alemania & Andalucía & 2022 & 1045.65 & 1211 & 113 & 10.69\\
+8 & Alemania & Andalucía & 2023 & 1314.95 & 1267 & 130 & 9.71\\
+17 & Alemania & Illes Balears & 2016 & 4436.99 & 961 & 129 & 7.44\\
+18 & Alemania & Illes Balears & 2017 & 4890.66 & 1013 & 133 & 7.63\\
+\bottomrule
+\end{tabular}
+    \end{adjustwidth}
+\end{table}
+
+\textbf{NOTA}: Hay dos conjuntos de datos para representar: datos :
+quitando totales para poder ver relaciones por pais, comunidad autonoma
+etc datos\_totales: Aqui estan guardados todos los datos que he
+modificado o borrado del dataset original referentes a valores totales
+por si se necesitan en algun momento
+
 \section{Prueba de ggplot}\label{prueba-de-ggplot}
 
 \begin{Shaded}
@@ -706,7 +749,7 @@ un resumen de las variables.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -719,7 +762,7 @@ un resumen de las variables.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -732,7 +775,7 @@ un resumen de las variables.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -745,7 +788,93 @@ un resumen de las variables.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+Filtraremos los datos totales por el Periodo y recogeremos solo la
+variable que nos sirve para representar la magnitud de valores en el
+mapa de visualización, en este caso el gasto medio por persona
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}}\NormalTok{ datos\_total\_por\_residencia }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(Periodo }\SpecialCharTok{==} \StringTok{"2016"} \SpecialCharTok{\&} \StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
+
+\NormalTok{gastos\_medio\_residencia\_PN }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{"Países Nórdicos"}\NormalTok{)}
+
+\CommentTok{\# Introducimos 4 filas iguales sobre los países nórdicos}
+\CommentTok{\# para separar con el join estos y poder representarlos en}
+\CommentTok{\# el mapa}
+
+\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(gastos\_medio\_residencia, gastos\_medio\_residencia\_PN,}
+\NormalTok{    gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN)}
+
+\CommentTok{\# install.packages(\textquotesingle{}sf\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(sf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.3.1; sf_use_s2() is TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages(\textquotesingle{}dplyr\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\CommentTok{\# install.packages(\textquotesingle{}ggplot2\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# install.packages(\textquotesingle{}giscoR\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(giscoR)}
+
+\NormalTok{año\_ref }\OtherTok{\textless{}{-}} \DecValTok{2016}
+
+\CommentTok{\# Datos}
+\NormalTok{countries }\OtherTok{\textless{}{-}} \FunctionTok{gisco\_get\_countries}\NormalTok{(}\AttributeTok{year =}\NormalTok{ año\_ref, }\AttributeTok{resolution =} \DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(CNTR\_ID, NAME\_ENGL, geometry) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{st\_transform}\NormalTok{(}\DecValTok{3035}\NormalTok{)}
+
+\NormalTok{paises\_english }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Germany"}\NormalTok{, }\StringTok{"France"}\NormalTok{, }\StringTok{"Italy"}\NormalTok{, }\StringTok{"Norway"}\NormalTok{, }\StringTok{"Finland"}\NormalTok{,}
+    \StringTok{"Sweden"}\NormalTok{, }\StringTok{"Denmark"}\NormalTok{, }\StringTok{"Iceland"}\NormalTok{, }\StringTok{"United Kingdom"}\NormalTok{)}
+\NormalTok{countries\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ countries }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(NAME\_ENGL }\SpecialCharTok{\%in\%}\NormalTok{ paises\_english)}
+
+\CommentTok{\# Incluir columna de identificación de los países para unir}
+\CommentTok{\# con las coordenadas de los mapas}
+
+\NormalTok{CNTR\_ID }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"DE"}\NormalTok{, }\StringTok{"FR"}\NormalTok{, }\StringTok{"IT"}\NormalTok{, }\StringTok{"DK"}\NormalTok{, }\StringTok{"UK"}\NormalTok{, }\StringTok{"IS"}\NormalTok{, }\StringTok{"FI"}\NormalTok{, }\StringTok{"NO"}\NormalTok{,}
+    \StringTok{"SE"}\NormalTok{)}
+\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(gastos\_medio\_residencia, CNTR\_ID)}
+
+
+\NormalTok{gastos\_medio\_viz }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{left\_join}\NormalTok{(countries, }\AttributeTok{by =} \FunctionTok{join\_by}\NormalTok{(CNTR\_ID }\SpecialCharTok{==}\NormalTok{ CNTR\_ID))}
+
+
+
+\CommentTok{\# Mapa base}
+\FunctionTok{ggplot}\NormalTok{(gastos\_medio\_viz) }\SpecialCharTok{+} \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{geometry =}\NormalTok{ geometry, }\AttributeTok{fill =}\NormalTok{ Gasto\_medio\_persona)) }\SpecialCharTok{+}
+    \FunctionTok{xlim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2200000}\NormalTok{, }\DecValTok{7150000}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1380000}\NormalTok{, }\DecValTok{5500000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Marta: Te comenté esta parte porque me estaba dando}
+\CommentTok{\# problemas al hacer knit no se por qué}
+
+\CommentTok{\# Gráfico ggplot(gastos\_medio\_viz) + \# Primera capa con}
+\CommentTok{\# todos los países geom\_sf(aes(geometry= geometry), data =}
+\CommentTok{\# gastos\_medio\_viz, fill = \textquotesingle{}grey80\textquotesingle{}, color = NA) + \#}
+\CommentTok{\# Establece límites xlim(c(2200000, 7150000)) +}
+\CommentTok{\# ylim(c(1380000, 5500000))}
+\end{Highlighting}
+\end{Shaded}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

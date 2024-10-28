@@ -198,6 +198,12 @@ datos$`País de residencia` <- as.factor(datos$`País de residencia`)
 Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
 
 ```{r}
+# Guardamos los datos totales por si resultan útiles en el futuro
+datos_totales <- subset(datos,datos$`País de residencia` == "Total" | datos$`Total Nacional y CCAA` == "Total")
+```
+
+
+```{r}
 # Quitar filas de total de columna comunidades autonomas
 datos_total_por_residencia <- subset(datos, datos$`Total Nacional y CCAA` == "Total")
 datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
@@ -256,7 +262,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]
 
 ### Instance engineering de Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media
 
-Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el numero de paises totales es 194 tenemos que para $pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}$
+Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el número de paises totales es 194 tenemos que para $pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}$
 
 $$
  \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
@@ -303,6 +309,46 @@ Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver un resume
 ```{r}
 summary(datos)
 ```
+```{r, include=FALSE}
+knitr::kable(datos[1:10, ], format = "latex", 
+             booktabs = TRUE, 
+             caption = "This is a table caption. Tables should be placed in the 
+             main text near to the first time they are~cited.", 
+             align = 'ccc', centering = FALSE,
+             table.envir = "table", position = "H")
+```
+
+
+
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-27} 10 primeras filas del conjunto de datos procesados}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{lccccccc}
+\toprule
+  & Pais & CCAA & Periodo & Gasto\_total & Gasto\_medio\_persona & Gasto\_medio\_diario\_persona & Duracion\_media\\
+\midrule
+1 & Alemania & Andalucía & 2016 & 1121.33 & 1132 & 102 & 11.14\\
+2 & Alemania & Andalucía & 2017 & 1258.89 & 1123 & 105 & 10.70\\
+3 & Alemania & Andalucía & 2018 & 1256.69 & 1165 & 114 & 10.18\\
+4 & Alemania & Andalucía & 2019 & 1168.38 & 1048 & 117 & 8.96\\
+5 & Alemania & Andalucía & 2020 & 255.96 & 1056 & 102 & 10.34\\
+6 & Alemania & Andalucía & 2021 & 464.01 & 1040 & 100 & 10.39\\
+7 & Alemania & Andalucía & 2022 & 1045.65 & 1211 & 113 & 10.69\\
+8 & Alemania & Andalucía & 2023 & 1314.95 & 1267 & 130 & 9.71\\
+17 & Alemania & Illes Balears & 2016 & 4436.99 & 961 & 129 & 7.44\\
+18 & Alemania & Illes Balears & 2017 & 4890.66 & 1013 & 133 & 7.63\\
+\bottomrule
+\end{tabular}
+	\end{adjustwidth}
+\end{table} 
+
+
+**NOTA**: Hay dos conjuntos de datos para representar: 
+ datos : quitando totales para poder ver relaciones por pais, comunidad autonoma etc
+ datos_totales: Aqui estan guardados todos los datos que he modificado o borrado del dataset original referentes                 a valores totales por si se necesitan en algun momento
+
 
 # Prueba de ggplot
 
@@ -388,19 +434,22 @@ gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(
 
 
 
-# Mapa base
+# Mapa base 
 ggplot(gastos_medio_viz) +
   geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona)) +
   xlim(c(2200000, 7150000)) +
   ylim(c(1380000, 5500000))
 
+
+# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
+
 # Gráfico
-ggplot(gastos_medio_viz) +
-  # Primera capa con todos los países
-  geom_sf(aes(geometry= geometry), data = gastos_medio_viz, fill = "grey80", color = NA) +
-  # Establece límites
-  xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000))
+# ggplot(gastos_medio_viz) +
+#   # Primera capa con todos los países
+#   geom_sf(aes(geometry= geometry), data = gastos_medio_viz, fill = "grey80", color = NA) +
+#   # Establece límites
+#   xlim(c(2200000, 7150000)) +
+#   ylim(c(1380000, 5500000))
 
 
 ```

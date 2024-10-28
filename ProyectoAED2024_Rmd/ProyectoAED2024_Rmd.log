@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  26 OCT 2024 13:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  28 OCT 2024 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1628,10 +1628,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3]
 
-LaTeX Warning: Command \' invalid in math mode on input line 570.
+LaTeX Warning: Command \' invalid in math mode on input line 583.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 570.
+LaTeX Warning: Command \' invalid in math mode on input line 583.
 
 Missing character: There is no í in font pplr7t!
 Missing character: There is no ó in font pplr7t!
@@ -1645,20 +1645,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4]
 
-LaTeX Warning: Command \' invalid in math mode on input line 599.
+LaTeX Warning: Command \' invalid in math mode on input line 612.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 599.
+LaTeX Warning: Command \' invalid in math mode on input line 612.
 
 Missing character: There is no í in font pplr7t!
 Missing character: There is no ó in font pplr7t!
 
-Overfull \hbox (88.98273pt too wide) in paragraph at lines 595--600
-\T1/ppl/m/n/10 (-20) nu-mero de paises to-tales es 194 ten-emos que para $\OML/
-zplm/m/it/10 pais \OMS/zplm/m/n/10 2 f\OML/zplm/m/it/10 Alemania\OT1/ppl/m/n/10
- (-20) , \OML/zplm/m/it/10 Francia\OT1/ppl/m/n/10 (-20) , \OML/zplm/m/it/10 Ita
-lia\OT1/ppl/m/n/10 (-20) , \OML/zplm/m/it/10 Pases Nrdicos\OT1/ppl/m/n/10 (-20)
- , \OML/zplm/m/it/10 Reino Unido\OMS/zplm/m/n/10 g$ 
+Overfull \hbox (88.98273pt too wide) in paragraph at lines 608--613
+\T1/ppl/m/n/10 (-20) número de paises to-tales es 194 ten-emos que para $\OML/z
+plm/m/it/10 pais \OMS/zplm/m/n/10 2 f\OML/zplm/m/it/10 Alemania\OT1/ppl/m/n/10 
+(-20) , \OML/zplm/m/it/10 Francia\OT1/ppl/m/n/10 (-20) , \OML/zplm/m/it/10 Ital
+ia\OT1/ppl/m/n/10 (-20) , \OML/zplm/m/it/10 Pases Nrdicos\OT1/ppl/m/n/10 (-20) 
+, \OML/zplm/m/it/10 Reino Unido\OMS/zplm/m/n/10 g$ 
  []
 
 
@@ -1670,14 +1670,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [5]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf, id=99, 361.35pt
- x 216.81pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-7-1.pdf  used on input line 709.
-(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 712.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 712.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 712.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 712.
+
+Overfull \hbox (15.26184pt too wide) in paragraph at lines 712--728
+[][] 
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
@@ -1687,21 +1692,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [6]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf, id=104, 361.35p
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf, id=103, 361.35p
 t x 216.81pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf Graphic fil
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf Graphic fil
 e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf>
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>
 Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-7-2.pdf  used on input line 722.
+9-1.pdf  used on input line 752.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf, id=105, 361.35p
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf, id=104, 361.35p
 t x 216.81pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf Graphic fil
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf Graphic fil
 e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf>
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf>
 Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-7-3.pdf  used on input line 735.
+9-2.pdf  used on input line 765.
 (pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1711,17 +1716,64 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[7 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf> <./Proyect
-oAED2024_Rmd_files/figure-latex/unnamed-chunk-27-2.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf, id=121, 361.35p
-t x 361.35pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf Graphic fil
+[7 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf, id=116, 361.35p
+t x 216.81pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf Graphic fil
 e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf>
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf>
 Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-8-1.pdf  used on input line 748.
+9-3.pdf  used on input line 778.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf, id=117, 361.35p
+t x 361.35pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf Graphic fil
+e (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-3
+0-1.pdf  used on input line 791.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-(appendix.tex)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[8 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf> <./Proyect
+oAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[9 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf, id=141, 469.755
+pt x 325.215pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf Graphic fil
+e (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-3
+1-1.pdf  used on input line 863.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (96.73819pt too wide) in paragraph at lines 863--864
+[][] 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[10] (appendix.tex)
 No file ProyectoAED2024_Rmd.bbl.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1731,30 +1783,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[8 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-3.pdf> <./Proyect
-oAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
-
-[9] 
+[11 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (ProyectoAED2024_Rmd.aux)
 Package rerunfilecheck Info: File `ProyectoAED2024_Rmd.out' has not changed.
 (rerunfilecheck)             Checksum: 7C84BCE253F6900BD7D526CB4B211743;2259.
  ) 
 Here is how much of TeX's memory you used:
- 34005 strings out of 476331
- 655944 string characters out of 5783953
+ 34075 strings out of 476331
+ 657319 string characters out of 5783953
  1883660 words of memory out of 5000000
- 53566 multiletter control sequences out of 15000+600000
- 569342 words of font info for 257 fonts, out of 8000000 for 9000
+ 53614 multiletter control sequences out of 15000+600000
+ 575307 words of font info for 284 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,13n,120p,1018b,681s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,12n,120p,1018b,681s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Media Service\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 600\tcit1000.pk> <C:\Users\Media Service\AppData\Local\MiKTeX\fonts/pk/ljfour/j
 knappen/ec/dpi600\tctt1000.pk> <C:\Users\Media Service\AppData\Local\MiKTeX\fon
@@ -1768,9 +1810,9 @@ ic/amsfonts/cm/cmsy10.pfb><C:/Users/Media Service/AppData/Local/Programs/MiKTeX
 ograms/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Media Service/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Media Se
 rvice/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProyectoAED2024_Rmd.pdf (9 pages, 249586 bytes).
+Output written on ProyectoAED2024_Rmd.pdf (11 pages, 288790 bytes).
 PDF statistics:
- 334 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 92278 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 97403 words of extra memory for PDF output out of 106986 (max. 10000000)
 

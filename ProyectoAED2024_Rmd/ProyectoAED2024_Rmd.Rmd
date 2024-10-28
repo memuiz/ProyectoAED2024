@@ -1,5 +1,5 @@
 ---
-title: Título
+title: Estudio del gasto y duración media de los viajes de los turistas extranjeros en distintas comunidades autónomas
 author:
  - name: Alejandro León Líndez
    affil: 1
@@ -22,116 +22,91 @@ affiliation:
     email: memuiz@alumni.uv.es
 
 # document options
-journal: notspecified
+correspondence: |
+  email@email.com; Tel.: +XX-000-00-0000.
+journal: data
 type: article
 status: submit
 # front matter
 simplesummary: |
-  Resumen.
+  Resumen del trabajo
 abstract: |
-  Abstract
+  abstract
 # back matter
 keywords: |
   keyword 1; keyword 2; keyword 3 (list three to ten pertinent keywords specific 
-                                   to the article, yet reasonably common within the subject discipline.).
+  to the article, yet reasonably common within the subject discipline.).
 
-
-abbreviations:
-  - short: MDPI
-    long: Multidisciplinary Digital Publishing Institute
-  - short: DOAJ
-    long: Directory of open access journals
-  - short: TLA
-    long: Three letter acronym
-  - short: LD 
-    long: linear dichroism
+# abbreviations:
+#   - short: MDPI
+#     long: Multidisciplinary Digital Publishing Institute
+#   - short: DOAJ
+#     long: Directory of open access journals
+#   - short: TLA
+#     long: Three letter acronym
+#   - short: LD 
+#     long: linear dichroism
 bibliography: mybibfile.bib
 appendix: appendix.tex
 endnotes: false
 output: 
   rticles::mdpi_article:
   extra_dependencies: longtable
+  fontsize: 10pt  # Tamaño de fuente ajustado a 10p
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,width = 60}
 # Setup Chunk
-library(here)
+library(here)  
 library(knitr)
 
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = here::here()) # Set working directory a la carpeta del proyecto en lugar de a la sub-cartpeta del Rmd
+knitr::opts_knit$set(root.dir = here::here()) # Setwd() a la carpeta del 
+#proyecto ProyectoAED2024 debido a que por defecto el Rmd trabaja en el working 
+#directory de la carpeta ProyectoAED2024_Rmd
+#knitr::opts_chunk$set(size = "footnotesize") # use smaller font in the chunks
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
+
 ```
 
 # Introducción
 
 # Carga de librerías e importación del fichero
 
+Antes de comenzar, eliminamos todas las variables guardadas.
+
 ```{r}
-rm(list=ls())  # Borrar todas las variables al principio
+rm(list=ls())  # Borrado de todas las variables
 ```
 
 ```{r}
-library(readr)
-library(ggplot2)
+library(readr)  # Librería para importación de datos
+library(dplyr) # Librería para arreglo de datos
+library(tidyr) # Librería para arreglo de datos
+library(ggplot2) # Librería para gráficas
 ```
 
+Importamos los datos
+
 ```{r}
-gastos <- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
+gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
 ```
-## Transformacion a tidy data
+
+# Preparación de los datos
+
+## Tranformación a tidydata
+
+Observamos que las variables no están correctamente colocadas en columnas.
+
 ```{r}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
-tipos_datos
-```
-```{r}
-gastos1 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[1])
-colnames(gastos1)[colnames(gastos1)=="Total"]<- "Gasto_total"
-gastos1<- subset(gastos1, select = -`Gastos y duración media de los viajes`)
+tipos_datos # Vemos cuantas variables tenemos que transformar a columnas
+datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total)
 ```
 
 
-```{r}
-gastos2 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[2])
-colnames(gastos2)[colnames(gastos2)=="Total"]<- "Gasto_medio_persona"
-gastos2<- subset(gastos2, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-gastos3 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[3])
-colnames(gastos3)[colnames(gastos3)=="Total"]<- "Gasto_medio_diario_persona"
-gastos3<- subset(gastos3, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-gastos4 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[4])
-colnames(gastos4)[colnames(gastos4)=="Total"]<- "Duracion_media"
-gastos4<- subset(gastos4, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-
-# Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
-any(gastos1[1:length(nrow(gastos1)-1)] !=gastos2[1:length(nrow(gastos2)-1)])
-any(gastos3[1:length(nrow(gastos1)-1)] !=gastos4[1:length(nrow(gastos2)-1)])
-
-```
-
-```{r}
-# Uno los dos datasets en un único dataset con el que trabajar
-
-gastos12 <- merge(gastos1,gastos2, by = c(colnames(gastos1[1:length(gastos1)-1])))
-gastos34 <- merge(gastos3,gastos4, by = c(colnames(gastos3[1:length(gastos3)-1])))
-```
-
-```{r}
-# Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
-any(gastos12[1:length(nrow(gastos12)-2)] !=gastos34[1:length(nrow(gastos34)-2)])
-
-
-# Uno los dos datasets
-datos <- merge(gastos12,gastos34, by = c(colnames(gastos12[1:4])))
-```
-
+Eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante,
 ```{r}
 unique(datos$`Tipo de dato`)
 
@@ -140,18 +115,25 @@ datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
 # Quito la columna irrelevante
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
+## Cambios de nombres de las columnas
 
-Eliminar variables del entorno auxiliares
+Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
+
 ```{r}
-rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12)
+
+nombres_columnas <- c("Pais", "CCAA", "Periodo", "Gasto_total", "Gasto_medio_persona", "Gasto_medio_diario_persona", "Duracion_media")
+colnames(datos)<- nombres_columnas
+colnames(datos)
 ```
+
 
 ## Transformación de clases
 
-```{r}
-lapply(datos,class)
-```
+Todas las variables han sido importadas como tipo carácter.Vamos a transformar las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente.
 
+```{r}
+# lapply(datos,class)
+```
 
 ```{r}
 # Quitar punto de miles
@@ -160,49 +142,49 @@ datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub("\\.",
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub(",", ".", x))
 # Transformar a numerico
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(x))
-# Comprobar la clase
-lapply(datos,class)
+# Comprobamos la clase
+# lapply(datos,class)
 ```
-
-
+Comprobamos si al realizar la transformación se han introducido datos NA.
 ```{r}
-# Comprobar si hay datos NA
 any(is.na(datos))
 ```
+A continuación, transformamos a factor las variables País de residencia y Comunidades Autónomas.
+```{r}
+# unique(datos$`País de residencia`)
+# Transformacion a factor de paises de residencia
+datos$Pais <- as.factor(datos$Pais)
+```
 
+Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
 
 ```{r}
-unique(datos$`País de residencia`)
-
-# Transformacion a factor de paises de residencia
-datos$`País de residencia` <- as.factor(datos$`País de residencia`)
+# Guardamos los datos totales por si resultan útiles en el futuro
+datos_totales <- subset(datos,datos$Pais == "Total" | datos$CCAA == "Total")
+datos_total_por_residencia <- subset(datos, datos$CCAA == "Total")
 ```
-Quitar filas irrelevantes (totales que se pueden calcular a partir de los datos) para tener tidy data
+
+
 ```{r}
 # Quitar filas de total de columna comunidades autonomas
-datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
+datos <- subset(datos,datos$CCAA != "Total")
 ```
-
 
 ```{r}
 # Transformacion a factor de nombres de comunidades
-unique(datos$`Total Nacional y CCAA`)
-datos$`Total Nacional y CCAA`<- as.factor(datos$`Total Nacional y CCAA`)
-levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
+#unique(datos$`Total Nacional y CCAA`)
+datos$CCAA<- as.factor(datos$CCAA)
+# Cambiamos de nombre los niveles del factor
+levels(datos$CCAA) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
 
 
 ```
-## Cambios de nombres de las columnas
 
-```{r}
-colnames(datos)
-nombres_columnas <- c("Pais", "CCAA", "Periodo", colnames(datos)[4:7])
-colnames(datos)<- nombres_columnas
-colnames(datos)
-```
 
-## Arreglo valores de filas
 
+## Instance engineering
+
+Vamos a trabajar con valores de las filas para obtener un dataset más apropiado al estudio que deseamos realizar. En primer lugar, queremos deshacernos del nivel "Total" en la variable Pais y transformarla en otro llamado "Otros" en que en el resto de variables contenga la información referente al resto de paises distintos de los cuáles poseemos datos concretos.
 
 ```{r}
 # Cambiar el nombre de las filas
@@ -212,66 +194,119 @@ levels(datos$Pais) <- paises
 
 ```
 
+### Instance engineering de Gasto_total
 
-###  Arreglar valores de Gasto_total
+Para la variable Gasto_total, las filas correspondientes a "Otros" de la variable Pais y las filas correspondientes a "Total" se relacionan de la siguiente manera con $pais\in\{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido, Otros\}$:
 
-Hay que crear filas con valor en pais residencia = resto de paises y asignarla a total - suma del resto de paises por comunidases
-
+$$ \text{Gasto total}_{\text{Pais = total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
+Luego el gasto total de "Otros" es el gasto de "Total" menos el gasto de cada uno de los otros 5 paises disponibles por separado.
 ```{r}
 comunidades <- levels(datos$CCAA)
 anos <- unique(datos$Periodo)
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_total"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux)] - sum(aux[1:length(aux)-1])  # Gasto del resto de paises es el gasto total - gasto de los otos paises
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux),] - sum(aux[1:length(aux)-1,])  
   }
 }
 
 ```
 
 
-### Arreglar valores de las otras 3 variables
 
-Consideramos la media ponderada. Numero de países entre 194 y 206.
+### Instance engineering de Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media
 
- media_total = media_otros x (194-5)/194 + (5/194)x sum(media_paises) Por comunidad autonoma y por año
-media_otros = (media_total - (5/194)x sum(media_paises) ) * 194/(194-5)
+Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el número de paises totales es 194 tenemos que para $pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}$
+
+$$
+ \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
+$$
+
+De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgandoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
 
 ```{r}
-# Arreglar duracion media
+# Duracion media
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Duracion_media"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_media"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_media"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
 ```
 
 ```{r}
-# Arreglar Gasto_medio_persona
+# Gasto_medio_persona
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_persona"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_persona"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
 ```
 
 ```{r}
-# Arreglar Gasto_medio_diario_persona
+# Gasto_medio_diario_persona
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_diario_persona"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_diario_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_diario_persona"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
+rm(i,j,anos,comunidades, paises, aux) # Borrar variables auxiliares
+```
+
+Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver un resumen de las variables.
+
+```{r}
+summary(datos)
+```
+```{r, include=FALSE}
+knitr::kable(datos[1:10, ], format = "latex", 
+             booktabs = TRUE, 
+             caption = "This is a table caption. Tables should be placed in the 
+             main text near to the first time they are~cited.", 
+             align = 'ccc', centering = FALSE,
+             table.envir = "table", position = "H")
 ```
 
 
-```{r}
+
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-27} 10 primeras filas del conjunto de datos procesados}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{lccccccc}
+\toprule
+  & Pais & CCAA & Periodo & Gasto\_total & Gasto\_medio\_persona & Gasto\_medio\_diario\_persona & Duracion\_media\\
+\midrule
+1 & Alemania & Andalucía & 2016 & 1121.33 & 1132 & 102 & 11.14\\
+2 & Alemania & Andalucía & 2017 & 1258.89 & 1123 & 105 & 10.70\\
+3 & Alemania & Andalucía & 2018 & 1256.69 & 1165 & 114 & 10.18\\
+4 & Alemania & Andalucía & 2019 & 1168.38 & 1048 & 117 & 8.96\\
+5 & Alemania & Andalucía & 2020 & 255.96 & 1056 & 102 & 10.34\\
+6 & Alemania & Andalucía & 2021 & 464.01 & 1040 & 100 & 10.39\\
+7 & Alemania & Andalucía & 2022 & 1045.65 & 1211 & 113 & 10.69\\
+8 & Alemania & Andalucía & 2023 & 1314.95 & 1267 & 130 & 9.71\\
+17 & Alemania & Illes Balears & 2016 & 4436.99 & 961 & 129 & 7.44\\
+18 & Alemania & Illes Balears & 2017 & 4890.66 & 1013 & 133 & 7.63\\
+\bottomrule
+\end{tabular}
+	\end{adjustwidth}
+\end{table} 
+
+
+**NOTA**: Hay dos conjuntos de datos para representar: 
+ datos : quitando totales para poder ver relaciones por pais, comunidad autonoma etc
+ datos_totales: Aqui estan guardados todos los datos que he modificado o borrado del dataset original referentes                 a valores totales por si se necesitan en algun momento
+
+
+# Prueba de ggplot
+
+```{r fig.width=5, fig.height=3}
 # Visualización de los datos e interpretación de los posibles patrones
 
 # Visualización previa para tener una idea de ciertas variables de los datos
@@ -291,7 +326,10 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
   geom_bar(stat = "identity", fill = "red") +
   facet_grid(.~CCAA["i"],scales = "free") +
   labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
+```
 
+
+```{r fig.width=5, fig.height=5}
 # Para todas las Comunidades Autónomas por separado
 ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
   geom_bar(stat = "identity", fill = "purple") +
@@ -303,41 +341,4 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 
 ```
-
-# Probamos a analizar el efecto del COVID en el gasto de los turistas, así como los países que más reducieron su gasto debido a la pandemia.
-
-```{r}
-library(tidyr)
-
-covid <- datos[datos$Periodo == 2020, ]
-no_covid <- datos[datos$Periodo != 2020, ]
-media_sin_covid <- mean(no_covid$Gasto_total[])
-media_covid <- mean(covid$Gasto_total)
-cat("La media del gasto total durante el COVID es de", media_covid,"millones de euros\n")
-cat("Mientras que sin COVID es de", media_sin_covid,"millones de euros\n")
-
-
-
-
-datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 2020))) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("grey", "red")) +
-  labs(x = "Año", y = "Gasto Total de Turistas", title = "Comparación del Gasto Total de Turistas por Año") +
-  theme_minimal() +
-  theme(legend.position = "none")
-
-covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
-covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
-
-
-```
-
-```{r fig.width= 12}
-#¿En qué comunidad autónoma se viajó más durante el COVID?
-covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_bar(stat = "identity")  + labs(title = "Gasto total en las distintas comunidades autónomas durante el COVID")
-
-# En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
-```
-
-
 

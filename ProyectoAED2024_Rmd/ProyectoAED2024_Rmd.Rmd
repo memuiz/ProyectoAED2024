@@ -342,3 +342,39 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 ```
 
+# Probamos a analizar el efecto del COVID en el gasto de los turistas, así como los países que más reducieron su gasto debido a la pandemia.
+
+```{r}
+library(tidyr)
+
+covid <- datos[datos$Periodo == 2020, ]
+no_covid <- datos[datos$Periodo != 2020, ]
+media_sin_covid <- mean(no_covid$Gasto_total[])
+media_covid <- mean(covid$Gasto_total)
+cat("La media del gasto total durante el COVID es de", media_covid,"millones de euros\n")
+cat("Mientras que sin COVID es de", media_sin_covid,"millones de euros\n")
+
+
+
+
+datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 2020))) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("grey", "red")) +
+  labs(x = "Año", y = "Gasto Total de Turistas", title = "Comparación del Gasto Total de Turistas por Año") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
+covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
+
+
+```
+
+```{r fig.width= 12}
+#¿En qué comunidad autónoma se viajó más durante el COVID?
+covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_bar(stat = "identity")  + labs(title = "Gasto total en las distintas comunidades autónomas durante el COVID")
+
+# En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
+```
+
+

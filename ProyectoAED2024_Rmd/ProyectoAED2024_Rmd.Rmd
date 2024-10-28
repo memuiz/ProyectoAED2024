@@ -377,4 +377,20 @@ covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_b
 # En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
 ```
 
+# Otros gráficos interesantes
+```{r fig.height= 6}
+ggplot(datos, aes(x = CCAA, y = Gasto_total)) +
+  geom_boxplot(outlier.colour = "red", fill = "lightgreen") +
+  labs(title = "Distribución del Gasto por Comunidad Autónoma",
+       x = "Comunidad Autónoma",
+       y = "Gasto Total (€)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+#
+datos_total_por_residencia %>% filter(Pais != "Total") %>% ggplot(aes(x =Periodo, y = Gasto_total)) + geom_point(aes(color = Pais), size = 2) + geom_line() + facet_wrap(.~Pais, ncol = 2, scales = "free") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = "Distribución del Gasto total por Pais para cada año")
+```
 

@@ -102,55 +102,10 @@ Observamos que las variables no están correctamente colocadas en columnas.
 ```{r}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
 tipos_datos # Vemos cuantas variables tenemos que transformar a columnas
+datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total)
 ```
 
-```{r}
-gastos1 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[1])
-colnames(gastos1)[colnames(gastos1)=="Total"]<- "Gasto_total"
-gastos1<- subset(gastos1, select = -`Gastos y duración media de los viajes`)
-```
 
-```{r}
-gastos2 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[2])
-colnames(gastos2)[colnames(gastos2)=="Total"]<- "Gasto_medio_persona"
-gastos2<- subset(gastos2, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-gastos3 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[3])
-colnames(gastos3)[colnames(gastos3)=="Total"]<- "Gasto_medio_diario_persona"
-gastos3<- subset(gastos3, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-gastos4 <- subset(gastos,gastos$`Gastos y duración media de los viajes`== tipos_datos[4])
-colnames(gastos4)[colnames(gastos4)=="Total"]<- "Duracion_media"
-gastos4<- subset(gastos4, select = -`Gastos y duración media de los viajes`)
-```
-
-```{r}
-
-# Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
-any(gastos1[1:length(nrow(gastos1)-1)] !=gastos2[1:length(nrow(gastos2)-1)])
-any(gastos3[1:length(nrow(gastos1)-1)] !=gastos4[1:length(nrow(gastos2)-1)])
-
-```
-
-```{r}
-# Uno los dos datasets en un único dataset con el que trabajar
-
-gastos12 <- merge(gastos1,gastos2, by = c(colnames(gastos1[1:length(gastos1)-1])))
-gastos34 <- merge(gastos3,gastos4, by = c(colnames(gastos3[1:length(gastos3)-1])))
-```
-
-```{r}
-# Compruebo que en todas las columnas salvo la última todos las filas son iguales para poder hacer merge de los dos datasets correctamente
-any(gastos12[1:length(nrow(gastos12)-2)] !=gastos34[1:length(nrow(gastos34)-2)])
-
-
-# Uno los dos datasets
-datos <- merge(gastos12,gastos34, by = c(colnames(gastos12[1:4])))
-```
 Eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante,
 ```{r}
 unique(datos$`Tipo de dato`)
@@ -160,11 +115,17 @@ datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
 # Quito la columna irrelevante
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
+## Cambios de nombres de las columnas
+
+Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
 
 ```{r}
-rm(gastos,gastos1, gastos2, gastos3,gastos34,gastos4,gastos12) # Eliminamos
-# algunos variables auxiliares innecesarias a posteriori
+
+nombres_columnas <- c("Pais", "CCAA", "Periodo", "Gasto_total", "Gasto_medio_persona", "Gasto_medio_diario_persona", "Duracion_media")
+colnames(datos)<- nombres_columnas
+colnames(datos)
 ```
+
 
 ## Transformación de clases
 
@@ -192,43 +153,34 @@ A continuación, transformamos a factor las variables País de residencia y Comu
 ```{r}
 # unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
-datos$`País de residencia` <- as.factor(datos$`País de residencia`)
+datos$Pais <- as.factor(datos$Pais)
 ```
 
 Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
 
 ```{r}
 # Guardamos los datos totales por si resultan útiles en el futuro
-datos_totales <- subset(datos,datos$`País de residencia` == "Total" | datos$`Total Nacional y CCAA` == "Total")
+datos_totales <- subset(datos,datos$Pais == "Total" | datos$CCAA == "Total")
+datos_total_por_residencia <- subset(datos, datos$CCAA == "Total")
 ```
 
 
 ```{r}
 # Quitar filas de total de columna comunidades autonomas
-datos_total_por_residencia <- subset(datos, datos$`Total Nacional y CCAA` == "Total")
-datos <- subset(datos,datos$`Total Nacional y CCAA` != "Total")
+datos <- subset(datos,datos$CCAA != "Total")
 ```
 
 ```{r}
 # Transformacion a factor de nombres de comunidades
 #unique(datos$`Total Nacional y CCAA`)
-datos$`Total Nacional y CCAA`<- as.factor(datos$`Total Nacional y CCAA`)
+datos$CCAA<- as.factor(datos$CCAA)
 # Cambiamos de nombre los niveles del factor
-levels(datos$`Total Nacional y CCAA`) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
+levels(datos$CCAA) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
 
 
 ```
 
-## Cambios de nombres de las columnas
 
-Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
-
-```{r}
-#colnames(datos)
-nombres_columnas <- c("Pais", "CCAA", "Periodo", colnames(datos)[4:7])
-colnames(datos)<- nombres_columnas
-colnames(datos)
-```
 
 ## Instance engineering
 
@@ -254,11 +206,13 @@ anos <- unique(datos$Periodo)
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_total"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux)] - sum(aux[1:length(aux)-1])  
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]<- aux[length(aux),] - sum(aux[1:length(aux)-1,])  
   }
 }
 
 ```
+
+
 
 ### Instance engineering de Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media
 
@@ -275,7 +229,7 @@ De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ med
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Duracion_media"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_media"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_media"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
@@ -286,7 +240,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_medi
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_persona"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_persona"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
@@ -297,7 +251,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_p
 for (i in comunidades){
   for (j in anos){
   aux <- datos[datos$CCAA==i & datos$Periodo == j, "Gasto_medio_diario_persona"]
-datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_diario_persona"]<- (aux[length(aux)]- (5/194)*sum(aux[1:length(aux)-1]))*194/(194-5)
+datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_diario_persona"]<- (aux[length(aux),]- (5/194)*sum(aux[1:length(aux)-1,]))*194/(194-5)
   }
 }
 
@@ -392,12 +346,12 @@ Filtraremos los datos totales por el Periodo y recogeremos solo la variable que 
 
 ```{r}
 gastos_medio_residencia <- datos_total_por_residencia %>% 
-  select (`País de residencia`, `Gasto_medio_persona`, Periodo) %>%
-  filter (Periodo == '2016' & `País de residencia` != "Total")
+  select (Pais, Gasto_medio_persona, Periodo) %>%
+  filter (Periodo == '2016' & Pais != "Total")
 
 gastos_medio_residencia_PN <- gastos_medio_residencia %>% 
-  select (`País de residencia`, `Gasto_medio_persona`, Periodo) %>%
-  filter(`País de residencia` == "Países Nórdicos")
+  select (Pais, Gasto_medio_persona, Periodo) %>%
+  filter(Pais == "Países Nórdicos")
 
 # Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
 
@@ -421,12 +375,12 @@ countries <- gisco_get_countries(year = año_ref,
   select(CNTR_ID, NAME_ENGL, geometry) %>%
            st_transform(3035)
 
-paises_english <- c('Germany', 'France', 'Italy', 'Norway', 'Finland', 'Sweden', 'Denmark', 'Iceland', 'United Kingdom')
+paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
 countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
 
 # Incluir columna de identificación de los países para unir con las coordenadas de los mapas
 
-CNTR_ID <- c('DE', 'FR', 'IT', 'DK', 'UK', 'IS','FI', 'NO', 'SE')
+CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
 gastos_medio_residencia <- cbind(gastos_medio_residencia, CNTR_ID)
 
 

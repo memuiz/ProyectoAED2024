@@ -84,6 +84,8 @@ library(readr)  # Librería para importación de datos
 library(dplyr) # Librería para arreglo de datos
 library(tidyr) # Librería para arreglo de datos
 library(ggplot2) # Librería para gráficas
+library(sf) # Librería para generar el mapa geográfico
+library(giscoR) # Librería para generar el mapa geográfico
 ```
 
 Importamos los datos
@@ -366,9 +368,8 @@ datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 20
 
 covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
 covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
-
-
 ```
+
 
 ```{r fig.width= 12}
 #¿En qué comunidad autónoma se viajó más durante el COVID?
@@ -377,4 +378,59 @@ covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_b
 # En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
 ```
 
+Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
+
+```{r}
+gastos_medio_residencia <- datos_total_por_residencia %>% 
+  select (Pais, Gasto_medio_persona, Periodo) %>%
+  filter (Periodo == '2016' & Pais != "Total")
+
+gastos_medio_residencia_PN <- gastos_medio_residencia %>% 
+  select (Pais, Gasto_medio_persona, Periodo) %>%
+  filter(Pais == "Países Nórdicos")
+
+# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
+
+gastos_medio_residencia <- rbind(gastos_medio_residencia, gastos_medio_residencia_PN,
+                                 gastos_medio_residencia_PN, gastos_medio_residencia_PN, gastos_medio_residencia_PN)
+
+año_ref <- 2016
+
+# Datos
+countries <- gisco_get_countries(year = año_ref,
+                        resolution = 20) %>%
+  select(CNTR_ID, NAME_ENGL, geometry) %>%
+           st_transform(3035)
+
+paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
+countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
+
+# Incluir columna de identificación de los países para unir con las coordenadas de los mapas
+
+CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
+gastos_medio_residencia <- cbind(gastos_medio_residencia, CNTR_ID)
+
+
+gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
+
+
+
+# Mapa base 
+ggplot(gastos_medio_viz) +
+  geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona)) +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000))
+
+
+# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
+
+# Gráfico
+# ggplot(gastos_medio_viz) +
+#   # Primera capa con todos los países
+#   geom_sf(aes(geometry= geometry), data = gastos_medio_viz, fill = "grey80", color = NA) +
+#   # Establece límites
+#   xlim(c(2200000, 7150000)) +
+#   ylim(c(1380000, 5500000))
+
+```
 

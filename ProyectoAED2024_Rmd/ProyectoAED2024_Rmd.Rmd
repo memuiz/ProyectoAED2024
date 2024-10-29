@@ -31,7 +31,7 @@ status: submit
 simplesummary: |
   Resumen del trabajo
 abstract: |
-  abstract
+  Estudiar la evolución del gasto total, el gasto medio por persona y el gasto medio diario en el periodo de 2016 a 2023 de turistas con diversos países de residencia en distintas comunidades autónomas. Estudio de la duración media de dichos viajes y su relación con el gasto por persona.
 # back matter
 keywords: |
   keyword 1; keyword 2; keyword 3 (list three to ten pertinent keywords specific 
@@ -55,7 +55,7 @@ output:
   fontsize: 10pt  # Tamaño de fuente ajustado a 10p
 ---
 
-```{r setup, include=FALSE,width = 60}
+```{r setup, include=FALSE,width = 60, warning = FALSE}
 # Setup Chunk
 library(here)  
 library(knitr)
@@ -79,7 +79,7 @@ Antes de comenzar, eliminamos todas las variables guardadas.
 rm(list=ls())  # Borrado de todas las variables
 ```
 
-```{r}
+```{r, message = FALSE}
 library(readr)  # Librería para importación de datos
 library(dplyr) # Librería para arreglo de datos
 library(tidyr) # Librería para arreglo de datos
@@ -90,7 +90,7 @@ library(giscoR) # Librería para generar el mapa geográfico
 
 Importamos los datos
 
-```{r}
+```{r, message = FALSE}
 gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 ```
@@ -99,45 +99,84 @@ gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisres
 
 ## Tranformación a tidydata
 
-Observamos que las variables no están correctamente colocadas en columnas.
+Antes de comenzar con el preprocesamiento de los datos, observamos el conjunto de datos importado en la Tabla \ref{tab:unnamed-chunk-4}.
 
-```{r}
+```{r, eval = FALSE, include = FALSE}
+knitr::kable(gastos[1:10, ], format = "latex", 
+             booktabs = TRUE, 
+             caption = "10 primeras filas de los datos importados", 
+             align = 'ccc', centering = FALSE,
+             table.envir = "table", position = "H")
+```
+
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-4}10 primeras filas de los datos importados}
+\begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{cccccc}
+\toprule
+País de residencia & Total Nacional y CCAA & Tipo de dato & Gastos y duración media de los viajes & Periodo & Total\\
+\midrule
+Total & Total & Dato base & Gasto total & 2023 & 108.789,41\\
+Total & Total & Dato base & Gasto total & 2022 & 87.138,19\\
+Total & Total & Dato base & Gasto total & 2021 & 34.903,37\\
+Total & Total & Dato base & Gasto total & 2020 & 19.786,78\\
+Total & Total & Dato base & Gasto total & 2019 & 91.911,97\\
+Total & Total & Dato base & Gasto total & 2018 & 89.750,75\\
+Total & Total & Dato base & Gasto total & 2017 & 87.003,93\\
+Total & Total & Dato base & Gasto total & 2016 & 77.415,54\\
+Total & Total & Dato base & Gasto medio por persona & 2023 & 1.277\\
+Total & Total & Dato base & Gasto medio por persona & 2022 & 1.216\\
+\bottomrule
+\end{tabular}
+	\end{adjustwidth}
+\end{table}
+
+
+Transformamos este conjunto de datos a un conjunto tidy, donde cada variable se encuentre en una columna y eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante.  
+
+De esta manera, obtenemos 4 variables a partir de la columna Gastos y duración media de los viajes: el gasto total, el gasto medio por persona, el gasto medio diario por persona y la duración media de los viajes; cuyos valores son los correspondientes a la columna Total.  
+
+Por otro lado, en la columna Tipo de dato contamos con dos valores: Dato base y Tasa de variación anual. Vamos a trabajar únicamente con los datos base, por lo que eliminamos las filas correspondientes a Tasa de variación anual y eliminamos la columna Tipo de dato, que ahora aporta información redundante.  
+
+```{r, include = FALSE}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
 tipos_datos # Vemos cuantas variables tenemos que transformar a columnas
-datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total)
+datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total) 
 ```
 
 
-Eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante,
-```{r}
+```{r, include=FALSE}
 unique(datos$`Tipo de dato`)
 
 # Nos quedamos únicamente con los datos base, quitando las tasas de variación
 datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
-# Quito la columna irrelevante
+# Quitamos la columna irrelevante
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
+
 ## Cambios de nombres de las columnas
 
-Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
+Renombramos las columnas de manera apropiada (sin espacios y con nombres representativos de las variables). Los nombres de las variables son los siguientes: Pais, CCAA, Periodo, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media.
 
-```{r}
-
+```{r, include = FALSE}
 nombres_columnas <- c("Pais", "CCAA", "Periodo", "Gasto_total", "Gasto_medio_persona", "Gasto_medio_diario_persona", "Duracion_media")
 colnames(datos)<- nombres_columnas
 colnames(datos)
 ```
 
 
+
 ## Transformación de clases
 
-Todas las variables han sido importadas como tipo carácter.Vamos a transformar las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente.
+Todas las variables han sido importadas como tipo carácter. Transformamos las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente (eliminando el punto de miles y sustituyendo la coma decimal por un punto decimal).
 
-```{r}
-# lapply(datos,class)
+```{r, include = FALSE}
+lapply(datos,class)
 ```
 
-```{r}
+```{r, include=FALSE}
 # Quitar punto de miles
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub("\\.", "", x))
 # Sustituir coma decimal por punto decimal
@@ -147,32 +186,33 @@ datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(
 # Comprobamos la clase
 # lapply(datos,class)
 ```
-Comprobamos si al realizar la transformación se han introducido datos NA.
-```{r}
+Comprobamos si al realizar la transformación se han introducido datos NA y
+```{r, include = FALSE}
 any(is.na(datos))
 ```
-A continuación, transformamos a factor las variables País de residencia y Comunidades Autónomas.
-```{r}
+a continuación, transformamos a factor las variables Pais y CCAA.
+```{r, include=FALSE}
 # unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
 datos$Pais <- as.factor(datos$Pais)
 ```
 
-Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
+Quitamos algunas filas que contienen datos que consisten en la suma total de los datos de la columna CCA (más adelante eliminaremos también los valores correspondientes a Total de la variable Pais). Sin embargo, recogeremos estos valores en datasets datos_totales y datos_total_por_residencia para hacer uso de ellos y obtener información relevante.
+Cambiamos los nombres de los niveles del factor CCAA a los siguientes: "Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA".
 
-```{r}
+```{r, include = FALSE}
 # Guardamos los datos totales por si resultan útiles en el futuro
 datos_totales <- subset(datos,datos$Pais == "Total" | datos$CCAA == "Total")
 datos_total_por_residencia <- subset(datos, datos$CCAA == "Total")
 ```
 
 
-```{r}
+```{r, include = FALSE}
 # Quitar filas de total de columna comunidades autonomas
 datos <- subset(datos,datos$CCAA != "Total")
 ```
 
-```{r}
+```{r, include=FALSE}
 # Transformacion a factor de nombres de comunidades
 #unique(datos$`Total Nacional y CCAA`)
 datos$CCAA<- as.factor(datos$CCAA)
@@ -188,7 +228,7 @@ levels(datos$CCAA) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","C
 
 Vamos a trabajar con valores de las filas para obtener un dataset más apropiado al estudio que deseamos realizar. En primer lugar, queremos deshacernos del nivel "Total" en la variable Pais y transformarla en otro llamado "Otros" en que en el resto de variables contenga la información referente al resto de paises distintos de los cuáles poseemos datos concretos.
 
-```{r}
+```{r, include=FALSE}
 # Cambiar el nombre de las filas
 paises <- levels(datos$Pais)
 paises[paises=="Total"] <- "Otros"
@@ -200,9 +240,9 @@ levels(datos$Pais) <- paises
 
 Para la variable Gasto_total, las filas correspondientes a "Otros" de la variable Pais y las filas correspondientes a "Total" se relacionan de la siguiente manera con $pais\in\{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido, Otros\}$:
 
-$$ \text{Gasto total}_{\text{Pais = total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
-Luego el gasto total de "Otros" es el gasto de "Total" menos el gasto de cada uno de los otros 5 paises disponibles por separado.
-```{r}
+$$ \text{Gasto total}_{\text{Total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
+Luego el gasto total de "Otros" es el gasto de los valores "Total" de Pais menos el gasto de cada uno de los otros 5 paises disponibles por separado.
+```{r, include=FALSE}
 comunidades <- levels(datos$CCAA)
 anos <- unique(datos$Periodo)
 for (i in comunidades){
@@ -224,9 +264,9 @@ $$
  \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
 $$
 
-De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgandoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
+De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgándoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
 
-```{r}
+```{r, include=FALSE}
 # Duracion media
 for (i in comunidades){
   for (j in anos){
@@ -237,7 +277,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_medi
 
 ```
 
-```{r}
+```{r, include=FALSE}
 # Gasto_medio_persona
 for (i in comunidades){
   for (j in anos){
@@ -248,7 +288,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_p
 
 ```
 
-```{r}
+```{r, include=FALSE}
 # Gasto_medio_diario_persona
 for (i in comunidades){
   for (j in anos){
@@ -260,12 +300,13 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
 rm(i,j,anos,comunidades, paises, aux) # Borrar variables auxiliares
 ```
 
-Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver un resumen de las variables.
 
-```{r}
-summary(datos)
-```
-```{r, include=FALSE}
+# Resumen de los datos
+
+Una vez hemos concluido el pre-procesamiento de los datos, observamos el resultado en la Tabla \ref{tab:unnamed-chunk-27}.
+
+
+```{r, eval=FALSE, include = FALSE}
 knitr::kable(datos[1:10, ], format = "latex", 
              booktabs = TRUE, 
              caption = "This is a table caption. Tables should be placed in the 
@@ -300,10 +341,31 @@ knitr::kable(datos[1:10, ], format = "latex",
 	\end{adjustwidth}
 \end{table} 
 
+Vamos un resumen de los datos y de las variables disponibles. En la Tabla \ref{tab:codebook} se ha realizado un pequeño codebook con las variables del dataset.
 
-**NOTA**: Hay dos conjuntos de datos para representar: 
- datos : quitando totales para poder ver relaciones por pais, comunidad autonoma etc
- datos_totales: Aqui estan guardados todos los datos que he modificado o borrado del dataset original referentes                 a valores totales por si se necesitan en algun momento
+\begin{table}[H]
+ \caption{\label{tab:codebook} Descripción de las variables}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+             \centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+Nombre variable & Unidad & Valores \\ \midrule
+Pais & - & \begin{tabular}[c]{@{}c@{}}Alemania, Italia, Países Nórdicos, Francia, \\ Reino Unido, Otros\end{tabular} \\
+CCAA & - & \begin{tabular}[c]{@{}c@{}}Andalucía, Illes Balears, Canarias, Cataluña, Comunitat Valenciana, \\ Comunidad de Madrid, Otras CCAA\end{tabular} \\
+Periodo & Año & 2016-2023 \\
+Gasto\_total & Millones de euros & Numérico \\
+Gasto\_medio\_persona & Euros & Numérico \\
+Gasto\_medio\_diario\_persona & Euros & Numérico \\
+Duración\_media & Días & Numérico \\ \bottomrule
+\end{tabular}
+
+\end{adjustwidth}
+\end{table}
+
+```{r}
+# Hacer el resumen con dplyr no summary. Tengo que hacerlo
+```
 
 
 # Prueba de ggplot

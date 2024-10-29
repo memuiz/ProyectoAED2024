@@ -382,9 +382,11 @@ covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_b
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 
 ```{r}
+
+periodos <- unique(datos_total_por_residencia$Periodo)
 gastos_medio_residencia <- datos_total_por_residencia %>% 
   select (Pais, Gasto_medio_persona, Periodo) %>%
-  filter (Periodo == '2016' & Pais != "Total")
+  filter (Periodo %in% periodos & Pais != "Total")
 
 gastos_medio_residencia_PN <- gastos_medio_residencia %>% 
   select (Pais, Gasto_medio_persona, Periodo) %>%
@@ -417,8 +419,19 @@ gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(
 
 
 # Mapa base 
-geographic_map_gasto_medio <- ggplot(gastos_medio_viz) +
-  geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona), linewidth=0.5) +
+geographic_map_gasto_medio <- ggplot(gastos_medio_viz) 
+
+
+ geographic_map_gasto_medio <- geographic_map_gasto_medio + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_medio_persona), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_medio <- geographic_map_gasto_medio +
   xlim(c(2200000, 7150000)) +
   ylim(c(1380000, 5500000)) +
   geom_sf_interactive(

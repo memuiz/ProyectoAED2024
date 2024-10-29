@@ -86,6 +86,7 @@ library(tidyr) # Librería para arreglo de datos
 library(ggplot2) # Librería para gráficas
 library(sf) # Librería para generar el mapa geográfico
 library(giscoR) # Librería para generar el mapa geográfico
+library(ggiraph) # Librería para añadir interactividad al mapa geográfico
 ```
 
 Importamos los datos
@@ -416,11 +417,21 @@ gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(
 
 
 # Mapa base 
-ggplot(gastos_medio_viz) +
-  geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona)) +
+geographic_map_gasto_medio <- ggplot(gastos_medio_viz) +
+  geom_sf(aes(geometry= geometry, fill=Gasto_medio_persona), linewidth=0.5) +
   xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000))
-
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = CNTR_ID,
+      geometry = geometry,
+      tooltip = Gasto_medio_persona
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_medio)
 
 # Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
 

@@ -238,29 +238,35 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introducción}\label{introducciuxf3n}
+\hypertarget{introducciuxf3n}{%
+\section{Introducción}\label{introducciuxf3n}}
 
+\hypertarget{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}{%
 \section{Carga de librerías e importación del
-fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
+fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}}
 
 Antes de comenzar, eliminamos todas las variables guardadas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{())  }\CommentTok{\# Borrado de todas las variables}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())  }\CommentTok{\# Borrado de todas las variables}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(readr)  }\CommentTok{\# Librería para importación de datos}
-\FunctionTok{library}\NormalTok{(dplyr)  }\CommentTok{\# Librería para arreglo de datos}
+\FunctionTok{library}\NormalTok{(dplyr) }\CommentTok{\# Librería para arreglo de datos}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.3.2
+\end{verbatim}
+
+\begin{verbatim}
 ## 
-## Adjuntando el paquete: 'dplyr'
+## Attaching package: 'dplyr'
 \end{verbatim}
 
 \begin{verbatim}
@@ -277,17 +283,44 @@ Antes de comenzar, eliminamos todas las variables guardadas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyr)  }\CommentTok{\# Librería para arreglo de datos}
-\FunctionTok{library}\NormalTok{(ggplot2)  }\CommentTok{\# Librería para gráficas}
+\FunctionTok{library}\NormalTok{(tidyr) }\CommentTok{\# Librería para arreglo de datos}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.3.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2) }\CommentTok{\# Librería para gráficas}
+\FunctionTok{library}\NormalTok{(sf) }\CommentTok{\# Librería para generar el mapa geográfico}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'sf' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Linking to GEOS 3.11.2, GDAL 3.8.2, PROJ 9.3.1; sf_use_s2() is TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(giscoR) }\CommentTok{\# Librería para generar el mapa geográfico}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'giscoR' was built under R version 4.3.3
+\end{verbatim}
 
 Importamos los datos
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gastos }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,}
-    \AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{gastos}\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,  }\AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -302,9 +335,12 @@ Importamos los datos
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 \end{verbatim}
 
-\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}
+\hypertarget{preparaciuxf3n-de-los-datos}{%
+\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}}
 
-\subsection{Tranformación a tidydata}\label{tranformaciuxf3n-a-tidydata}
+\hypertarget{tranformaciuxf3n-a-tidydata}{%
+\subsection{Tranformación a
+tidydata}\label{tranformaciuxf3n-a-tidydata}}
 
 Observamos que las variables no están correctamente colocadas en
 columnas.
@@ -312,7 +348,7 @@ columnas.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{tipos\_datos }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\NormalTok{tipos\_datos  }\CommentTok{\# Vemos cuantas variables tenemos que transformar a columnas}
+\NormalTok{tipos\_datos }\CommentTok{\# Vemos cuantas variables tenemos que transformar a columnas}
 \end{Highlighting}
 \end{Shaded}
 
@@ -323,95 +359,7 @@ columnas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gastos1 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos, gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-\NormalTok{    tipos\_datos[}\DecValTok{1}\NormalTok{])}
-\FunctionTok{colnames}\NormalTok{(gastos1)[}\FunctionTok{colnames}\NormalTok{(gastos1) }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Gasto\_total"}
-\NormalTok{gastos1 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos1, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos, gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-\NormalTok{    tipos\_datos[}\DecValTok{2}\NormalTok{])}
-\FunctionTok{colnames}\NormalTok{(gastos2)[}\FunctionTok{colnames}\NormalTok{(gastos2) }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Gasto\_medio\_persona"}
-\NormalTok{gastos2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos2, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos3 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos, gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-\NormalTok{    tipos\_datos[}\DecValTok{3}\NormalTok{])}
-\FunctionTok{colnames}\NormalTok{(gastos3)[}\FunctionTok{colnames}\NormalTok{(gastos3) }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Gasto\_medio\_diario\_persona"}
-\NormalTok{gastos3 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos3, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos4 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos, gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-\NormalTok{    tipos\_datos[}\DecValTok{4}\NormalTok{])}
-\FunctionTok{colnames}\NormalTok{(gastos4)[}\FunctionTok{colnames}\NormalTok{(gastos4) }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Duracion\_media"}
-\NormalTok{gastos4 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gastos4, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Compruebo que en todas las columnas salvo la última todos}
-\CommentTok{\# las filas son iguales para poder hacer merge de los dos}
-\CommentTok{\# datasets correctamente}
-\FunctionTok{any}\NormalTok{(gastos1[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos1) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)] }\SpecialCharTok{!=}\NormalTok{ gastos2[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos2) }\SpecialCharTok{{-}}
-    \DecValTok{1}\NormalTok{)])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{any}\NormalTok{(gastos3[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos1) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)] }\SpecialCharTok{!=}\NormalTok{ gastos4[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos2) }\SpecialCharTok{{-}}
-    \DecValTok{1}\NormalTok{)])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Uno los dos datasets en un único dataset con el que}
-\CommentTok{\# trabajar}
-
-\NormalTok{gastos12 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gastos1, gastos2, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(gastos1[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(gastos1) }\SpecialCharTok{{-}}
-    \DecValTok{1}\NormalTok{])))}
-\NormalTok{gastos34 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gastos3, gastos4, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(gastos3[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(gastos3) }\SpecialCharTok{{-}}
-    \DecValTok{1}\NormalTok{])))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Compruebo que en todas las columnas salvo la última todos}
-\CommentTok{\# las filas son iguales para poder hacer merge de los dos}
-\CommentTok{\# datasets correctamente}
-\FunctionTok{any}\NormalTok{(gastos12[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos12) }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)] }\SpecialCharTok{!=}\NormalTok{ gastos34[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gastos34) }\SpecialCharTok{{-}}
-    \DecValTok{2}\NormalTok{)])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Uno los dos datasets}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gastos12, gastos34, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(gastos12[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])))}
+\NormalTok{datos }\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(gastos,}\AttributeTok{names\_from=}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{values\_from=}\NormalTok{Total)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -431,22 +379,38 @@ irrelevante,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Nos quedamos únicamente con los datos base, quitando las}
-\CommentTok{\# tasas de variación}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)[}\DecValTok{1}\NormalTok{])}
+\CommentTok{\# Nos quedamos únicamente con los datos base, quitando las tasas de variación}
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\SpecialCharTok{==} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)[}\DecValTok{1}\NormalTok{])}
 \CommentTok{\# Quito la columna irrelevante}
 \NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{cambios-de-nombres-de-las-columnas}{%
+\subsection{Cambios de nombres de las
+columnas}\label{cambios-de-nombres-de-las-columnas}}
+
+Vamos a renombrar las columnas de manera apropiada (sin espacios y con
+nombres representativos).
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{rm}\NormalTok{(gastos, gastos1, gastos2, gastos3, gastos34, gastos4, gastos12)  }\CommentTok{\# Eliminamos}
-\CommentTok{\# algunos variables auxiliares innecesarias a posteriori}
+\NormalTok{nombres\_columnas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pais"}\NormalTok{, }\StringTok{"CCAA"}\NormalTok{, }\StringTok{"Periodo"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(datos)}\OtherTok{\textless{}{-}}\NormalTok{ nombres\_columnas}
+\FunctionTok{colnames}\NormalTok{(datos)}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Transformación de clases}\label{transformaciuxf3n-de-clases}
+\begin{verbatim}
+## [1] "Pais"                       "CCAA"                      
+## [3] "Periodo"                    "Gasto_total"               
+## [5] "Gasto_medio_persona"        "Gasto_medio_diario_persona"
+## [7] "Duracion_media"
+\end{verbatim}
+
+\hypertarget{transformaciuxf3n-de-clases}{%
+\subsection{Transformación de
+clases}\label{transformaciuxf3n-de-clases}}
 
 Todas las variables han sido importadas como tipo carácter.Vamos a
 transformar las variables Gasto\_total, Gasto\_medio\_persona,
@@ -464,14 +428,13 @@ correctamente.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Quitar punto de miles}
-\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{,}
-    \StringTok{""}\NormalTok{, x))}
+\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{""}\NormalTok{, x))}
 \CommentTok{\# Sustituir coma decimal por punto decimal}
-\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{,}
-    \StringTok{"."}\NormalTok{, x))}
+\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{, }\StringTok{"."}\NormalTok{, x))}
 \CommentTok{\# Transformar a numerico}
 \NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{as.numeric}\NormalTok{(x))}
-\CommentTok{\# Comprobamos la clase lapply(datos,class)}
+\CommentTok{\# Comprobamos la clase}
+\CommentTok{\# lapply(datos,class)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -493,9 +456,9 @@ y Comunidades Autónomas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# unique(datos$\textasciigrave{}País de residencia\textasciigrave{}) Transformacion a}
-\CommentTok{\# factor de paises de residencia}
-\NormalTok{datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\CommentTok{\# unique(datos$\textasciigrave{}País de residencia\textasciigrave{})}
+\CommentTok{\# Transformacion a factor de paises de residencia}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Pais }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -506,57 +469,31 @@ parte para presentarlo en una visualización más compleja.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Guardamos los datos totales por si resultan útiles en el}
-\CommentTok{\# futuro}
-\NormalTok{datos\_totales }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-    \StringTok{"Total"} \SpecialCharTok{|}\NormalTok{ datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
+\CommentTok{\# Guardamos los datos totales por si resultan útiles en el futuro}
+\NormalTok{datos\_totales }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos,datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Total"} \SpecialCharTok{|}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
+\NormalTok{datos\_total\_por\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Quitar filas de total de columna comunidades autonomas}
-\NormalTok{datos\_total\_por\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{==}
-    \StringTok{"Total"}\NormalTok{)}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos,datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Transformacion a factor de nombres de comunidades}
-\CommentTok{\# unique(datos$\textasciigrave{}Total Nacional y CCAA\textasciigrave{})}
-\NormalTok{datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\NormalTok{)}
+\CommentTok{\#unique(datos$\textasciigrave{}Total Nacional y CCAA\textasciigrave{})}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{CCAA}\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA)}
 \CommentTok{\# Cambiamos de nombre los niveles del factor}
-\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Total Nacional y CCAA}\StringTok{\textasciigrave{}}\NormalTok{) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andalucía"}\NormalTok{, }\StringTok{"Illes Balears"}\NormalTok{,}
-    \StringTok{"Canarias"}\NormalTok{, }\StringTok{"Cataluña"}\NormalTok{, }\StringTok{"Comunitat Valenciana"}\NormalTok{, }\StringTok{"Comunidad de Madrid"}\NormalTok{,}
-    \StringTok{"Otras CCAA"}\NormalTok{)}
+\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andalucía"}\NormalTok{, }\StringTok{"Illes Balears"}\NormalTok{,}\StringTok{"Canarias"}\NormalTok{, }\StringTok{"Cataluña"}\NormalTok{,}\StringTok{"Comunitat Valenciana"}\NormalTok{, }\StringTok{"Comunidad de Madrid"}\NormalTok{, }\StringTok{"Otras CCAA"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Cambios de nombres de las
-columnas}\label{cambios-de-nombres-de-las-columnas}
-
-Vamos a renombrar las columnas de manera apropiada (sin espacios y con
-nombres representativos).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# colnames(datos)}
-\NormalTok{nombres\_columnas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pais"}\NormalTok{, }\StringTok{"CCAA"}\NormalTok{, }\StringTok{"Periodo"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(datos)[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{7}\NormalTok{])}
-\FunctionTok{colnames}\NormalTok{(datos) }\OtherTok{\textless{}{-}}\NormalTok{ nombres\_columnas}
-\FunctionTok{colnames}\NormalTok{(datos)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Pais"                       "CCAA"                      
-## [3] "Periodo"                    "Gasto_total"               
-## [5] "Gasto_medio_persona"        "Gasto_medio_diario_persona"
-## [7] "Duracion_media"
-\end{verbatim}
-
-\subsection{Instance engineering}\label{instance-engineering}
+\hypertarget{instance-engineering}{%
+\subsection{Instance engineering}\label{instance-engineering}}
 
 Vamos a trabajar con valores de las filas para obtener un dataset más
 apropiado al estudio que deseamos realizar. En primer lugar, queremos
@@ -569,13 +506,14 @@ poseemos datos concretos.
 \begin{Highlighting}[]
 \CommentTok{\# Cambiar el nombre de las filas}
 \NormalTok{paises }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais)}
-\NormalTok{paises[paises }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Otros"}
+\NormalTok{paises[paises}\SpecialCharTok{==}\StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Otros"}
 \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais) }\OtherTok{\textless{}{-}}\NormalTok{ paises}
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{instance-engineering-de-gasto_total}{%
 \subsubsection{Instance engineering de
-Gasto\_total}\label{instance-engineering-de-gasto_total}
+Gasto\_total}\label{instance-engineering-de-gasto_total}}
 
 Para la variable Gasto\_total, las filas correspondientes a ``Otros'' de
 la variable Pais y las filas correspondientes a ``Total'' se relacionan
@@ -590,20 +528,19 @@ gasto de cada uno de los otros 5 paises disponibles por separado.
 \begin{Highlighting}[]
 \NormalTok{comunidades }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA)}
 \NormalTok{anos }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Periodo)}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades) \{}
-    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos) \{}
-\NormalTok{        aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_total"}\NormalTok{]}
-\NormalTok{        datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==}
-            \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ aux[}\FunctionTok{length}\NormalTok{(aux)] }\SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux) }\SpecialCharTok{{-}}
-            \DecValTok{1}\NormalTok{])}
-\NormalTok{    \}}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_total"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ aux[}\FunctionTok{length}\NormalTok{(aux),] }\SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,])  }
+\NormalTok{  \}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}{%
 \subsubsection{Instance engineering de Gasto\_medio\_persona,
 Gasto\_medio\_diario\_persona y
-Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}
+Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}}
 
 Como en estas variables se trata de una media, no podemos emplear el
 método usado para Gasto\_total. En su lugar consideramos una media
@@ -624,14 +561,11 @@ esta categoría.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Duracion media}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades) \{}
-    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos) \{}
-\NormalTok{        aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Duracion\_media"}\NormalTok{]}
-\NormalTok{        datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==}
-            \StringTok{"Otros"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)] }\SpecialCharTok{{-}}
-\NormalTok{            (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{])) }\SpecialCharTok{*} \DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194} \SpecialCharTok{{-}}
-            \DecValTok{5}\NormalTok{)}
-\NormalTok{    \}}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Duracion\_media"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -639,14 +573,11 @@ esta categoría.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Gasto\_medio\_persona}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades) \{}
-    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos) \{}
-\NormalTok{        aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}
-\NormalTok{        datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==}
-            \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)] }\SpecialCharTok{{-}}
-\NormalTok{            (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{])) }\SpecialCharTok{*} \DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194} \SpecialCharTok{{-}}
-            \DecValTok{5}\NormalTok{)}
-\NormalTok{    \}}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -654,17 +585,14 @@ esta categoría.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Gasto\_medio\_diario\_persona}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades) \{}
-    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos) \{}
-\NormalTok{        aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}
-\NormalTok{        datos[datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==}\NormalTok{ i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==}
-            \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux)] }\SpecialCharTok{{-}}
-\NormalTok{            (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{])) }\SpecialCharTok{*} \DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194} \SpecialCharTok{{-}}
-            \DecValTok{5}\NormalTok{)}
-\NormalTok{    \}}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
+\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}
+\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
+\NormalTok{  \}}
 \NormalTok{\}}
 
-\FunctionTok{rm}\NormalTok{(i, j, anos, comunidades, paises, aux)  }\CommentTok{\# Borrar variables auxiliares}
+\FunctionTok{rm}\NormalTok{(i,j,anos,comunidades, paises, aux) }\CommentTok{\# Borrar variables auxiliares}
 \end{Highlighting}
 \end{Shaded}
 
@@ -688,18 +616,18 @@ un resumen de las variables.
 ##                       Otras CCAA          :48                 
 ##   Gasto_total       Gasto_medio_persona Gasto_medio_diario_persona
 ##  Min.   :   22.28   Min.   : 383.0      Min.   : 56.0             
-##  1st Qu.:  396.06   1st Qu.: 832.8      1st Qu.:105.0             
-##  Median :  849.69   Median : 980.8      Median :130.5             
-##  Mean   : 1775.89   Mean   : 983.7      Mean   :133.0             
-##  3rd Qu.: 2375.74   3rd Qu.:1138.0      3rd Qu.:154.0             
-##  Max.   :14281.08   Max.   :1612.5      Max.   :277.0             
+##  1st Qu.:  396.06   1st Qu.: 838.2      1st Qu.:107.8             
+##  Median :  857.80   Median :1003.0      Median :132.0             
+##  Mean   : 2714.09   Mean   :1005.2      Mean   :135.9             
+##  3rd Qu.: 2562.09   3rd Qu.:1165.5      3rd Qu.:156.0             
+##  Max.   :21318.75   Max.   :1743.9      Max.   :300.8             
 ##                                                                   
 ##  Duracion_media  
 ##  Min.   : 3.610  
-##  1st Qu.: 5.793  
-##  Median : 7.465  
-##  Mean   : 7.586  
-##  3rd Qu.: 9.040  
+##  1st Qu.: 6.060  
+##  Median : 7.630  
+##  Mean   : 7.756  
+##  3rd Qu.: 9.198  
 ##  Max.   :14.270  
 ## 
 \end{verbatim}
@@ -734,61 +662,129 @@ etc datos\_totales: Aqui estan guardados todos los datos que he
 modificado o borrado del dataset original referentes a valores totales
 por si se necesitan en algun momento
 
-\section{Prueba de ggplot}\label{prueba-de-ggplot}
+\hypertarget{prueba-de-ggplot}{%
+\section{Prueba de ggplot}\label{prueba-de-ggplot}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Visualización de los datos e interpretación de los}
-\CommentTok{\# posibles patrones}
+\CommentTok{\# Visualización de los datos e interpretación de los posibles patrones}
 
-\CommentTok{\# Visualización previa para tener una idea de ciertas}
-\CommentTok{\# variables de los datos}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Periodo, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{color =}\NormalTok{ CCAA,}
-    \AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Evolución del gasto total de turistas por año"}\NormalTok{,}
-    \AttributeTok{x =} \StringTok{"Años"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto total en millones de euros"}\NormalTok{)}
+\CommentTok{\# Visualización previa para tener una idea de ciertas variables de los datos}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Periodo, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{color =}\NormalTok{ CCAA, }\AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Evolución del gasto total de turistas por año"}\NormalTok{, }\AttributeTok{x  =} \StringTok{"Años"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto total en millones de euros"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Nos centramos en un año en concreto y visualizamos el}
-\CommentTok{\# gasto total por país en ese año}
-\FunctionTok{ggplot}\NormalTok{(datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2023}\NormalTok{, ], }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Pais,}
-    \SpecialCharTok{{-}}\NormalTok{Gasto\_total), }\AttributeTok{y =}\NormalTok{ Gasto\_total)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,}
-    \FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto por país de residencia en 2023"}\NormalTok{,}
-    \AttributeTok{x =} \StringTok{"Gasto total en millones de euros"}\NormalTok{, }\AttributeTok{y =} \StringTok{"País"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\CommentTok{\# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año}
+\FunctionTok{ggplot}\NormalTok{(datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2023}\NormalTok{, ], }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Pais, }\SpecialCharTok{{-}}\NormalTok{Gasto\_total), }\AttributeTok{y =}\NormalTok{ Gasto\_total)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto por país de residencia en 2023"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Gasto total en millones de euros"}\NormalTok{, }\AttributeTok{y =} \StringTok{"País"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-2.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Para analizar únicamente una variable por país en una}
-\CommentTok{\# sola Comunidad Autónoma.}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,}
-    \AttributeTok{fill =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ CCAA[}\StringTok{"i"}\NormalTok{], }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en Andalucía"}\NormalTok{,}
-        \AttributeTok{x =} \StringTok{"País"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{)}
+\CommentTok{\# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(.}\SpecialCharTok{\textasciitilde{}}\NormalTok{CCAA[}\StringTok{"i"}\NormalTok{],}\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en Andalucía"}\NormalTok{, }\AttributeTok{x =} \StringTok{"País"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-3.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Para todas las Comunidades Autónomas por separado}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,}
-    \AttributeTok{fill =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{CCAA, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en cada Comunidad Autónoma"}\NormalTok{,}
-        \AttributeTok{x =} \StringTok{"País"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{90}\NormalTok{,}
-    \AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ CCAA, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en cada Comunidad Autónoma"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"País"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\hypertarget{probamos-a-analizar-el-efecto-del-covid-en-el-gasto-de-los-turistas-asuxed-como-los-pauxedses-que-muxe1s-reducieron-su-gasto-debido-a-la-pandemia.}{%
+\section{Probamos a analizar el efecto del COVID en el gasto de los
+turistas, así como los países que más reducieron su gasto debido a la
+pandemia.}\label{probamos-a-analizar-el-efecto-del-covid-en-el-gasto-de-los-turistas-asuxed-como-los-pauxedses-que-muxe1s-reducieron-su-gasto-debido-a-la-pandemia.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyr)}
+
+\NormalTok{covid }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2020}\NormalTok{, ]}
+\NormalTok{no\_covid }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{!=} \DecValTok{2020}\NormalTok{, ]}
+\NormalTok{media\_sin\_covid }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(no\_covid}\SpecialCharTok{$}\NormalTok{Gasto\_total[])}
+\NormalTok{media\_covid }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(covid}\SpecialCharTok{$}\NormalTok{Gasto\_total)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La media del gasto total durante el COVID es de"}\NormalTok{, media\_covid,}\StringTok{"millones de euros}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La media del gasto total durante el COVID es de 719.3212 millones de euros
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mientras que sin COVID es de"}\NormalTok{, media\_sin\_covid,}\StringTok{"millones de euros}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mientras que sin COVID es de 2999.059 millones de euros
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(Periodo), }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ (Periodo }\SpecialCharTok{==} \DecValTok{2020}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"grey"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Año"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto Total de Turistas"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Comparación del Gasto Total de Turistas por Año"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covid\_sin\_otros }\OtherTok{\textless{}{-}}\NormalTok{ covid[covid}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{!=} \StringTok{"Otros"}\NormalTok{, ] }\CommentTok{\# Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.}
+\NormalTok{covid\_sin\_otros }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto total de los distintos países durante el COVID"}\NormalTok{) }\CommentTok{\# Reino Unido gastó más en COVID que el resto de países, Italia el que menos.}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#¿En qué comunidad autónoma se viajó más durante el COVID?}
+\NormalTok{covid\_sin\_otros }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ CCAA, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ CCAA)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto total en las distintas comunidades autónomas durante el COVID"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?}
+\end{Highlighting}
+\end{Shaded}
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la
 variable que nos sirve para representar la magnitud de valores en el
@@ -796,82 +792,61 @@ mapa de visualización, en este caso el gasto medio por persona
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}}\NormalTok{ datos\_total\_por\_residencia }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{filter}\NormalTok{(Periodo }\SpecialCharTok{==} \StringTok{"2016"} \SpecialCharTok{\&} \StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
+\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}}\NormalTok{ datos\_total\_por\_residencia }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{ (Pais, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{ (Periodo }\SpecialCharTok{==} \StringTok{\textquotesingle{}2016\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ Pais }\SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
 
-\NormalTok{gastos\_medio\_residencia\_PN }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{select}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}}\NormalTok{, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{filter}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{País de residencia}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{"Países Nórdicos"}\NormalTok{)}
+\NormalTok{gastos\_medio\_residencia\_PN }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{ (Pais, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Pais }\SpecialCharTok{==} \StringTok{"Países Nórdicos"}\NormalTok{)}
 
-\CommentTok{\# Introducimos 4 filas iguales sobre los países nórdicos}
-\CommentTok{\# para separar con el join estos y poder representarlos en}
-\CommentTok{\# el mapa}
+\CommentTok{\# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa}
 
 \NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(gastos\_medio\_residencia, gastos\_medio\_residencia\_PN,}
-\NormalTok{    gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN)}
-
-\CommentTok{\# install.packages(\textquotesingle{}sf\textquotesingle{})}
-\FunctionTok{library}\NormalTok{(sf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.3.1; sf_use_s2() is TRUE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# install.packages(\textquotesingle{}dplyr\textquotesingle{})}
-\FunctionTok{library}\NormalTok{(dplyr)}
-\CommentTok{\# install.packages(\textquotesingle{}ggplot2\textquotesingle{})}
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\CommentTok{\# install.packages(\textquotesingle{}giscoR\textquotesingle{})}
-\FunctionTok{library}\NormalTok{(giscoR)}
+\NormalTok{                                 gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN)}
 
 \NormalTok{año\_ref }\OtherTok{\textless{}{-}} \DecValTok{2016}
 
 \CommentTok{\# Datos}
-\NormalTok{countries }\OtherTok{\textless{}{-}} \FunctionTok{gisco\_get\_countries}\NormalTok{(}\AttributeTok{year =}\NormalTok{ año\_ref, }\AttributeTok{resolution =} \DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{select}\NormalTok{(CNTR\_ID, NAME\_ENGL, geometry) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{st\_transform}\NormalTok{(}\DecValTok{3035}\NormalTok{)}
+\NormalTok{countries }\OtherTok{\textless{}{-}} \FunctionTok{gisco\_get\_countries}\NormalTok{(}\AttributeTok{year =}\NormalTok{ año\_ref,}
+                        \AttributeTok{resolution =} \DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(CNTR\_ID, NAME\_ENGL, geometry) }\SpecialCharTok{\%\textgreater{}\%}
+           \FunctionTok{st\_transform}\NormalTok{(}\DecValTok{3035}\NormalTok{)}
 
-\NormalTok{paises\_english }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Germany"}\NormalTok{, }\StringTok{"France"}\NormalTok{, }\StringTok{"Italy"}\NormalTok{, }\StringTok{"Norway"}\NormalTok{, }\StringTok{"Finland"}\NormalTok{,}
-    \StringTok{"Sweden"}\NormalTok{, }\StringTok{"Denmark"}\NormalTok{, }\StringTok{"Iceland"}\NormalTok{, }\StringTok{"United Kingdom"}\NormalTok{)}
-\NormalTok{countries\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ countries }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{filter}\NormalTok{(NAME\_ENGL }\SpecialCharTok{\%in\%}\NormalTok{ paises\_english)}
+\NormalTok{paises\_english }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}United Kingdom\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Denmark\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Germany\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}France\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Italy\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Sweden\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Norway\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Iceland\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Finland\textquotesingle{}}\NormalTok{)}
+\NormalTok{countries\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ countries }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(NAME\_ENGL }\SpecialCharTok{\%in\%}\NormalTok{ paises\_english)}
 
-\CommentTok{\# Incluir columna de identificación de los países para unir}
-\CommentTok{\# con las coordenadas de los mapas}
+\CommentTok{\# Incluir columna de identificación de los países para unir con las coordenadas de los mapas}
 
-\NormalTok{CNTR\_ID }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"DE"}\NormalTok{, }\StringTok{"FR"}\NormalTok{, }\StringTok{"IT"}\NormalTok{, }\StringTok{"DK"}\NormalTok{, }\StringTok{"UK"}\NormalTok{, }\StringTok{"IS"}\NormalTok{, }\StringTok{"FI"}\NormalTok{, }\StringTok{"NO"}\NormalTok{,}
-    \StringTok{"SE"}\NormalTok{)}
+\NormalTok{CNTR\_ID }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}UK\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}DK\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}DE\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}FR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}IT\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}SE\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NO\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}IS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}FI\textquotesingle{}}\NormalTok{)}
 \NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(gastos\_medio\_residencia, CNTR\_ID)}
 
 
-\NormalTok{gastos\_medio\_viz }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{left\_join}\NormalTok{(countries, }\AttributeTok{by =} \FunctionTok{join\_by}\NormalTok{(CNTR\_ID }\SpecialCharTok{==}\NormalTok{ CNTR\_ID))}
+\NormalTok{gastos\_medio\_viz }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(countries, }\AttributeTok{by=}\FunctionTok{join\_by}\NormalTok{(CNTR\_ID }\SpecialCharTok{==}\NormalTok{ CNTR\_ID))}
 
 
 
-\CommentTok{\# Mapa base}
-\FunctionTok{ggplot}\NormalTok{(gastos\_medio\_viz) }\SpecialCharTok{+} \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{geometry =}\NormalTok{ geometry, }\AttributeTok{fill =}\NormalTok{ Gasto\_medio\_persona)) }\SpecialCharTok{+}
-    \FunctionTok{xlim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2200000}\NormalTok{, }\DecValTok{7150000}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1380000}\NormalTok{, }\DecValTok{5500000}\NormalTok{))}
+\CommentTok{\# Mapa base }
+\FunctionTok{ggplot}\NormalTok{(gastos\_medio\_viz) }\SpecialCharTok{+}
+  \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{geometry=}\NormalTok{ geometry, }\AttributeTok{fill=}\NormalTok{Gasto\_medio\_persona)) }\SpecialCharTok{+}
+  \FunctionTok{xlim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2200000}\NormalTok{, }\DecValTok{7150000}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{ylim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1380000}\NormalTok{, }\DecValTok{5500000}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Marta: Te comenté esta parte porque me estaba dando}
-\CommentTok{\# problemas al hacer knit no se por qué}
+\CommentTok{\# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué}
 
-\CommentTok{\# Gráfico ggplot(gastos\_medio\_viz) + \# Primera capa con}
-\CommentTok{\# todos los países geom\_sf(aes(geometry= geometry), data =}
-\CommentTok{\# gastos\_medio\_viz, fill = \textquotesingle{}grey80\textquotesingle{}, color = NA) + \#}
-\CommentTok{\# Establece límites xlim(c(2200000, 7150000)) +}
-\CommentTok{\# ylim(c(1380000, 5500000))}
+\CommentTok{\# Gráfico}
+\CommentTok{\# ggplot(gastos\_medio\_viz) +}
+\CommentTok{\#   \# Primera capa con todos los países}
+\CommentTok{\#   geom\_sf(aes(geometry= geometry), data = gastos\_medio\_viz, fill = "grey80", color = NA) +}
+\CommentTok{\#   \# Establece límites}
+\CommentTok{\#   xlim(c(2200000, 7150000)) +}
+\CommentTok{\#   ylim(c(1380000, 5500000))}
 \end{Highlighting}
 \end{Shaded}
 

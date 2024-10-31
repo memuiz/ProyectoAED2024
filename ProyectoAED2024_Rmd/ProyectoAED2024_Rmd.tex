@@ -653,6 +653,152 @@ mapa de visualización, en este caso el gasto medio por persona
 \end{Highlighting}
 \end{Shaded}
 
+\section{Búsqueda de relaciones entre variables
+cuantitativas}\label{buxfasqueda-de-relaciones-entre-variables-cuantitativas}
+
+Realizamos una visualización previa para detectar relaciones entre
+variables cuantitativas. En el gráfico @ref(fig:correlaciones), se
+observan 3 relaciones que podemos estudiar un poco más a fondo: el gasto
+medio por persona frente al gasto medio diario, el gasto medio por
+persona frente a la duración media y el gasto medio diario frente a la
+duración media.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(GGally)  }\CommentTok{\# Librería para ggpairs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'GGally':
+##   method from   
+##   +.gg   ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggpairs}\NormalTok{(datos[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{label =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{())  }\CommentTok{\# Quita los números de los ejes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in warn_if_args_exist(list(...)): Extra arguments: "label" are being
+## ignored.  If these are meant to be aesthetics, submit them using the 'mapping'
+## variable within ggpairs with ggplot2::aes or ggplot2::aes_string.
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf}
+\caption{Gráficos de dispersión y correlaciones entre variables
+cuantitativas}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gráficos de dispersión y correlaciones entre variables}
+\CommentTok{\# cuantitativas}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Gasto medio por persona y duración
+media}\label{gasto-medio-por-persona-y-duraciuxf3n-media}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cálculo de las correlaciones}
+\NormalTok{correlaciones }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(Pais) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{correlacion =} \FunctionTok{cor}\NormalTok{(Gasto\_medio\_persona, Duracion\_media))}
+
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Gasto\_medio\_persona, }\AttributeTok{y =}\NormalTok{ Duracion\_media,}
+    \AttributeTok{color =}\NormalTok{ CCAA)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Pais, }\AttributeTok{labeller =} \FunctionTok{label\_wrap\_gen}\NormalTok{(}\AttributeTok{width =} \DecValTok{15}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relación entre gasto medio por persona y duración media por país de residencia"}\NormalTok{,}
+        \AttributeTok{x =} \StringTok{"Gasto medio por persona (euros)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media de los viajes (días)"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ correlaciones, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Cor.:"}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(correlacion, }\DecValTok{2}\NormalTok{))), }\AttributeTok{x =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{y =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{hjust =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{vjust =} \FloatTok{1.1}\NormalTok{,}
+    \AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{())  }\CommentTok{\# Quita los números del eje X}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+Se observa una relación aproximadamente lineal para la mayoría de
+países, donde se distinguen claramente la tendendica de duración de los
+viajes en las distintas comunidades autónomas, casi siempre mayor en la
+Comunitat Valenciana (salvo en Italia, probablemente por cercanía),
+excepto en Otros. Debido a que esta categoría engloba a el resto de
+países del mundo, es más díficil encontara relaciones.
+
+\subsection{Gasto medio por persona frente al gasto medio diario por
+persona}\label{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}
+
+Esta parece a priori la relación más obvia entre variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cálculo de las correlaciones}
+\NormalTok{correlaciones }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(CCAA) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{correlacion =} \FunctionTok{cor}\NormalTok{(Gasto\_medio\_persona, Gasto\_medio\_diario\_persona))}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Gasto\_medio\_persona, }\AttributeTok{y =}\NormalTok{ Gasto\_medio\_diario\_persona,}
+    \AttributeTok{color =}\NormalTok{ Pais)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{CCAA, }\AttributeTok{labeller =} \FunctionTok{label\_wrap\_gen}\NormalTok{(}\AttributeTok{width =} \DecValTok{15}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relación entre gasto medio por persona y gasto medio diario por comunidad autónoma"}\NormalTok{,}
+        \AttributeTok{x =} \StringTok{"Gasto medio por persona (euros)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto medio diario por persona (días)"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ correlaciones, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Cor.:"}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(correlacion, }\DecValTok{2}\NormalTok{))), }\AttributeTok{x =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{y =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{hjust =} \FloatTok{1.6}\NormalTok{, }\AttributeTok{vjust =} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{())  }\CommentTok{\# Quita los números del eje X}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf}
+En la Comunitat Valenciana es donde hay una peor correlación, esto puede
+estar relacionado con que es también el destino de mayor duración de los
+viajes, lo que puede provocar un menor gasto medio diario.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Gasto\_medio\_persona, }\AttributeTok{y =}\NormalTok{Gasto\_medio\_diario\_persona, }\AttributeTok{color =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{2}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{scale\_color\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"lightgreen"}\NormalTok{, }\AttributeTok{high =} \StringTok{"darkgreen"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Gradiente en tonos de verde}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relación entre gasto medio por persona y gasto medio diario por comunidad autónoma"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Gasto medio por persona (euros)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Gasto medio diario por persona (días)"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Duración media (días)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf}
+En el gráfico (referenciar) se puede ver que generalmente a mayor gasto
+medio por persona también se produce un mayor gasto medio diario. Sin
+embargo, observamos que aparentemente un aumento de la duración de los
+viajes provoca una disminución del gasto medio diario. Vamos a
+visualizar esto más claramente a continuación.
+
+\subsection{Gasto medio diario y duracion
+media}\label{gasto-medio-diario-y-duracion-media}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cálculo de las correlaciones}
+\NormalTok{correlaciones }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(Pais) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{correlacion =} \FunctionTok{cor}\NormalTok{(Gasto\_medio\_diario\_persona, Duracion\_media))}
+
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Gasto\_medio\_diario\_persona, }\AttributeTok{y =}\NormalTok{ Duracion\_media,}
+    \AttributeTok{color =}\NormalTok{ CCAA)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Pais, }\AttributeTok{labeller =} \FunctionTok{label\_wrap\_gen}\NormalTok{(}\AttributeTok{width =} \DecValTok{15}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relación entre gasto medio por persona y duración media por país de residencia"}\NormalTok{,}
+        \AttributeTok{x =} \StringTok{"Gasto medio por persona (euros)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media de los viajes (días)"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{data =}\NormalTok{ correlaciones, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Cor.:"}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(correlacion, }\DecValTok{2}\NormalTok{))), }\AttributeTok{x =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{y =} \ConstantTok{Inf}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{vjust =} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf}
+Ahora podemos observar de manera clara que a mayor duración de los
+viajes se produce un menor gasto medio por persona.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

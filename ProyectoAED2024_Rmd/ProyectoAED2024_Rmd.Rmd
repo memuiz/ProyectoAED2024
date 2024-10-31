@@ -66,6 +66,7 @@ knitr::opts_knit$set(root.dir = here::here()) # Setwd() a la carpeta del
 #directory de la carpeta ProyectoAED2024_Rmd
 #knitr::opts_chunk$set(size = "footnotesize") # use smaller font in the chunks
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
+knitr::opts_chunk$set(fig.width = 5, fig.height  = 3.5)
 
 ```
 
@@ -495,4 +496,90 @@ ggplot(gastos_medio_viz) +
 #   ylim(c(1380000, 5500000))
 
 ```
+# Búsqueda de relaciones entre variables cuantitativas
 
+Realizamos una visualización previa para detectar relaciones entre variables cuantitativas. En el gráfico \@ref(fig:correlaciones), se observan 3 relaciones que podemos estudiar un poco más a fondo: el gasto medio por persona frente al gasto medio diario, el gasto medio por persona frente a la duración media y el gasto medio diario frente a la duración media.
+```{r, fig.cap="Gráficos de dispersión y correlaciones entre variables cuantitativas", fig.label="fig:correlaciones"}
+library(GGally)  # Librería para ggpairs
+ggpairs(datos[4:7],label = FALSE)+theme(axis.text = element_blank()) # Quita los números de los ejes
+# Gráficos de dispersión y correlaciones entre variables cuantitativas
+``` 
+
+##  Gasto medio por persona y duración media
+
+
+```{r}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Duracion_media, color = CCAA)) + geom_point() + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y duración media por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.5, vjust = 1.1, size = 3, color = "black"
+  )+
+  theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+
+Se observa una relación aproximadamente lineal para la mayoría de países, donde se distinguen claramente la tendendica de duración de los viajes en las distintas comunidades autónomas, casi siempre mayor en la Comunitat Valenciana (salvo en Italia, probablemente por cercanía), excepto en Otros. Debido a que esta categoría engloba a el resto de países del mundo, es más díficil encontara relaciones.
+
+## Gasto medio por persona frente al gasto medio diario por persona
+
+
+Esta parece a priori la relación más obvia entre variables.
+```{r}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(CCAA) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Gasto_medio_diario_persona))
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Pais)) + geom_point() + facet_wrap(~ CCAA, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y gasto medio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)") + theme_minimal() +
+   geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.6, vjust = 1, size = 3, color = "black"
+  ) +
+   theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+En la Comunitat Valenciana es donde hay una peor correlación, esto puede estar relacionado con que es también el destino de mayor duración de los viajes, lo que puede provocar un menor gasto medio diario.
+
+```{r}
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Duracion_media)) + geom_point(size = 2)  + scale_color_gradient(low = "lightgreen", high = "darkgreen") +  # Gradiente en tonos de verde
+  labs(title = "Relación entre gasto medio por persona y gasto medio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)",
+       color = "Duración media (días)") + theme_minimal() 
+```
+En el gráfico (referenciar) se puede ver que generalmente a mayor gasto medio por persona también se produce un mayor gasto medio diario. Sin embargo, observamos que aparentemente un aumento de la duración de los viajes provoca una disminución del gasto medio diario. Vamos a visualizar esto más claramente a continuación.
+
+## Gasto medio diario y duracion media 
+
+
+```{r}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_diario_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_diario_persona, y =Duracion_media, color = CCAA)) + geom_point() + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y duración media por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust =1, vjust = 1, size = 3, color = "black"
+  )
+```
+Ahora podemos observar de manera clara que a mayor duración de los viajes se produce un menor gasto medio por persona.

@@ -386,18 +386,18 @@ Filtraremos los datos totales por el Periodo y recogeremos solo la variable que 
 periodos <- unique(datos_total_por_residencia$Periodo)
 
 #Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
-gastos_medio_residencia <- datos_total_por_residencia %>% 
-  select (Pais, Gasto_medio_persona, Periodo) %>%
+datos_total_residencia <- datos_total_por_residencia %>% 
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
   filter (Periodo %in% periodos & Pais != "Total")
 
-gastos_medio_residencia_PN <- gastos_medio_residencia %>% 
-  select (Pais, Gasto_medio_persona, Periodo) %>%
+datos_total_residencia_PN <- datos_total_residencia %>% 
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
   filter(Pais == "Países Nórdicos")
 
 # Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
 
-gastos_medio_residencia <- rbind(gastos_medio_residencia, gastos_medio_residencia_PN,
-                                 gastos_medio_residencia_PN, gastos_medio_residencia_PN, gastos_medio_residencia_PN)
+datos_total_residencia <- rbind(datos_total_residencia, datos_total_residencia_PN,
+                                 datos_total_residencia_PN, datos_total_residencia_PN, datos_total_residencia_PN)
 
 # El ano de referencia de los mapas determina el año en que se recogió la información de las coordenadas y la división de los países (como no hay ninguna división o cambio de coordenadas importante para los países y los períodos importantes no es muy relevante)
 año_ref <- 2020
@@ -421,18 +421,15 @@ for(pais in CNTR_ID)
   Country_Ids <- c(Country_Ids, Country_aux)
 }
 
-gastos_medio_residencia <- cbind(gastos_medio_residencia, Country_Ids)
+datos_total_residencia <- cbind(datos_total_residencia, Country_Ids)
 
 
-gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
+datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
 
 
 
 # Mapa base 
-geographic_map_gasto_medio <- ggplot(gastos_medio_viz) 
-
-
- geographic_map_gasto_medio <- geographic_map_gasto_medio + 
+ geographic_map_gasto_medio <-  ggplot(datos_total_residencia_viz)  + 
    geom_sf(aes(geometry= geometry,      
           fill=Gasto_medio_persona), 
           linewidth=0.5) + facet_wrap(~Periodo) +
@@ -459,12 +456,90 @@ girafe(ggobj = geographic_map_gasto_medio)
 # Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
 
 # Gráfico
-# ggplot(gastos_medio_viz) +
+# ggplot(datos_total_residencia_viz) +
 #   # Primera capa con todos los países
-#   geom_sf(aes(geometry= geometry), data = gastos_medio_viz, fill = "grey80", color = NA) +
+#   geom_sf(aes(geometry= geometry), data = datos_total_residencia_viz, fill = "grey80", color = NA) +
 #   # Establece límites
 #   xlim(c(2200000, 7150000)) +
 #   ylim(c(1380000, 5500000))
 
+```
+
+```{r}
+geographic_map_gasto_medio_diario <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_medio_diario_persona), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_medio_diario <- geographic_map_gasto_medio_diario +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Gasto_medio_diario_persona
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_medio_diario)
+```
+
+```{r}
+geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_total), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_total <- geographic_map_gasto_total +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Gasto_total
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_total)
+```
+
+```{r}
+geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Duracion_media), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_duracion_media <- geographic_map_duracion_media +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Duracion_media
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_duracion_media)
 ```
 

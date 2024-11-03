@@ -382,8 +382,10 @@ covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_b
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 
 ```{r}
-
+# Tomamos los distintos periodos que existen en nuestro conjunto de datos para diferenciar temporalmente
 periodos <- unique(datos_total_por_residencia$Periodo)
+
+#Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
 gastos_medio_residencia <- datos_total_por_residencia %>% 
   select (Pais, Gasto_medio_persona, Periodo) %>%
   filter (Periodo %in% periodos & Pais != "Total")
@@ -397,7 +399,8 @@ gastos_medio_residencia_PN <- gastos_medio_residencia %>%
 gastos_medio_residencia <- rbind(gastos_medio_residencia, gastos_medio_residencia_PN,
                                  gastos_medio_residencia_PN, gastos_medio_residencia_PN, gastos_medio_residencia_PN)
 
-año_ref <- 2016
+# El ano de referencia de los mapas determina el año en que se recogió la información de las coordenadas y la división de los países (como no hay ninguna división o cambio de coordenadas importante para los países y los períodos importantes no es muy relevante)
+año_ref <- 2020
 
 # Datos
 countries <- gisco_get_countries(year = año_ref,
@@ -405,16 +408,23 @@ countries <- gisco_get_countries(year = año_ref,
   select(CNTR_ID, NAME_ENGL, geometry) %>%
            st_transform(3035)
 
+# En los datos que podemos recoger de la librería que nos determina las coordenadas de los países necesitamos filtrar por los que vamos a estudiar en base a nuestro conjunto de datos.
 paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
 countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
 
 # Incluir columna de identificación de los países para unir con las coordenadas de los mapas
-
 CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
-gastos_medio_residencia <- cbind(gastos_medio_residencia, CNTR_ID)
+Country_Ids <- c()
+for(pais in CNTR_ID)
+{
+  Country_aux <- rep(pais, times = length(periodos))
+  Country_Ids <- c(Country_Ids, Country_aux)
+}
+
+gastos_medio_residencia <- cbind(gastos_medio_residencia, Country_Ids)
 
 
-gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
+gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
 
 
 
@@ -437,7 +447,7 @@ geographic_map_gasto_medio <- ggplot(gastos_medio_viz)
   geom_sf_interactive(
     fill = NA,
     aes(
-      data_id = CNTR_ID,
+      data_id = Country_Ids,
       geometry = geometry,
       tooltip = Gasto_medio_persona
     ),

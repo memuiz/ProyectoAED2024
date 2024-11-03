@@ -543,3 +543,29 @@ geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  +
 girafe(ggobj = geographic_map_duracion_media)
 ```
 
+```{r}
+# Datos
+año_ref <- 2021
+spain_CCAAs <- gisco_get_nuts(year = año_ref,
+                              country = "Spain",
+                        resolution = 20) 
+
+ggplot(spain_CCAAs) +
+  geom_sf(aes(geometry = geometry))
+
+spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2)
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities,
+    aes(fill = NUTS_NAME),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    fill = NA,
+    color = "black",
+    linewidth = 0.1
+  )
+```
+

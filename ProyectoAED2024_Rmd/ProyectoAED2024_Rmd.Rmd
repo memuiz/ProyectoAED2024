@@ -553,7 +553,15 @@ spain_CCAAs <- gisco_get_nuts(year = año_ref,
 ggplot(spain_CCAAs) +
   geom_sf(aes(geometry = geometry))
 
-spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2)
+# Selección de las Comunidades de España donde tenemos datos y unión con estos
+spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2 & NUTS_NAME %in% unique(datos$CCAA))
+spain_Comunities <- spain_Comunities %>% inner_join(datos, by=join_by(NUTS_NAME == CCAA))
+
+# Selección de las Comunidades de España restantes clasificadas como "Otros" donde tenemos datos y unión con estos
+spain_Other_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2 & !NUTS_NAME %in% unique(datos$CCAA))
+spain_Other_Comunities <- cbind(spain_Other_Comunities, CCAA = c("Otras CCAA"))
+spain_Other_Comunities <- spain_Other_Comunities %>% inner_join(datos, by=join_by(CCAA == CCAA))
+
 spain_CCAAs %>% 
   ggplot(aes(geometry = geometry)) +
   geom_sf(
@@ -563,9 +571,40 @@ spain_CCAAs %>%
     linewidth = 0.5
   ) +
   geom_sf(
+    data = spain_Other_Comunities,
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
     fill = NA,
     color = "black",
     linewidth = 0.1
   )
+```
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Reino Unido
+
+spain_Comunities_from_UK <- spain_Comunities %>% filter(Pais == "Reino Unido")
+spain_Other_Comunities_from_UK <- spain_Other_Comunities %>% filter(Pais == "Reino Unido")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_UK,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_UK,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.1
+  ) +
+  geom_sf(
+    fill = NA,
+    color = "black",
+    linewidth = 0.1
+  ) + facet_wrap(~Periodo)
 ```
 

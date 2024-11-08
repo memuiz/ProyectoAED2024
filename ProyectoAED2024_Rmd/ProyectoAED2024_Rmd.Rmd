@@ -53,6 +53,7 @@ output:
   rticles::mdpi_article:
   extra_dependencies: longtable
   fontsize: 10pt  # Tamaño de fuente ajustado a 10p
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE,width = 60}

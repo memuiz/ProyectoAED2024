@@ -247,6 +247,7 @@ Para la variable Gasto_total, las filas correspondientes a "Otros" de la variabl
 $$ \text{Gasto total}_{\text{Total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
 Luego el gasto total de "Otros" es el gasto de los valores "Total" de Pais menos el gasto de cada uno de los otros 5 paises disponibles por separado.
 ```{r, include=FALSE}
+
 comunidades <- levels(datos$CCAA)
 anos <- unique(datos$Periodo)
 for (i in comunidades){
@@ -607,3 +608,4 @@ ggplot(data = datos, aes(x=Gasto_medio_diario_persona, y =Duracion_media, color 
 ```
 
 Ahora podemos observar en el Gráfico \ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor duración de los viajes se produce un menor gasto medio por persona.
+

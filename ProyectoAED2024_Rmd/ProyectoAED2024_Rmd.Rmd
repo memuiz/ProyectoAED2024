@@ -394,29 +394,11 @@ ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
 ```
 
 
-```{r}
-# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año
-ggplot(datos[datos$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
-  geom_bar(stat = "identity", aes(fill = Pais)) +
-  coord_flip() +
-  labs(title = "Gasto por país de residencia en 2023", x = "Gasto total en millones de euros", y = "País") +  
-  theme(legend.position = "none")
-```
 
-
-```{r}
-# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "red") +
-  facet_grid(.~CCAA["i"],scales = "free") +
-  labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
-```
-
-
-```{r fig.width=5, fig.height=5}
+```{r fig.width=10, fig.height=5}
 # Para todas las Comunidades Autónomas por separado
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "purple") +
+ggplot(datos, aes(x = Pais, y = Duracion_media, fill = Pais)) + 
+  geom_bar(stat = "identity") +
   facet_wrap(~ CCAA, scales = "free_y") +  
   labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
        x = "País", 
@@ -428,7 +410,7 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 # Probamos a analizar el efecto del COVID en el gasto de los turistas, así como los países que más reducieron su gasto debido a la pandemia.
 
-```{r}
+```{r fig.width= 10, fig.height = 5}
 library(tidyr)
 
 covid <- datos[datos$Periodo == 2020, ]
@@ -450,13 +432,13 @@ datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 20
 ```
 
 
-```{r}
+```{r fig.width= 10, fig.height = 5}
 covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
 covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
 ```
 
 
-```{r fig.width= 5}
+```{r fig.width= 10, fig.height = 5}
 #¿En qué comunidad autónoma se viajó más durante el COVID?
 covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_bar(stat = "identity")  + labs(title = "Gasto total en las distintas comunidades autónomas durante el COVID")
 

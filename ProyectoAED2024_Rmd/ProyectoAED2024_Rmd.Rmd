@@ -310,19 +310,19 @@ knitr::kable(datos[1:10, ], format = "latex",
 # Visualización de los datos e interpretación de los posibles patrones
 
 # Visualización previa para tener una idea de ciertas variables de los datos
-ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
+ggplot(datos_totales, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
   geom_point() +
   labs(title = "Evolución del gasto total de turistas por año", x  = "Años", y = "Gasto total en millones de euros")
 
 # Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año
-ggplot(datos[datos$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
+ggplot(datos_totales[datos_totales$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
   geom_bar(stat = "identity", aes(fill = Pais)) +
   coord_flip() +
   labs(title = "Gasto por país de residencia en 2023", x = "Gasto total en millones de euros", y = "País") +  
   theme(legend.position = "none")
 
 # Para analizar únicamente una variable por país en una sola Comunidad Autónoma.
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
+ggplot(datos_totales, aes(x = Pais, y = Duracion_media)) + 
   geom_bar(stat = "identity", fill = "red") +
   facet_grid(.~CCAA["i"],scales = "free") +
   labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
@@ -331,7 +331,7 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 ```{r fig.width=5, fig.height=5}
 # Para todas las Comunidades Autónomas por separado
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
+ggplot(datos_totales, aes(x = Pais, y = Duracion_media)) + 
   geom_bar(stat = "identity", fill = "purple") +
   facet_wrap(~ CCAA, scales = "free_y") +  
   labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
@@ -347,8 +347,8 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 ```{r}
 library(tidyr)
 
-covid <- datos[datos$Periodo == 2020, ]
-no_covid <- datos[datos$Periodo != 2020, ]
+covid <- datos_totales[datos_totales$Periodo == 2020, ]
+no_covid <- datos_totales[datos_totales$Periodo != 2020, ]
 media_sin_covid <- mean(no_covid$Gasto_total[])
 media_covid <- mean(covid$Gasto_total)
 cat("La media del gasto total durante el COVID es de", media_covid,"millones de euros\n")
@@ -357,7 +357,7 @@ cat("Mientras que sin COVID es de", media_sin_covid,"millones de euros\n")
 
 
 
-datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 2020))) +
+datos_totales %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 2020))) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("grey", "red")) +
   labs(x = "Año", y = "Gasto Total de Turistas", title = "Comparación del Gasto Total de Turistas por Año") +
@@ -379,7 +379,7 @@ covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_b
 
 # Otros gráficos interesantes
 ```{r fig.height= 6}
-ggplot(datos, aes(x = CCAA, y = Gasto_total)) +
+ggplot(datos_totales, aes(x = CCAA, y = Gasto_total)) +
   geom_boxplot(outlier.colour = "red", fill = "lightgreen") +
   labs(title = "Distribución del Gasto por Comunidad Autónoma",
        x = "Comunidad Autónoma",

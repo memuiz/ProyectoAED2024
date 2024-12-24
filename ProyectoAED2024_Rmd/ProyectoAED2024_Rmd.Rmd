@@ -488,8 +488,34 @@ ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
   theme_minimal()
 ```
 
+Para explorar la relación entre el gasto medio por persona y la duración media del viaje, por ejemplo:
 
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, color = CCAA)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Relación entre duración media y gasto medio por persona",
+    x = "Duración media (días)",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal()
+```
 
+Para comparar la distribución de gasto medio por persona entre distintas CCAA:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Distribución de gasto medio por persona por CCAA",
+    x = "CCAA",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")  # si deseas quitar la leyenda
+
+```
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 

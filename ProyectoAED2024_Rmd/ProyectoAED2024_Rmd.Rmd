@@ -380,6 +380,7 @@ names(datos_resumen) <- c("Gasto total", "Gasto medio por persona", "Gasto medio
 kable(summary(datos_resumen), format = "markdown")
 ```
 
+##########################################################################
 
 # Prueba de ggplot
 
@@ -574,6 +575,108 @@ ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_tota
   theme_minimal()
 ```
 
+Para mostrar la distribución de gasto_total por país y por año vamos a usar un ridgeline plot,. Este tipo de gráfico muestra la forma (densidad) de la distribución para cada combinación de año y país, apilando las curvas unas encima de otras. 
+
+```{r fig.width=10, fig.height=5}
+library(ggridges)
+
+ggplot(datos, aes(x = Gasto_total, 
+               y = factor(Periodo), 
+               fill = Pais)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.2) +
+  scale_fill_brewer(palette = "Set3") + 
+  labs(
+    title = "Distribución del Gasto Total por País a lo largo de los Años",
+    subtitle = "Ridgeline plot para una visualización elegante de densidades",
+    x = "Gasto Total",
+    y = "Año",
+    fill = "País"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+
+#Ahora sin otros, para observar mejor los países principales
+
+ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total, 
+               y = factor(Periodo), 
+               fill = Pais)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.2) +
+  scale_fill_brewer(palette = "Set3") + 
+  labs(
+    title = "Distribución del Gasto Total por País a lo largo de los Años Sin Otros",
+    subtitle = "Ridgeline plot para una visualización elegante de densidades",
+    x = "Gasto Total",
+    y = "Año",
+    fill = "País"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+```
+Para visualizar la época de covid vamos a probar a graficarla de una manera distinta, nos quedaremos con la más adecuada.
+
+```{r fig.width=10, fig.height=5}
+datos_summary <- datos %>%
+  group_by(Periodo) %>%
+  summarize(Gasto_total_anual = sum(Gasto_total, na.rm = TRUE))
+
+datos_summary <- datos_summary %>%
+  mutate(highlight = if_else(Periodo == 2020, "2020 (COVID)", "Otros años"))
+
+ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
+  geom_col() +
+  # Definir los colores para cada categoría
+  scale_fill_manual(values = c("2020 (COVID)" = "#e63946",  # rojo elegante
+                               "Otros años"   = "#457b9d")) # azul
+  labs(
+    title = "Evolución del Gasto Total (antes, durante y después de 2020)",
+    subtitle = "Se observa un descenso en 2020 (COVID) y una posterior recuperación",
+    x = "Año",
+    y = "Gasto Total"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"        # leyenda en la parte inferior
+  )
+  
+#Señalando aún más el año 2020
+  
+ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
+  geom_col() +
+  scale_fill_manual(values = c("2020 (COVID)" = "#e63946",
+                               "Otros años"   = "#457b9d")) +
+  labs(
+    title = "Evolución del Gasto Total (antes, durante y después de 2020)",
+    subtitle = "Se observa un descenso en 2020 (COVID) y una posterior recuperación",
+    x = "Año",
+    y = "Gasto Total"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"
+  ) +
+  # Anotación adicional
+  annotate("text",
+           x = which(levels(factor(datos_summary$Periodo)) == "2020"), # posición x del año 2020
+           y = datos_summary$Gasto_total_anual[datos_summary$Periodo == 2020] + 1000, 
+           label = "Caída por COVID",
+           color = "#e63946",
+           fontface = "italic",
+           size = 5,
+           vjust = -0.5)
+```
+
+
+################################################################
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 

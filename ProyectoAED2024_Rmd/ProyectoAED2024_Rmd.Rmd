@@ -517,6 +517,49 @@ ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
 
 ```
 
+Para observar cómo varían los viajes por país de origen y CCAA de destino, hay varias opciones.
+
+Para ver el gato total por CCAA a lo largo del tiempo, separado por país:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Pais) +
+  labs(
+    title = "Gasto total por CCAA a lo largo del tiempo, separado por país",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+
+```
+
+Para comparar, para cada país, cuánto gastan en cada CCAA:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Gasto total por país y CCAA",
+    x = "CCAA",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+
+# Sin otros para observar las tendencias entre los países principales
+
+ggplot(datos %>% filter(Pais != "Otros"), 
+       aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Gasto total por país y CCAA (sin 'otros')",
+    x = "CCAA",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 
 ```{r}

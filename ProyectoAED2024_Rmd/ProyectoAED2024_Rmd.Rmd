@@ -559,6 +559,21 @@ ggplot(datos %>% filter(Pais != "Otros"),
   theme_minimal()
 ```
 
+Para observar si existe alguna relación entre la duración media de un viaje y el gasto medio por persona, a la vez que se detecta qué CCAA tienen un gasto total más elevado
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, color = CCAA)) +
+  geom_point(alpha = 0.7) +
+  scale_size_continuous(range = c(1, 15)) +
+  labs(
+    title = "Bubble chart de gasto",
+    x = "Duración media",
+    y = "Gasto medio por persona",
+    size = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 

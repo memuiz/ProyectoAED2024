@@ -369,6 +369,7 @@ Gasto\_medio\_diario\_persona & Euros & Numérico \\
 Duración\_media & Días & Numérico \\ \bottomrule
 \end{tabular}
 
+
 \end{adjustwidth}
 \end{table}
 
@@ -380,6 +381,7 @@ names(datos_resumen) <- c("Gasto total", "Gasto medio por persona", "Gasto medio
 kable(summary(datos_resumen), format = "markdown")
 ```
 
+##########################################################################
 
 # Prueba de ggplot
 
@@ -393,29 +395,11 @@ ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
 ```
 
 
-```{r}
-# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año
-ggplot(datos[datos$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
-  geom_bar(stat = "identity", aes(fill = Pais)) +
-  coord_flip() +
-  labs(title = "Gasto por país de residencia en 2023", x = "Gasto total en millones de euros", y = "País") +  
-  theme(legend.position = "none")
-```
 
-
-```{r}
-# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "red") +
-  facet_grid(.~CCAA["i"],scales = "free") +
-  labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
-```
-
-
-```{r fig.width=5, fig.height=5}
+```{r fig.width=10, fig.height=5}
 # Para todas las Comunidades Autónomas por separado
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "purple") +
+ggplot(datos, aes(x = Pais, y = Duracion_media, fill = Pais)) + 
+  geom_bar(stat = "identity") +
   facet_wrap(~ CCAA, scales = "free_y") +  
   labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
        x = "País", 
@@ -427,7 +411,7 @@ ggplot(datos, aes(x = Pais, y = Duracion_media)) +
 
 # Probamos a analizar el efecto del COVID en el gasto de los turistas, así como los países que más reducieron su gasto debido a la pandemia.
 
-```{r}
+```{r fig.width= 10, fig.height = 5}
 library(tidyr)
 
 covid <- datos[datos$Periodo == 2020, ]
@@ -449,18 +433,526 @@ datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 20
 ```
 
 
-```{r}
+
+
+```{r fig.width= 10, fig.height = 5}
 covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
 covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
 ```
 
 
-```{r fig.width= 5}
+
+
+```{r fig.width= 10, fig.height = 5}
 #¿En qué comunidad autónoma se viajó más durante el COVID?
 covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_bar(stat = "identity")  + labs(title = "Gasto total en las distintas comunidades autónomas durante el COVID")
 
 # En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
 ```
+# Otras gráficas
+
+Para ver cómo cambia el gasto total a lo largo de los años y compararlo entre distintas Comunidades Autónomas:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = CCAA)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  labs(
+    title = "Evolución del gasto total por CCAA",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
+  geom_col(position = "dodge") +  # "stack" para apiladas
+  labs(
+    title = "Gasto total por CCAA y año",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+Para explorar la relación entre el gasto medio por persona y la duración media del viaje, por ejemplo:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, color = CCAA)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Relación entre duración media y gasto medio por persona",
+    x = "Duración media (días)",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal()
+```
+
+Para comparar la distribución de gasto medio por persona entre distintas CCAA:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Distribución de gasto medio por persona por CCAA",
+    x = "CCAA",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")  # si deseas quitar la leyenda
+
+```
+
+Para observar cómo varían los viajes por país de origen y CCAA de destino, hay varias opciones.
+
+Para ver el gato total por CCAA a lo largo del tiempo, separado por país:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Pais) +
+  labs(
+    title = "Gasto total por CCAA a lo largo del tiempo, separado por país",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+
+```
+
+Para comparar, para cada país, cuánto gastan en cada CCAA:
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Gasto total por país y CCAA",
+    x = "CCAA",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+
+# Sin otros para observar las tendencias entre los países principales
+
+ggplot(datos %>% filter(Pais != "Otros"), 
+       aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Gasto total por país y CCAA (sin 'otros')",
+    x = "CCAA",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+Para observar si existe alguna relación entre la duración media de un viaje y el gasto medio por persona, a la vez que se detecta qué CCAA tienen un gasto total más elevado
+
+```{r fig.width=10, fig.height=5}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, color = CCAA)) +
+  geom_point(alpha = 0.7) +
+  scale_size_continuous(range = c(1, 15)) +
+  labs(
+    title = "Bubble chart de gasto",
+    x = "Duración media",
+    y = "Gasto medio por persona",
+    size = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+Para mostrar la distribución de gasto_total por país y por año vamos a usar un ridgeline plot,. Este tipo de gráfico muestra la forma (densidad) de la distribución para cada combinación de año y país, apilando las curvas unas encima de otras. 
+
+```{r fig.width=10, fig.height=5}
+library(ggridges)
+
+ggplot(datos, aes(x = Gasto_total, 
+               y = factor(Periodo), 
+               fill = Pais)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.2) +
+  scale_fill_brewer(palette = "Set3") + 
+  labs(
+    title = "Distribución del Gasto Total por País a lo largo de los Años",
+    subtitle = "Ridgeline plot para una visualización elegante de densidades",
+    x = "Gasto Total",
+    y = "Año",
+    fill = "País"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+
+#Ahora sin otros, para observar mejor los países principales
+
+ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total, 
+               y = factor(Periodo), 
+               fill = Pais)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.2) +
+  scale_fill_brewer(palette = "Set3") + 
+  labs(
+    title = "Distribución del Gasto Total por País a lo largo de los Años Sin Otros",
+    subtitle = "Ridgeline plot para una visualización elegante de densidades",
+    x = "Gasto Total",
+    y = "Año",
+    fill = "País"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+```
+Para visualizar la época de covid vamos a probar a graficarla de una manera distinta, nos quedaremos con la más adecuada.
+
+```{r fig.width=10, fig.height=5}
+datos_summary <- datos %>%
+  group_by(Periodo) %>%
+  summarize(Gasto_total_anual = sum(Gasto_total, na.rm = TRUE))
+
+datos_summary <- datos_summary %>%
+  mutate(highlight = if_else(Periodo == 2020, "2020 (COVID)", "Otros años"))
+
+ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
+  geom_col() +
+  # Definir los colores para cada categoría
+  scale_fill_manual(values = c("2020 (COVID)" = "#e63946",  # rojo elegante
+                               "Otros años"   = "#457b9d")) # azul
+  labs(
+    title = "Evolución del Gasto Total (antes, durante y después de 2020)",
+    subtitle = "Se observa un descenso en 2020 (COVID) y una posterior recuperación",
+    x = "Año",
+    y = "Gasto Total"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"        # leyenda en la parte inferior
+  )
+  
+#Señalando aún más el año 2020
+  
+ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
+  geom_col() +
+  scale_fill_manual(values = c("2020 (COVID)" = "#e63946",
+                               "Otros años"   = "#457b9d")) +
+  labs(
+    title = "Evolución del Gasto Total (antes, durante y después de 2020)",
+    subtitle = "Se observa un descenso en 2020 (COVID) y una posterior recuperación",
+    x = "Año",
+    y = "Gasto Total"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"
+  ) +
+  # Anotación adicional
+  annotate("text",
+           x = which(levels(factor(datos_summary$Periodo)) == "2020"), # posición x del año 2020
+           y = datos_summary$Gasto_total_anual[datos_summary$Periodo == 2020] + 1000, 
+           label = "Caída por COVID",
+           color = "#e63946",
+           fontface = "italic",
+           size = 5,
+           vjust = -0.5)
+```
+
+
+################################################################
+
+Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
+
+```{r}
+# Tomamos los distintos periodos que existen en nuestro conjunto de datos para diferenciar temporalmente
+periodos <- unique(datos_total_por_residencia$Periodo)
+
+#Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
+datos_total_residencia <- datos_total_por_residencia %>% 
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
+  filter (Periodo %in% periodos & Pais != "Total")
+
+datos_total_residencia_PN <- datos_total_residencia %>% 
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
+  filter(Pais == "Países Nórdicos")
+
+# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
+
+datos_total_residencia <- rbind(datos_total_residencia, datos_total_residencia_PN,
+                                 datos_total_residencia_PN, datos_total_residencia_PN, datos_total_residencia_PN)
+
+# El ano de referencia de los mapas determina el año en que se recogió la información de las coordenadas y la división de los países (como no hay ninguna división o cambio de coordenadas importante para los países y los períodos importantes no es muy relevante)
+año_ref <- 2020
+
+# Datos
+countries <- gisco_get_countries(year = año_ref,
+                        resolution = 20) %>%
+  select(CNTR_ID, NAME_ENGL, geometry) %>%
+           st_transform(3035)
+
+# En los datos que podemos recoger de la librería que nos determina las coordenadas de los países necesitamos filtrar por los que vamos a estudiar en base a nuestro conjunto de datos.
+paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
+countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
+
+# Incluir columna de identificación de los países para unir con las coordenadas de los mapas
+CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
+Country_Ids <- c()
+for(pais in CNTR_ID)
+{
+  Country_aux <- rep(pais, times = length(periodos))
+  Country_Ids <- c(Country_Ids, Country_aux)
+}
+
+datos_total_residencia <- cbind(datos_total_residencia, Country_Ids)
+
+
+datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
+
+#gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
+```
+
+
+
+```{r, fig.pos='H'}
+# Mapa base 
+ geographic_map_gasto_medio <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_medio_persona), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_medio <- geographic_map_gasto_medio +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Gasto_medio_persona
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_medio)
+
+# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
+
+# Gráfico
+# ggplot(datos_total_residencia_viz) +
+#   # Primera capa con todos los países
+#   geom_sf(aes(geometry= geometry), data = datos_total_residencia_viz, fill = "grey80", color = NA) +
+#   # Establece límites
+#   xlim(c(2200000, 7150000)) +
+#   ylim(c(1380000, 5500000))
+
+```
+
+
+```{r}
+geographic_map_gasto_medio_diario <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_medio_diario_persona), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_medio_diario <- geographic_map_gasto_medio_diario +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Gasto_medio_diario_persona
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_medio_diario)
+```
+
+```{r}
+geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_total), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_total <- geographic_map_gasto_total +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Gasto_total
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_gasto_total)
+```
+
+```{r}
+geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Duracion_media), 
+          linewidth=0.5) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_duracion_media <- geographic_map_duracion_media +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = Country_Ids,
+      geometry = geometry,
+      tooltip = Duracion_media
+    ),
+    color = "black",
+    linewidth = 0.1
+  )
+girafe(ggobj = geographic_map_duracion_media)
+```
+
+```{r}
+# Datos
+año_ref <- 2021
+spain_CCAAs <- gisco_get_nuts(year = año_ref,
+                              country = "Spain",
+                        resolution = 20) 
+
+ggplot(spain_CCAAs) +
+  geom_sf(aes(geometry = geometry))
+
+spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2)
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities,
+    aes(fill = NUTS_NAME),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    fill = NA,
+    color = "black",
+    linewidth = 0.1
+  )
+```
+
+
+# Búsqueda de relaciones entre variables cuantitativas
+
+Realizamos una visualización previa para detectar relaciones entre variables cuantitativas. En el gráfico \ref{fig:correlaciones}, se observan 3 relaciones que podemos estudiar un poco más a fondo: el gasto medio por persona frente al gasto medio diario, el gasto medio por persona frente a la duración media y el gasto medio diario frente a la duración media.
+```{r, message = FALSE, fig.cap="Gráficos de dispersión y correlaciones entre variables cuantitativas.\\label{fig:correlaciones}", fig.pos='H'}
+ggpairs(datos[4:7])+theme(axis.text = element_blank()) # Quita los números de los ejes
+# Gráficos de dispersión y correlaciones entre variables cuantitativas
+``` 
+
+##  Gasto medio por persona y duración media
+
+
+```{r, fig.cap="Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\\label{fig:gastomediovsduracionmedia}", fig.pos='H'}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Duracion_media, color = CCAA)) + geom_point() + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Gasto medio por persona y duración media\n por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.5, vjust = 1.1, size = 3, color = "black"
+  )+
+  theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+
+
+Se observa una relación aproximadamente lineal para la mayoría de países, donde se distinguen claramente la tendencia de duración de los viajes en las distintas comunidades autónomas, casi siempre mayor en la Comunitat Valenciana (salvo en Italia, probablemente por cercanía), excepto en la categoría de otros países. Debido a que esta categoría engloba a el resto de países del mundo, es más díficil encontrar relaciones.
+
+## Gasto medio por persona frente al gasto medio diario por persona
+
+
+Esta parece a priori la relación más obvia entre variables.
+```{r,  fig.cap="Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\\label{fig:gastomediovsgastomediodiario}", fig.pos='H', fig.height=4}
+
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(CCAA) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Gasto_medio_diario_persona))
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Pais)) + geom_point(size = 1) + facet_wrap(~ CCAA, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y gasto\nmedio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)") + theme_minimal() +
+   geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.6, vjust = 1, size = 3, color = "black"
+  ) +
+   theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+
+En la Comunitat Valenciana es donde hay una peor correlación, esto puede estar relacionado con que es también el destino de mayor duración de los viajes, lo que puede provocar un menor gasto medio diario.
+
+
+```{r, fig.cap="Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\\label{fig:gastomediovsgastomediodiarioconduracion}", fig.pos='H'}
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Duracion_media)) + geom_point(size = 2)  + scale_color_gradient(low = "lightgreen", high = "darkgreen") +  # Gradiente en tonos de verde
+  labs(title = "Relación entre gasto medio por persona y gasto\nmedio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)",
+       color = "Duración media (días)") + theme_minimal() 
+```
+
+En el gráfico \ref{fig:gastomediovsgastomediodiarioconduracion} se puede ver que generalmente a mayor gasto medio por persona también se produce un mayor gasto medio diario. Sin embargo, observamos que aparentemente un aumento de la duración de los viajes provoca una disminución del gasto medio diario. Vamos a visualizar esto más claramente a continuación.
+
+## Gasto medio diario y duracion media 
+
+
+```{r,fig.cap="Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\\label{fig:gastomediodiariovsduracionmedia}", fig.pos='H'}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_diario_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_diario_persona, y =Duracion_media, color = CCAA)) + geom_point(size = 1) + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y duración\nmedia por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust =1, vjust = 1, size = 3, color = "black"
+  )
+```
+
+Ahora podemos observar en el Gráfico \ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor duración de los viajes se produce un menor gasto medio por persona.
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
 

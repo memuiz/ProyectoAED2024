@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  3 JAN 2025 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  3 JAN 2025 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1815,11 +1815,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 enddocument/afterlastpage: lastpage setting LastPage.
 (ProyectoAED2024_Rmd.aux)
 Package rerunfilecheck Info: File `ProyectoAED2024_Rmd.out' has not changed.
-(rerunfilecheck)             Checksum: 669BC55948ED2010E426B6DCCDD6000D;3575.
+(rerunfilecheck)             Checksum: CE6133A460C0283722E6C7882B35D889;3570.
  ) 
 Here is how much of TeX's memory you used:
  34031 strings out of 476331
- 660981 string characters out of 5783953
+ 660979 string characters out of 5783953
  1883660 words of memory out of 5000000
  53480 multiletter control sequences out of 15000+600000
  577797 words of font info for 327 fonts, out of 8000000 for 9000
@@ -1834,7 +1834,7 @@ ervice/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Us
 ers/Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a
 .pfb><C:/Users/Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/pala
 tino/uplri8a.pfb>
-Output written on ProyectoAED2024_Rmd.pdf (11 pages, 546285 bytes).
+Output written on ProyectoAED2024_Rmd.pdf (11 pages, 546278 bytes).
 PDF statistics:
  308 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)

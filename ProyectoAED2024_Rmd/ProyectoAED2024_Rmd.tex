@@ -187,47 +187,6 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Pandoc syntax highlighting
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
@@ -258,29 +217,13 @@ subject discipline.).}
 \section{Carga de librerías e importación del
 fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
 
-Antes de comenzar, eliminamos todas las variables guardadas.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(readr)  }\CommentTok{\# Librería para importación de datos}
-\FunctionTok{library}\NormalTok{(dplyr)  }\CommentTok{\# Librería para arreglo de datos}
-\FunctionTok{library}\NormalTok{(tidyr)  }\CommentTok{\# Librería para arreglo de datos}
-\FunctionTok{library}\NormalTok{(ggplot2)  }\CommentTok{\# Librería para gráficas}
-\FunctionTok{library}\NormalTok{(sf)  }\CommentTok{\# Librería para generar el mapa geográfico}
-\FunctionTok{library}\NormalTok{(giscoR)  }\CommentTok{\# Librería para generar el mapa geográfico}
-\FunctionTok{library}\NormalTok{(ggiraph)  }\CommentTok{\# Librería para añadir interactividad al mapa geográfico}
-\FunctionTok{library}\NormalTok{(GGally)  }\CommentTok{\# Librería para ggpairs}
-\end{Highlighting}
-\end{Shaded}
+Antes de comenzar, eliminamos todas las variables guardadas y cargamos
+todas las librerías a emplear.
 
 Importamos los datos
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,}
-    \AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+``Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv''
+obtenidos de la base de datos del Instituto Nacional de Estadística
+(INE).
 
 \section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}
 
@@ -328,9 +271,6 @@ base y Tasa de variación anual. Vamos a trabajar únicamente con los
 datos base, por lo que eliminamos las filas correspondientes a Tasa de
 variación anual y eliminamos la columna Tipo de dato, que ahora aporta
 información redundante.
-
-\subsection{Cambios de nombres de las
-columnas}\label{cambios-de-nombres-de-las-columnas}
 
 Renombramos las columnas de manera apropiada (sin espacios y con nombres
 representativos de las variables). Los nombres de las variables son los
@@ -452,6 +392,7 @@ Gasto\_medio\_diario\_persona & Euros & Numérico \\
 Duración\_media & Días & Numérico \\ \bottomrule
 \end{tabular}
 
+
 \end{adjustwidth}
 \end{table}
 
@@ -459,11 +400,11 @@ Finalmente, antes de comenzar a visualizar datos y detectar patrones
 vemos un pequeño resumen de los datos:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1889}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3444}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0349}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1977}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2791}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3140}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1744}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -471,7 +412,7 @@ Gasto total
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Gasto medio por persona
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Gasto medio diario por persona
+Gasto medio diario/persona
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Duración media
 \end{minipage} \\
@@ -487,7 +428,7 @@ Duración media
 & Max. :21318.75 & Max. :1743.9 & Max. :300.8 & Max. :14.270 \\
 \end{longtable}
 
-\section{Prueba de ggplot}\label{prueba-de-ggplot}
+\section{Primeras visualizaciones.}\label{primeras-visualizaciones.}
 
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1}
 
@@ -495,32 +436,51 @@ Duración media
 
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1}
 
+\begin{verbatim}
+## Picking joint bandwidth of 397
+\end{verbatim}
+
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1}
 
-\section{Probamos a analizar el efecto del COVID en el gasto de los
-turistas, así como los países que más reducieron su gasto debido a la
-pandemia.}\label{probamos-a-analizar-el-efecto-del-covid-en-el-gasto-de-los-turistas-asuxed-como-los-pauxedses-que-muxe1s-reducieron-su-gasto-debido-a-la-pandemia.}
+\section{Efecto del covid-19}\label{efecto-del-covid-19}
 
-\begin{verbatim}
-## La media del gasto total durante el COVID es de 719.3212 millones de euros
-\end{verbatim}
+Probamos a analizar el efecto del COVID en el gasto de los turistas, así
+como estudiar los países que más reducieron su gasto debido a la
+pandemia.
 
-\begin{verbatim}
-## Mientras que sin COVID es de 2999.059 millones de euros
-\end{verbatim}
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1} \caption{Gasto total de turistas en millones de euros por año}\label{fig:gasto total covid}
+\end{figure}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1}
+La media del gasto total durante el COVID es de 719.3211905 millones de
+euros mientras que sin COVID es de 2999.0594898 millones de euros, una
+diferencia más que notable tal y como se observa en la gráfica
+@ref(fig:gasto total covid)), con un descenso drástico en 2020 (COVID) y
+una posterior recuperación. En el gráfico@ref(fig:gasto paises covid))
+vemos que Reino Unido gastó más en COVID que el resto de países, Italia
+el que menos.
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1}
+Por otro lado, podemos observar que la Comunidad Autónoma a la que más
+se viajo durante el año del covid 2020 fueron las islas Canarias. Esto
+puede tener diversas explicaciones. Por un lado, los primeros meses del
+año, antes de las restricciones, el turismo en las islas Canarias es
+mayor debido al buen tiempo incluso en los meses de invierno. Por otro
+lado, el impacto del Covid en las islas puedo haber sido menor y haber
+impuesto menos restricciones. Otro posible motivo es la gran dependencia
+económica del turismo de las islas y una mayor disposición a atraer y
+recuperar el turismo perdido lo antes posible.
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1}
+\# Otras gráficas
 
 Filtraremos los datos totales por el Periodo y recogeremos solo la
 variable que nos sirve para representar la magnitud de valores en el
 mapa de visualización, en este caso el gasto medio por persona
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1}
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-2}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-38-1}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-38-2}
 
 \section{Búsqueda de relaciones entre variables
 cuantitativas}\label{buxfasqueda-de-relaciones-entre-variables-cuantitativas}
@@ -533,14 +493,14 @@ persona frente a la duración media y el gasto medio diario frente a la
 duración media.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1} \caption{Gráficos de dispersión y correlaciones entre variables cuantitativas.\label{fig:correlaciones}}\label{fig:unnamed-chunk-35}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-39-1} \caption{Gráficos de dispersión y correlaciones entre variables cuantitativas.\label{fig:correlaciones}}\label{fig:unnamed-chunk-39}
 \end{figure}
 
 \subsection{Gasto medio por persona y duración
 media}\label{gasto-medio-por-persona-y-duraciuxf3n-media}
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-36-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\label{fig:gastomediovsduracionmedia}}\label{fig:unnamed-chunk-36}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-40-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\label{fig:gastomediovsduracionmedia}}\label{fig:unnamed-chunk-40}
 \end{figure}
 
 Se observa una relación aproximadamente lineal para la mayoría de
@@ -557,7 +517,7 @@ persona}\label{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}
 Esta parece a priori la relación más obvia entre variables.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-37-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-37}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-41-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-41}
 \end{figure}
 
 En la Comunitat Valenciana es donde hay una peor correlación, esto puede
@@ -565,7 +525,7 @@ estar relacionado con que es también el destino de mayor duración de los
 viajes, lo que puede provocar un menor gasto medio diario.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-38-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-38}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-42-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-42}
 \end{figure}
 
 En el gráfico \ref{fig:gastomediovsgastomediodiarioconduracion} se puede
@@ -579,12 +539,15 @@ continuación.
 media}\label{gasto-medio-diario-y-duracion-media}
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-39-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-39}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-43-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-43}
 \end{figure}
 
 Ahora podemos observar en el Gráfico
 \ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor
 duración de los viajes se produce un menor gasto medio por persona.
+
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-47-1}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-47-2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

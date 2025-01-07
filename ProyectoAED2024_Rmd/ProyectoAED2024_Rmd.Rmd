@@ -584,9 +584,10 @@ Por otro lado, podemos observar que la Comunidad Autónoma a la que más se viaj
 
 covid_sin_otros %>%
   ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", colour = 'black') +
   labs(
-    title = "Gasto total en las distintas comunidades autónomas durante el COVID",
+    title = "Gasto total en las distintas comunidades autónomas 
+    durante el COVID",
     x = NULL,  # Eliminar la etiqueta del eje x
     y = "Gasto Total"
   ) +

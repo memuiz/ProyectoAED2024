@@ -1,13 +1,16 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.7)  7 JAN 2025 21:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.7)  7 JAN 2025 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**ProyectoAED2024_Rmd.tex
-(./ProyectoAED2024_Rmd.tex
+**mdpi.cls
+(./mdpi.cls
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
-(./Definitions/mdpi.cls
-Document Class: Definitions/mdpi 25/03/2023 MDPI paper class
+
+LaTeX Warning: You have requested file `',
+               but the file provides `Definitions/mdpi'.
+
+Package: Definitions/mdpi 25/03/2023 MDPI paper class
 (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
 (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -408,12 +411,7 @@ File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfsyssoftpath@bigbuffer@items=\count316
 ) (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))
-
-LaTeX Warning: Package "xcolor" has already been loaded: ignoring load-time
-(LaTeX)        option "pdftex".
-
-(c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+)) (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/Users/34691/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen262
@@ -544,9 +542,26 @@ Package: totcount 2011/01/25 v1.2 package for gettingthe total value of LaTeX co
 Package: changepage 2009/10/20 v1.0c check page and change page layout
 \c@cp@cntr=\count331
 \cp@tempcnt=\count332
+) (./attrib.sty
+Package: attrib 2025/01/07 A simple attrib package
+
+
+! LaTeX Error: Command \tag already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \newcommand{\tag}[1]{\textbf{#1}}
+                                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 )
 
-! LaTeX Error: File `attrib.sty' not found.
+! LaTeX Error: File `upgreek.sty' not found.
 
 Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: sty)
@@ -555,17 +570,17 @@ Enter file name:
 ! Emergency stop.
 <read *> 
          
-l.56 \RequirePackage
-                    {upgreek} % For making greek letters not italic^^M
+l.57 \RequirePackage
+                    {array} % For table array^^M
 *** (cannot \read from terminal in nonstop modes)
 
  
 Here is how much of TeX's memory you used:
- 17545 strings out of 475213
- 341682 string characters out of 5764878
- 726352 words of memory out of 5000000
- 40182 multiletter control sequences out of 15000+600000
+ 17548 strings out of 475214
+ 341640 string characters out of 5765475
+ 725275 words of memory out of 5000000
+ 40186 multiletter control sequences out of 15000+600000
  559145 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,0n,135p,481b,105s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,0n,87p,465b,105s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

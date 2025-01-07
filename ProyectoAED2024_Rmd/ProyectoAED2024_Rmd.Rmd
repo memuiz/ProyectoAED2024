@@ -384,7 +384,7 @@ kable(summary(datos_resumen), format = "markdown")
 ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
   geom_col(position = "dodge",colour = "black") +
   labs(
-    title = "Gasto total por CCAA y año",
+    title = "Gasto total por Comunidad Autónoma y año",
     x = "Año",
     y = "Gasto total"
   ) +
@@ -418,7 +418,7 @@ ggplot(datos %>% filter(Pais != "Otros"),
     colour = 'black'
   ) +
   labs(
-    title = "Gasto total por país y CCAA",
+    title = "Gasto total por país en las distintas Comunidades Autónomas (CCAA)",
     x = "CCAA",
     y = "Gasto total"
   ) +
@@ -432,6 +432,9 @@ ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_tota
   geom_point(shape = 21, alpha = 0.7, color = "black", stroke = 0.8) +
   scale_size_continuous(range = c(1, 15)) +
   labs(
+    title = "Comparación entre el gasto medio por persona, 
+    la duración media del viaje y el gasto total en las 
+    distintas CCAAs",
     x = "Duración media",
     y = "Gasto medio por persona",
     size = "Gasto total"
@@ -475,7 +478,8 @@ ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total,
   geom_density_ridges(alpha = 0.7, scale = 1.2) +
   scale_fill_brewer(palette = "Set3") + 
   labs(
-    #subtitle = "Ridgeline plot para una visualización elegante de densidades",
+    title = "Distribución del Gasto Medio Turístico en 
+    España (2016-2023)",
     x = "Gasto Total",
     y = "Año",
     fill = "País"
@@ -486,14 +490,15 @@ ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total,
     plot.title = element_text(face = "bold")
   )
 ```
-
+Cada curva representa la densidad de la distribución del gasto total, con áreas más altas indicando rangos de gasto donde se concentra la mayor parte de los turistas. Se observa un aumento progresivo del gasto en los años más recientes, especialmente en 2021 y 2022, donde las curvas se desplazan hacia valores más altos. Esto es debido a un incremento en el gasto turístico promedio, posiblemente impulsado por la recuperación del sector tras la pandemia. Los turistas de los Países Nórdicos y, en menor medida, del Reino Unido, destacan con distribuciones que se extienden hacia valores de gasto más altos en comparación con otros países como Italia y Francia, que muestran concentraciones en valores más bajos
 
 
 ```{r fig.width=5.5, fig.height=2.5,  fig.cap="Distribución de gasto medio por persona por CCAA. .\\label{fig:cajas}"}
 ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
   geom_boxplot(alpha = 0.7) +
   labs(
-    title = "Distribución de gasto medio por persona por CCAA",
+    title = "Distribución de gasto medio por persona
+    en las distintas Comunidades Autónomas (CCAA)",
     x = "CCAA",
     y = "Gasto medio por persona"
   ) +
@@ -504,7 +509,9 @@ ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
   )
 
 ```
+Observamos que destinos insulares como las Islas Baleares y Canarias lideran en términos de gasto, mientras que comunidades como Cataluña, Comunitat Valenciana y otras CCAA tienen gastos más modestos. Esto puede estar influenciado por el perfil de turistas que visitan estas regiones, la duración de la estancia y las actividades disponibles.
 
+Tanto en la comunidad de Madrid como en el resto de CCAA, tenemos valores atípicos, estos resaltan la presencia de turistas con comportamientos de gasto excepcionales. Aunque no son representativos de la mayoría de los turistas, estos turistas de alto gasto pueden ser clave para estrategias de marketing dirigidas a captar segmentos de lujo o actividades premium.
 
 
 # Efecto del covid-19  
@@ -520,7 +527,7 @@ datos_summary <- datos_summary %>%
 
   
 ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
-  geom_col() +
+  geom_col(colour = 'black') +
   scale_fill_manual(values = c("2020 (COVID)" = "#e63946",
                                "Otros años"   = "#457b9d")) +
   labs(
@@ -560,12 +567,12 @@ covid_sin_otros <- covid[covid$Pais != "Otros", ]
 
 covid_sin_otros %>%
   ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity",colour = 'black') +
   labs(title = "Gasto total de los distintos países durante el COVID", x = "País", y = "Gasto Total") +
   theme_minimal() +
   theme(
-    legend.position = "none",                  # Quitar la leyenda
-    axis.text.x = element_text(angle = 45, hjust = 1)  # Rotar etiquetas del eje x
+    legend.position = "none",                  
+    axis.text.x = element_text(angle = 45, hjust = 1) 
   )
  
 ```

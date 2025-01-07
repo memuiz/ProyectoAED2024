@@ -390,6 +390,7 @@ ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
   ) +
   theme_minimal()
 ```
+Como se puede observar, el gasto total en Andalucía es mayor al resto de comunidades autónomas, seguido de Islas Baleares e Islas Canarias, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar.
 
 ```{r fig.width=5, fig.height=4, fig.cap="Gasto total por país y CCAA .\\label{fig:GastototalporpaísyCCAA}"}
 # ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +

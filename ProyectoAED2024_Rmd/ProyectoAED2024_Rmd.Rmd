@@ -390,7 +390,7 @@ ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
   ) +
   theme_minimal()
 ```
-Como se puede observar, el gasto total en Andalucía es mayor al resto de comunidades autónomas, seguido de Islas Baleares e Islas Canarias, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar.
+Como se puede observar, el gasto total en Andalucía es mayor al resto de comunidades autónomas, seguido de Islas Baleares e Islas Canarias, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.
 
 ```{r fig.width=5, fig.height=4, fig.cap="Gasto total por país y CCAA .\\label{fig:GastototalporpaísyCCAA}"}
 # ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +
@@ -406,7 +406,11 @@ Como se puede observar, el gasto total en Andalucía es mayor al resto de comuni
 
 ggplot(datos %>% filter(Pais != "Otros"), 
        aes(x = CCAA, y = Gasto_total, fill = Pais)) +
-  geom_bar(stat = "identity", position = "stack") +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(width = 0.8),
+    width = 0.7
+  ) +
   labs(
     title = "Gasto total por país y CCAA",
     x = "CCAA",
@@ -415,7 +419,7 @@ ggplot(datos %>% filter(Pais != "Otros"),
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-
+Por otro lado, en esta gráfica observamos como Alemania es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Francia, nuestros vecinos
 
 ```{r fig.width=5, fig.height=5,  fig.cap="Gasto medio por persona en función de duración media, CCAA y gasto total. .\\label{fig:bubblegraph}"}
 ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, color = CCAA)) +

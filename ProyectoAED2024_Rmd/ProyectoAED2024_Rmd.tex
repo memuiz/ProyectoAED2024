@@ -412,7 +412,7 @@ Duración\_media & Días & Numérico \\ \bottomrule
 \end{table}
 
 Finalmente, antes de comenzar a visualizar datos y detectar patrones
-vemos un pequeño resumen de los datos:
+veamos un pequeño resumen de los datos:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0349}}
@@ -445,17 +445,38 @@ Duración media
 
 \section{Primeras visualizaciones}\label{primeras-visualizaciones}
 
+A continuación se muestran una serie de figuras en las que se puede observar la tendencia de los datos, en cada una de ellas veremos una pequeña conclusión con el fin de entender mejor el conjunto de datos seleccionado.\\
+
+En primer lugar, tenemos la distribución del gasto total de los disntintos países en cada Comunidad Autónoma durante el periodo 2016-2023 en España:
+
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1} \caption{Gasto total por CCAA y año.\label{fig:GastototalporCCAAyaño}}\label{fig:unnamed-chunk-22}
 \end{figure}
+
+Como se puede observar, el gasto total en Canarias es mayor al resto de comunidades autónomas, seguido de Islas Baleares y Andalucía, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.\\
+
+Para observar qué países gastan más en los viajes en las distintas Comunidades Autónomas, presentamos el siguiente gráfico:
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1} \caption{Gasto total por país y CCAA .\label{fig:GastototalporpaísyCCAA}}\label{fig:unnamed-chunk-23}
 \end{figure}
 
+Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.\\
+
+Para obtener una comparación entre el gasto medio por persona, la duración media del viaje y el gasto total en las distintas CCAAs:
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1} \caption{Gasto medio por persona en función de duración media, CCAA y gasto total. .\label{fig:bubblegraph}}\label{fig:unnamed-chunk-24}
 \end{figure}
+
+Las Islas Baleares (en verde) muestran varias burbujas con mayor duración media, de 10 a 12 días, lo que indica que los turistas suelen quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una duración media más corta (entre 6 y 9 días), pero con una alta densidad de puntos en términos de gasto medio por persona.
+
+Por otro lado, aunque las burbujas más grandes están distribuidas, algunas comunidades como las Islas Baleares, presentan altos valores en gasto medio por persona (más de 1500 euros), posiblemente por la naturaleza del turismo, puede deberse al ser una zona con mucha costa y mucha fiesta.
+Sin embargo, comunidades como Andalucía y Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto más bajos (800-1200 euros).
+
+Finalmente, las comunidades autónomas con las burbujas más grandes, como Cataluña,Canarias, Andalucía y las Islas Baleares, son líderes en gasto turístico total. Esto puede deberse a su capacidad para atraer un gran número de turistas o a una combinación de mayor gasto medio por persona y mayor duración media.
+
+Destacar que hay una gran densidad de puntos en torno a la duración media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo que sugiere que este es el rango promedio más común para la mayoría de las Comunidades Autónomas.\\
+
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1} \caption{Distribución del Gasto Total por País a lo largo de los Años.\label{fig:ridgelineplot}}\label{fig:unnamed-chunk-25}
 \end{figure}

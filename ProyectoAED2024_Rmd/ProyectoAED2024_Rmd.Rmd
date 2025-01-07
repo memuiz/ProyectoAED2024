@@ -381,7 +381,11 @@ kable(summary(datos_resumen), format = "markdown")
 
 
 ```{r fig.width=5.5, fig.height=3, fig.cap="Gasto total por CCAA y año.\\label{fig:GastototalporCCAAyaño}"}
-ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
+datos <- datos %>%
+  group_by(Pais, CCAA) %>%                 
+  mutate(Media_Gasto = mean(Gasto_total, na.rm = TRUE)) %>% 
+  ungroup()   
+ggplot(datos %>% filter(Pais != "Otros"), aes(x = factor(Periodo), y = Media_Gasto, fill = CCAA)) +
   geom_col(position = "dodge",colour = "black") +
   labs(
     title = "Gasto total por Comunidad Autónoma y año",
@@ -390,7 +394,7 @@ ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
   ) +
   theme_minimal()
 ```
-Como se puede observar, el gasto total en Andalucía es mayor al resto de comunidades autónomas, seguido de Islas Baleares e Islas Canarias, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.
+Como se puede observar, el gasto total en Canarias es mayor al resto de comunidades autónomas, seguido de Islas Baleares y Andalucía, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.
 
 ```{r fig.width=5, fig.height=4, fig.cap="Gasto total por país y CCAA .\\label{fig:GastototalporpaísyCCAA}"}
 # ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +
@@ -404,11 +408,6 @@ Como se puede observar, el gasto total en Andalucía es mayor al resto de comuni
 
 # Sin otros para observar las tendencias entre los países principales
 # Añadimos la variable Media_gasto para comparar así el gasto total por pais en las distintas CCAA
-datos <- datos %>%
-  group_by(Pais, CCAA) %>%                 
-  mutate(Media_Gasto = mean(Gasto_total, na.rm = TRUE)) %>% 
-  ungroup()    
-
 ggplot(datos %>% filter(Pais != "Otros"), 
        aes(x = CCAA, y = Media_Gasto, fill = Pais)) +
   geom_bar(

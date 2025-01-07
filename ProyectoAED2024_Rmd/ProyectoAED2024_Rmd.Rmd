@@ -403,9 +403,14 @@ Como se puede observar, el gasto total en Andalucía es mayor al resto de comuni
 #   theme_minimal()
 
 # Sin otros para observar las tendencias entre los países principales
+# Añadimos la variable Media_gasto para comparar así el gasto total por pais en las distintas CCAA
+datos <- datos %>%
+  group_by(Pais, CCAA) %>%                 
+  mutate(Media_Gasto = mean(Gasto_total, na.rm = TRUE)) %>% 
+  ungroup()    
 
 ggplot(datos %>% filter(Pais != "Otros"), 
-       aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+       aes(x = CCAA, y = Media_Gasto, fill = Pais)) +
   geom_bar(
     stat = "identity",
     position = position_dodge(width = 0.8),

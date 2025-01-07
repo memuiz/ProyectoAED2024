@@ -382,7 +382,7 @@ kable(summary(datos_resumen), format = "markdown")
 
 ```{r fig.width=5.5, fig.height=3, fig.cap="Gasto total por CCAA y año.\\label{fig:GastototalporCCAAyaño}"}
 ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
-  geom_col(position = "dodge",colour = "black", stat = "identity") +
+  geom_col(position = "dodge",colour = "black") +
   labs(
     title = "Gasto total por CCAA y año",
     x = "Año",
@@ -428,15 +428,15 @@ ggplot(datos %>% filter(Pais != "Otros"),
 Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.
 
 ```{r fig.width=5, fig.height=5,  fig.cap="Gasto medio por persona en función de duración media, CCAA y gasto total. .\\label{fig:bubblegraph}"}
-ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, color = CCAA)) +
-  geom_point(alpha = 0.7) +
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, fill = CCAA)) +
+  geom_point(shape = 21, alpha = 0.7, color = "black", stroke = 0.8) +
   scale_size_continuous(range = c(1, 15)) +
   labs(
     x = "Duración media",
     y = "Gasto medio por persona",
     size = "Gasto total"
   ) +
-  theme_minimal()
+  theme_minimal() 
 ```
 ```{r fig.width=5, fig.height=2.5, fig.cap= "Distribución del Gasto Total por País a lo largo de los Años.\\label{fig:ridgelineplot}", message = FALSE}
 

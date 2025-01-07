@@ -438,7 +438,16 @@ ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_tota
   ) +
   theme_minimal() 
 ```
-```{r fig.width=5, fig.height=2.5, fig.cap= "Distribución del Gasto Total por País a lo largo de los Años.\\label{fig:ridgelineplot}", message = FALSE}
+Las Islas Baleares (en verde) muestran varias burbujas con mayor duración media, de 10 a 12 días, lo que indica que los turistas suelen quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una duración media más corta (entre 6 y 9 días), pero con una alta densidad de puntos en términos de gasto medio por persona.
+
+Por otro lado, aunque las burbujas más grandes están distribuidas, algunas comunidades como las Islas Baleares, presentan altos valores en gasto medio por persona (más de 1500 euros), posiblemente por la naturaleza del turismo, puede deberse al ser una zona con mucha costa y mucha fiesta.
+Sin embargo, comunidades como Andalucía y Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto más bajos (800-1200 euros).
+
+Finalmente, las comunidades autónomas con las burbujas más grandes, como Cataluña,Canarias, Andalucía y las Islas Baleares, son líderes en gasto turístico total. Esto puede deberse a su capacidad para atraer un gran número de turistas o a una combinación de mayor gasto medio por persona y mayor duración media.
+
+Destacar que hay una gran densidad de puntos en torno a la duración media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo que sugiere que este es el rango promedio más común para la mayoría de las Comunidades Autónomas.
+
+```{r fig.width=5, fig.height=4, fig.cap= "Distribución del Gasto Total por País a lo largo de los Años.\\label{fig:ridgelineplot}", message = FALSE}
 
 # 
 # ggplot(datos, aes(x = Gasto_total, 
@@ -460,7 +469,6 @@ ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_tota
 #   )
 
 #Ahora sin otros, para observar mejor los países principales
-
 ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total, 
                y = factor(Periodo), 
                fill = Pais)) +

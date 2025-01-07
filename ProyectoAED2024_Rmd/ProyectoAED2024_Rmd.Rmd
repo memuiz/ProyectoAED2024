@@ -382,7 +382,7 @@ kable(summary(datos_resumen), format = "markdown")
 
 ```{r fig.width=5.5, fig.height=3, fig.cap="Gasto total por CCAA y año.\\label{fig:GastototalporCCAAyaño}"}
 ggplot(datos, aes(x = factor(Periodo), y = Gasto_total, fill = CCAA)) +
-  geom_col(position = "stack") +  # "stack" para apiladas
+  geom_col(position = "dodge",colour = "black", stat = "identity") +
   labs(
     title = "Gasto total por CCAA y año",
     x = "Año",
@@ -414,7 +414,8 @@ ggplot(datos %>% filter(Pais != "Otros"),
   geom_bar(
     stat = "identity",
     position = position_dodge(width = 0.8),
-    width = 0.7
+    width = 0.7,
+    colour = 'black'
   ) +
   labs(
     title = "Gasto total por país y CCAA",
@@ -424,7 +425,7 @@ ggplot(datos %>% filter(Pais != "Otros"),
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-Por otro lado, en esta gráfica observamos como Alemania es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Francia, nuestros vecinos
+Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.
 
 ```{r fig.width=5, fig.height=5,  fig.cap="Gasto medio por persona en función de duración media, CCAA y gasto total. .\\label{fig:bubblegraph}"}
 ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, color = CCAA)) +

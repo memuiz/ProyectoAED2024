@@ -135,9 +135,7 @@ por persona.}
 
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3 (list three to ten pertinent
-keywords specific to the article, yet reasonably common within the
-subject discipline.).}
+\keyword{turismo; gasto; duración viaje; turistas extranjeros}
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -412,7 +410,7 @@ Duración\_media & Días & Numérico \\ \bottomrule
 \end{table}
 
 Finalmente, antes de comenzar a visualizar datos y detectar patrones
-veamos un pequeño resumen de los datos:
+vemos un pequeño resumen de los datos:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0349}}
@@ -445,45 +443,98 @@ Duración media
 
 \section{Primeras visualizaciones}\label{primeras-visualizaciones}
 
-A continuación se muestran una serie de figuras en las que se puede observar la tendencia de los datos, en cada una de ellas veremos una pequeña conclusión con el fin de entender mejor el conjunto de datos seleccionado.\\
-
-En primer lugar, tenemos la distribución del gasto total de los disntintos países en cada Comunidad Autónoma durante el periodo 2016-2023 en España:
-
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1} \caption{Gasto total por CCAA y año.\label{fig:GastototalporCCAAyaño}}\label{fig:unnamed-chunk-22}
 \end{figure}
 
-Como se puede observar, el gasto total en Canarias es mayor al resto de comunidades autónomas, seguido de Islas Baleares y Andalucía, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.\\
-
-Para observar qué países gastan más en los viajes en las distintas Comunidades Autónomas, presentamos el siguiente gráfico:
+Como se puede observar, el gasto total en Canarias es mayor al resto de
+comunidades autónomas, seguido de Islas Baleares y Andalucía,
+comunidades con climas más calurosos y sobretodo con zonas de playa.
+Además, cuentan con una variada gastronomía y poca lluvia, constituyendo
+así una gran atracción para el turismo. Por otro lado, en puestos bajos
+está la capital, la comunidad de Madrid, que atrae menos turismo que la
+costa, ya sea por el clima como por la tendencia al turismo de ``sol y
+playa'' que los extranjeros suelen buscar en España. Destacar que
+tenemos un pico en el año 2023, tendencia que se observaba ya en el año
+2022 tras la relajación de las restricciones por COVID-19, que por otro
+lado es claramente visible en la bajada de 2020 y 2021.
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1} \caption{Gasto total por país y CCAA .\label{fig:GastototalporpaísyCCAA}}\label{fig:unnamed-chunk-23}
 \end{figure}
 
-Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.\\
+Por otro lado, en esta gráfica observamos como Reino Unido es el país
+con mayor gasto en todas las comunidades autónomas, salvo en las islas
+Baleares dónde destaca Alemania. Seguido de cerca por Alemania y
+Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por
+parte de Francia.
 
-Para obtener una comparación entre el gasto medio por persona, la duración media del viaje y el gasto total en las distintas CCAAs:
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1} \caption{Gasto medio por persona en función de duración media, CCAA y gasto total. .\label{fig:bubblegraph}}\label{fig:unnamed-chunk-24}
 \end{figure}
 
-Las Islas Baleares (en verde) muestran varias burbujas con mayor duración media, de 10 a 12 días, lo que indica que los turistas suelen quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una duración media más corta (entre 6 y 9 días), pero con una alta densidad de puntos en términos de gasto medio por persona.
+Las Islas Baleares (en verde) muestran varias burbujas con mayor
+duración media, de 10 a 12 días, lo que indica que los turistas suelen
+quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una
+duración media más corta (entre 6 y 9 días), pero con una alta densidad
+de puntos en términos de gasto medio por persona.
 
-Por otro lado, aunque las burbujas más grandes están distribuidas, algunas comunidades como las Islas Baleares, presentan altos valores en gasto medio por persona (más de 1500 euros), posiblemente por la naturaleza del turismo, puede deberse al ser una zona con mucha costa y mucha fiesta.
-Sin embargo, comunidades como Andalucía y Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto más bajos (800-1200 euros).
+Por otro lado, aunque las burbujas más grandes están distribuidas,
+algunas comunidades como las Islas Baleares, presentan altos valores en
+gasto medio por persona (más de 1500 euros), posiblemente por la
+naturaleza del turismo, puede deberse al ser una zona con mucha costa y
+turismo de ocio nocturno. Sin embargo, comunidades como Andalucía y
+Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto
+más bajos (800-1200 euros).
 
-Finalmente, las comunidades autónomas con las burbujas más grandes, como Cataluña,Canarias, Andalucía y las Islas Baleares, son líderes en gasto turístico total. Esto puede deberse a su capacidad para atraer un gran número de turistas o a una combinación de mayor gasto medio por persona y mayor duración media.
+Finalmente, las comunidades autónomas con las burbujas más grandes, como
+Cataluña, Canarias, Andalucía y las Islas Baleares, son líderes en gasto
+turístico total. Esto puede deberse a su capacidad para atraer un gran
+número de turistas o a una combinación de mayor gasto medio por persona
+y mayor duración media.
 
-Destacar que hay una gran densidad de puntos en torno a la duración media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo que sugiere que este es el rango promedio más común para la mayoría de las Comunidades Autónomas.\\
+Destacar que hay una gran densidad de puntos en torno a la duración
+media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo
+que sugiere que este es el rango promedio más común para la mayoría de
+las Comunidades Autónomas.
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1} \caption{Distribución del Gasto Total por País a lo largo de los Años.\label{fig:ridgelineplot}}\label{fig:unnamed-chunk-25}
 \end{figure}
 
+Cada curva representa la densidad de la distribución del gasto total,
+con áreas más altas indicando rangos de gasto donde se concentra la
+mayor parte de los turistas. Se observa un aumento progresivo del gasto
+en los años más recientes, especialmente en 2021 y 2022, donde las
+curvas se desplazan hacia valores más altos. Esto es debido a un
+incremento en el gasto turístico promedio, posiblemente impulsado por la
+recuperación del sector tras la pandemia y el aumento generalizado de
+los precios debido a la inflación. Los turistas de los Países Nórdicos
+y, en menor medida, del Reino Unido, destacan con distribuciones que se
+extienden hacia valores de gasto más altos en comparación con otros
+países como Italia y Francia, que muestran concentraciones en valores
+más bajos probablemente debido al mayor poder adquisitivo de estos
+países.
+
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1} \caption{Distribución de gasto medio por persona por CCAA. .\label{fig:cajas}}\label{fig:unnamed-chunk-26}
 \end{figure}
+
+Observamos que destinos insulares como las Islas Baleares y Canarias
+presentan unas distribuciones del gasto medio más concentradas, mientras
+que comunidades como Cataluña, Comunitat Valenciana y Madrid hay más
+variedad. Esto puede estar influenciado por el perfil de turistas que
+visitan estas regiones, la duración de la estancia y las actividades
+disponibles, destacando Canarias por ser la región con un gasto medio
+por persona más alto para la gran mayoría de sus visitantes con respecto
+al resto de CCAA.
+
+Tanto en la comunidad de Madrid como en el resto de CCAA, tenemos
+valores atípicos, estos resaltan la presencia de turistas con
+comportamientos de gasto excepcionales. Aunque no son representativos de
+la mayoría de los turistas, estos turistas de alto gasto pueden ser
+clave para estrategias de marketing dirigidas a captar segmentos de lujo
+o actividades premium.
 
 \section{Efecto del covid-19}\label{efecto-del-covid-19}
 
@@ -546,8 +597,11 @@ Se observa una relación aproximadamente lineal para la mayoría de
 países, donde se distinguen claramente la tendencia de duración de los
 viajes en las distintas comunidades autónomas, casi siempre mayor en la
 Comunitat Valenciana (salvo en Italia, probablemente por cercanía),
-excepto en la categoría de otros países. Debido a que esta categoría
-engloba al resto de países del mundo, es más díficil encontrar
+excepto en la categoría de otros países. Esto puede ser debido a los
+turistas de larga duración que deciden lugares de la Comunitat
+Valenciana como destino, como podría ser el caso de Benidorm. En la
+categoría de otros países es díficil sacar conclusiones ya que engloba
+al resto de países del mundo, y resulta más complicado encontrar
 relaciones.
 
 \subsection{Gasto medio por persona frente al gasto medio diario por
@@ -559,9 +613,13 @@ Esta parece a priori la relación más obvia entre variables.
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-30}
 \end{figure}
 
-En la Comunitat Valenciana es donde hay una peor correlación, esto puede
-estar relacionado con que es también el destino de mayor duración de los
-viajes, lo que puede provocar un menor gasto medio diario.
+En general, la correlación es positiva y tiene sentido pensar que un
+mayor gasto medio por persona genera también un mayor gasto medio diario
+pero la diferencia entre estas variables depende de la duración media de
+las estancias.En la Comunitat Valenciana es donde hay una peor
+correlación, esto puede estar relacionado con que es también el destino
+de mayor duración de los viajes, lo que puede provocar un menor gasto
+medio diario.
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-31}
@@ -574,8 +632,8 @@ un aumento de la duración de los viajes provoca una disminución del
 gasto medio diario. Vamos a visualizar esto más claramente a
 continuación.
 
-\subsection{Gasto medio diario y duracion
-media}\label{gasto-medio-diario-y-duracion-media}
+\subsection{Gasto medio diario por persona y duracion
+media}\label{gasto-medio-diario-por-persona-y-duracion-media}
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-32}
@@ -583,7 +641,53 @@ media}\label{gasto-medio-diario-y-duracion-media}
 
 Ahora podemos observar en el Gráfico
 \ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor
-duración de los viajes se produce un menor gasto medio por persona.
+duración de los viajes se produce un menor gasto medio diario por
+persona, es decir, los turistas con estancias más largas tienden a
+controlar más sus gastos diarios.
+
+\section{Conclusiones}\label{conclusiones}
+
+El gasto de los turistas extranjeros está influenciado por muchos
+factores. Por un lado, observamos claramente que España es un país con
+turismo de costa, centrado en comunidades con buenos climas y en los
+archipiélagos, además de Madrid debido a su capitalidad. Es precisamente
+en las islas donde más dinero dejan los turistas, destacando los
+turistas británicos en Canarias y los Alemanes en Baleares.
+
+Los países que más gastan en España son países cercanos y es notable la
+diferencia en gasto medio de aquellos cuyos habitantes tienen un mayor
+poder adquisitivo como los países nórdicos en comparación con aquellos
+con un coste de vida similar a España como Italia. Los primeros, aunque
+probablemente sean menos en cantidad de personas visitantes, tienden a
+gastar más de media.
+
+Un hecho muy notable y que se observa claramente es el impacto de la
+pandemia generada por el virus covid-19, que durante 2020 redujo el
+turismo debido a las altas restricciones de movilidad, impacto que
+resultó menos severo en las islas Canarias. En 2021 todavía se observa
+la persistencia de las restricciones, aunque con una notable mejoría en
+el gasto con respecto al año anterior. Finalmente en 2022 y 2023 no solo
+se recuperan los niveles pre-pandémicos sino que en 2023 incluso se
+superan, probablemente debido al aumento de los precios por la
+inflación.
+
+Se observan también diferencias en la duración media de los viajes. Las
+comunidades con estancias más largas tienden a presentar un mayor gasto
+total, lo que provoca un mayor gasto medio por persona en la totalidad
+del viaje, que se observa en una correlación positiva entre el gasto
+medio por persona y la duración media de los viajes. Sin embargo, se
+observa una tendencia inversa entre la duración de los viajes y el gasto
+medio diario por persona, lo que sugiere que los turistas que prolongan
+su estancia tienden a controlar más sus gastos diarios, aunque en la
+suma de la totalidad del viaje resulte mayor. En este caso destacan la
+duración de los viajes en la Comunitat Valenciana, probablemente debido
+al turismo de larga estancia.
+
+En general, a lo largo del trabajo se evidencia que la combinación de
+análisis descriptivo y visualizaciones efectivas proporciona una visión
+del comportamiento turístico de extranjeros en España. Esto resulta
+invaluable en un país dónde el sector turístico es uno de los motores
+más importantes de su economía.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

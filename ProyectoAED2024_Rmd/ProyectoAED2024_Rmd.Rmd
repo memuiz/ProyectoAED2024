@@ -420,9 +420,9 @@ ggplot(datos %>% filter(Pais != "Otros"),
     colour = 'black'
   ) +
   labs(
-    title = "Gasto total por país en las distintas CCAA",
+    title = "Media gasto total por país en las distintas CCAA",
     x = "CCAA",
-    y = "Gasto total"
+    y = "Media Gasto total"
   ) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))

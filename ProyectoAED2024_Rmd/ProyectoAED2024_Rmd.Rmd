@@ -899,12 +899,25 @@ spain_CCAAs <- gisco_get_nuts(year = año_ref,
 ggplot(spain_CCAAs) +
   geom_sf(aes(geometry = geometry))
 
-spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2)
+# Selección de las Comunidades de España donde tenemos datos y unión con estos
+spain_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2 & NUTS_NAME %in% unique(datos$CCAA))
+spain_Comunities <- spain_Comunities %>% inner_join(datos, by=join_by(NUTS_NAME == CCAA))
+
+# Selección de las Comunidades de España restantes clasificadas como "Otros" donde tenemos datos y unión con estos
+spain_Other_Comunities <- spain_CCAAs %>% filter(LEVL_CODE == 2 & !NUTS_NAME %in% unique(datos$CCAA))
+spain_Other_Comunities <- cbind(spain_Other_Comunities, CCAA = c("Otras CCAA"))
+spain_Other_Comunities <- spain_Other_Comunities %>% inner_join(datos, by=join_by(CCAA == CCAA))
+
 spain_CCAAs %>% 
   ggplot(aes(geometry = geometry)) +
   geom_sf(
     data = spain_Comunities,
     aes(fill = NUTS_NAME),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities,
     color = "black",
     linewidth = 0.5
   ) +
@@ -915,6 +928,447 @@ spain_CCAAs %>%
   )
 ```
 
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Reino Unido
+
+spain_Comunities_from_UK <- spain_Comunities %>% filter(Pais == "Reino Unido")
+spain_Other_Comunities_from_UK <- spain_Other_Comunities %>% filter(Pais == "Reino Unido")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_UK,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_UK,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Reino Unido a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_UK,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_UK,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Reino Unido a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_UK,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_UK,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Reino Unido a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_UK,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_UK,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Reino Unido a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Francia
+
+spain_Comunities_from_FR <- spain_Comunities %>% filter(Pais == "Francia")
+spain_Other_Comunities_from_FR <- spain_Other_Comunities %>% filter(Pais == "Francia")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_FR,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_FR,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Francia a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_FR,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_FR,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por Persona de viajeros de Francia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_FR,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_FR,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio Diario por Persona de viajeros de Francia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_FR,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_FR,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros de Francia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Alemani
+
+spain_Comunities_from_GR <- spain_Comunities %>% filter(Pais == "Alemania")
+spain_Other_Comunities_from_GR <- spain_Other_Comunities %>% filter(Pais == "Alemania")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_GR,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_GR,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Alemania a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_GR,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_GR,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por Persona de viajeros de Alemania a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_GR,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_GR,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio Diario por Persona de viajeros de Alemania a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_GR,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_GR,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros de Alemania a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Italia
+
+spain_Comunities_from_IT <- spain_Comunities %>% filter(Pais == "Italia")
+spain_Other_Comunities_from_IT <- spain_Other_Comunities %>% filter(Pais == "Italia")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_IT,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_IT,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Italia a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_IT,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_IT,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por Persona de viajeros de Italia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_IT,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_IT,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio Diario por Persona de viajeros de Italia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_IT,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_IT,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros de Italia a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde Países Nórdicos
+
+spain_Comunities_from_PN <- spain_Comunities %>% filter(Pais == "Países Nórdicos")
+spain_Other_Comunities_from_PN <- spain_Other_Comunities %>% filter(Pais == "Países Nórdicos")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_PN,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_PN,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros de Paises Nórdicos a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_PN,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_PN,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por Persona de viajeros de Países Nórdicos a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_PN,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_PN,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio Diario por Persona de viajeros de Países Nórdicos a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_PN,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_PN,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros de Países Nórdicos a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+# Mapa de viajes a Comunidades Autónomas de España desde el resto de Europa
+
+spain_Comunities_from_OT <- spain_Comunities %>% filter(Pais == "Otros")
+spain_Other_Comunities_from_OT <- spain_Other_Comunities %>% filter(Pais == "Otros")
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_OT,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_OT,
+    aes(fill = Gasto_total),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Total de viajeros del resto de Europa a España", subtitle = "desde 2016 hasta 2023")
+
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_OT,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_OT,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por Persona de viajeros del resto de Europa a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_OT,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_OT,
+    aes(fill = Gasto_medio_diario_persona),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio Diario por Persona de viajeros del resto de Europa a España", subtitle = "desde 2016 hasta 2023")
+```
+
+```{r}
+spain_CCAAs %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_from_OT,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_from_OT,
+    aes(fill = Duracion_media),
+    color = "black",
+    linewidth = 0.5
+  )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros del resto de Europa a España", subtitle = "desde 2016 hasta 2023")
+```
 
 <!-- # Otros gráficos de interés -->
 

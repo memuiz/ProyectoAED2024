@@ -107,8 +107,8 @@ Datos; \href{mailto:memuiz@alumni.uv.es}{\nolinkurl{memuiz@alumni.uv.es}}\\
 }
 
 % Contact information of the corresponding author
-\corres{Correspondence: \href{mailto:email@email.com}{\nolinkurl{email@email.com}};
-Tel.: +XX-000-00-0000.}
+\corres{Correspondence: Máster en Ciencia de Datos, Universitá de
+Valencia.}
 
 % Current address and/or shared authorship
 
@@ -127,7 +127,11 @@ Tel.: +XX-000-00-0000.}
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\)
-\abstract{abstract}
+\abstract{Estudiar la evolución del gasto total, el gasto medio por
+persona y el gasto medio diario en el periodo de 2016 a 2023 de turistas
+con diversos países de residencia en distintas comunidades autónomas.
+Estudio de la duración media de dichos viajes y su relación con el gasto
+por persona.}
 
 
 % Keywords
@@ -183,52 +187,22 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Pandoc syntax highlighting
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+% From pandoc table feature
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 
 
 
@@ -238,262 +212,110 @@ subject discipline.).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hypertarget{introducciuxf3n}{%
-\section{Introducción}\label{introducciuxf3n}}
+\section{Introducción}\label{introducciuxf3n}
 
-\hypertarget{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}{%
+El turismo es uno de los sectores claves de la economía española. España
+se encuentra entre uno de los mayores destinos turísticos del mundo y
+una gran parte de este proviene de extranjeros. En este trabajo, se
+realiza un análisis detallado del gasto total, el gasto medio y la
+duración media de los viajes realizados por turistas extranjeros en
+diversas comunidades autónomas de España durante el periodo comprendido
+entre los años 2016 y 2020.
+
+La identificación de patrones de gasto y comportamiento turístico puede
+aportar información valiosa por lo que se pretende responder a preguntas
+como cuáles son las comunidades autónomas con mayor gasto turístico, qué
+factores podrían estar relacionados con la duración media de las
+estancias, y cómo ha evolucionado a lo largo del tiempo.
+
+El periodo de estudio es especialmente interesante, ya que incluye tanto
+años de relativa estabilidad económica como el inicio de la pandemia de
+COVID-19, que tuvo un impacto significativo en el sector turístico
+debido a la gran cantidad de restricciones impuestas, y también los años
+posteriores donde estudiaremos si ha habido una recuperación a niveles
+prepandémicos
+
 \section{Carga de librerías e importación del
-fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}}
+fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
 
-Antes de comenzar, eliminamos todas las variables guardadas.
+Antes de comenzar, eliminamos todas las variables guardadas y cargamos
+todas las librerías a emplear (readr, dplyr, tidyr,ggplot2,sf,
+giscoR,ggiraph,GGally,ggridges\ldots) e importamos los datos
+``Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv''
+obtenidos de la base de datos del Instituto Nacional de Estadística
+(INE).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())  }\CommentTok{\# Borrado de todas las variables}
-\end{Highlighting}
-\end{Shaded}
+\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(readr)  }\CommentTok{\# Librería para importación de datos}
-\FunctionTok{library}\NormalTok{(dplyr) }\CommentTok{\# Librería para arreglo de datos}
-\end{Highlighting}
-\end{Shaded}
+\subsection{Tranformación a tidydata}\label{tranformaciuxf3n-a-tidydata}
 
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 4.3.2
-\end{verbatim}
+Antes de comenzar con el preprocesamiento de los datos, observamos el
+conjunto de datos importado en la Tabla \ref{tab:unnamed-chunk-4}.
 
-\begin{verbatim}
-## 
-## Attaching package: 'dplyr'
-\end{verbatim}
+\begin{table}[H]
 
-\begin{verbatim}
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-\end{verbatim}
+\caption{\label{tab:unnamed-chunk-4}10 primeras filas de los datos importados}
+\begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{cccccc}
+\toprule
+País de residencia & Total Nacional y CCAA & Tipo de dato & Gastos y duración media de los viajes & Periodo & Total\\
+\midrule
+Total & Total & Dato base & Gasto total & 2023 & 108.789,41\\
+Total & Total & Dato base & Gasto total & 2022 & 87.138,19\\
+Total & Total & Dato base & Gasto total & 2021 & 34.903,37\\
+Total & Total & Dato base & Gasto total & 2020 & 19.786,78\\
+Total & Total & Dato base & Gasto total & 2019 & 91.911,97\\
+Total & Total & Dato base & Gasto total & 2018 & 89.750,75\\
+Total & Total & Dato base & Gasto total & 2017 & 87.003,93\\
+Total & Total & Dato base & Gasto total & 2016 & 77.415,54\\
+Total & Total & Dato base & Gasto medio por persona & 2023 & 1.277\\
+Total & Total & Dato base & Gasto medio por persona & 2022 & 1.216\\
+\bottomrule
+\end{tabular}
+    \end{adjustwidth}
+\end{table}
 
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-\end{verbatim}
+Transformamos este conjunto de datos a un conjunto tidy, donde cada
+variable se encuentre en una columna y eliminamos filas que no vamos a
+emplear en el estudio (tasa de variación) y columnas redudantes o que
+contienen información irrelevante.De esta manera, obtenemos 4 variables
+a partir de la columna Gastos y duración media de los viajes: el gasto
+total, el gasto medio por persona, el gasto medio diario por persona y
+la duración media de los viajes; cuyos valores son los correspondientes
+a la columna Total. Por otro lado, en la columna Tipo de dato contamos
+con dos valores: Dato base y Tasa de variación anual. Vamos a trabajar
+únicamente con los datos base, por lo que eliminamos las filas
+correspondientes a Tasa de variación anual y eliminamos la columna Tipo
+de dato, que ahora aporta información redundante. Renombramos las
+columnas de manera apropiada (sin espacios y con nombres representativos
+de las variables). Los nombres de las variables son los siguientes:
+Pais, CCAA, Periodo, Gasto\_total, Gasto\_medio\_persona,
+Gasto\_medio\_diario\_persona y Duracion\_media.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyr) }\CommentTok{\# Librería para arreglo de datos}
-\end{Highlighting}
-\end{Shaded}
+\subsection{Transformación de clases}\label{transformaciuxf3n-de-clases}
 
-\begin{verbatim}
-## Warning: package 'tidyr' was built under R version 4.3.2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2) }\CommentTok{\# Librería para gráficas}
-\FunctionTok{library}\NormalTok{(sf) }\CommentTok{\# Librería para generar el mapa geográfico}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'sf' was built under R version 4.3.3
-\end{verbatim}
-
-\begin{verbatim}
-## Linking to GEOS 3.11.2, GDAL 3.8.2, PROJ 9.3.1; sf_use_s2() is TRUE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(giscoR) }\CommentTok{\# Librería para generar el mapa geográfico}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'giscoR' was built under R version 4.3.3
-\end{verbatim}
-
-Importamos los datos
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos}\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"data/Gasto\_turistas\_internacionales\_segun\_comunidad\_paisresidencia.csv"}\NormalTok{,  }\AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Rows: 3072 Columns: 6
-## -- Column specification --------------------------------------------------------
-## Delimiter: ";"
-## chr (5): País de residencia, Total Nacional y CCAA, Tipo de dato, Gastos y d...
-## dbl (1): Periodo
-## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
-\end{verbatim}
-
-\hypertarget{preparaciuxf3n-de-los-datos}{%
-\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}}
-
-\hypertarget{tranformaciuxf3n-a-tidydata}{%
-\subsection{Tranformación a
-tidydata}\label{tranformaciuxf3n-a-tidydata}}
-
-Observamos que las variables no están correctamente colocadas en
-columnas.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{tipos\_datos }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(gastos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{)}
-\NormalTok{tipos\_datos }\CommentTok{\# Vemos cuantas variables tenemos que transformar a columnas}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Gasto total"                    "Gasto medio por persona"       
-## [3] "Gasto medio diario por persona" "Duración media de los viajes"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{datos }\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(gastos,}\AttributeTok{names\_from=}\StringTok{\textasciigrave{}}\AttributeTok{Gastos y duración media de los viajes}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{values\_from=}\NormalTok{Total)}
-\end{Highlighting}
-\end{Shaded}
-
-Eliminamos filas que no vamos a emplear en el estudio (tasa de
-variación) y columnas redudantes o que contienen información
-irrelevante,
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Dato base"               "Tasa de variación anual"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Nos quedamos únicamente con los datos base, quitando las tasas de variación}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\SpecialCharTok{==} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)[}\DecValTok{1}\NormalTok{])}
-\CommentTok{\# Quito la columna irrelevante}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, }\AttributeTok{select =} \SpecialCharTok{{-}}\StringTok{\textasciigrave{}}\AttributeTok{Tipo de dato}\StringTok{\textasciigrave{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{cambios-de-nombres-de-las-columnas}{%
-\subsection{Cambios de nombres de las
-columnas}\label{cambios-de-nombres-de-las-columnas}}
-
-Vamos a renombrar las columnas de manera apropiada (sin espacios y con
-nombres representativos).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nombres\_columnas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pais"}\NormalTok{, }\StringTok{"CCAA"}\NormalTok{, }\StringTok{"Periodo"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{)}
-\FunctionTok{colnames}\NormalTok{(datos)}\OtherTok{\textless{}{-}}\NormalTok{ nombres\_columnas}
-\FunctionTok{colnames}\NormalTok{(datos)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Pais"                       "CCAA"                      
-## [3] "Periodo"                    "Gasto_total"               
-## [5] "Gasto_medio_persona"        "Gasto_medio_diario_persona"
-## [7] "Duracion_media"
-\end{verbatim}
-
-\hypertarget{transformaciuxf3n-de-clases}{%
-\subsection{Transformación de
-clases}\label{transformaciuxf3n-de-clases}}
-
-Todas las variables han sido importadas como tipo carácter.Vamos a
-transformar las variables Gasto\_total, Gasto\_medio\_persona,
+Todas las variables han sido importadas como tipo carácter.
+Transformamos las variables Gasto\_total, Gasto\_medio\_persona,
 Gasto\_medio\_diario\_persona y Duracion\_media a numérico, donde
 previamente transformamos la cadena de carácteres a una que sea
 interpretable como número para poder aplicar la función as.numeric()
-correctamente.
+correctamente (eliminando el punto de miles y sustituyendo la coma
+decimal por un punto decimal). Comprobamos si al realizar la
+transformación se han introducido datos NA y a continuación,
+transformamos a factor las variables Pais y CCAA.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# lapply(datos,class)}
-\end{Highlighting}
-\end{Shaded}
+Quitamos algunas filas que contienen datos que consisten en la suma
+total de los datos de la columna CCA (más adelante eliminaremos también
+los valores correspondientes a Total de la variable Pais). Sin embargo,
+recogeremos estos valores en datasets datos\_totales y
+datos\_total\_por\_residencia para hacer uso de ellos y obtener
+información relevante. Cambiamos los nombres de los niveles del factor
+CCAA a los siguientes: ``Andalucía'', ``Illes Balears'',``Canarias'',
+``Cataluña'',``Comunitat Valenciana'', ``Comunidad de Madrid'', ``Otras
+CCAA''.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Quitar punto de miles}
-\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{""}\NormalTok{, x))}
-\CommentTok{\# Sustituir coma decimal por punto decimal}
-\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{gsub}\NormalTok{(}\StringTok{","}\NormalTok{, }\StringTok{"."}\NormalTok{, x))}
-\CommentTok{\# Transformar a numerico}
-\NormalTok{datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)] }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(datos[, }\DecValTok{4}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(datos)], }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{as.numeric}\NormalTok{(x))}
-\CommentTok{\# Comprobamos la clase}
-\CommentTok{\# lapply(datos,class)}
-\end{Highlighting}
-\end{Shaded}
-
-Comprobamos si al realizar la transformación se han introducido datos
-NA.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{any}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(datos))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-A continuación, transformamos a factor las variables País de residencia
-y Comunidades Autónomas.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# unique(datos$\textasciigrave{}País de residencia\textasciigrave{})}
-\CommentTok{\# Transformacion a factor de paises de residencia}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Pais }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais)}
-\end{Highlighting}
-\end{Shaded}
-
-Quitamos algunas filas irrelevantes que contienen datos que consisten en
-la suma total de los datos de la columna de Comunidades Autónomas para
-el análisis exploratorio. Sin embargo, los recogeremos en una variable a
-parte para presentarlo en una visualización más compleja.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Guardamos los datos totales por si resultan útiles en el futuro}
-\NormalTok{datos\_totales }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos,datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Total"} \SpecialCharTok{|}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
-\NormalTok{datos\_total\_por\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{==} \StringTok{"Total"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Quitar filas de total de columna comunidades autonomas}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos,datos}\SpecialCharTok{$}\NormalTok{CCAA }\SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Transformacion a factor de nombres de comunidades}
-\CommentTok{\#unique(datos$\textasciigrave{}Total Nacional y CCAA\textasciigrave{})}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{CCAA}\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA)}
-\CommentTok{\# Cambiamos de nombre los niveles del factor}
-\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andalucía"}\NormalTok{, }\StringTok{"Illes Balears"}\NormalTok{,}\StringTok{"Canarias"}\NormalTok{, }\StringTok{"Cataluña"}\NormalTok{,}\StringTok{"Comunitat Valenciana"}\NormalTok{, }\StringTok{"Comunidad de Madrid"}\NormalTok{, }\StringTok{"Otras CCAA"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{instance-engineering}{%
-\subsection{Instance engineering}\label{instance-engineering}}
+\subsection{Instance engineering}\label{instance-engineering}
 
 Vamos a trabajar con valores de las filas para obtener un dataset más
 apropiado al estudio que deseamos realizar. En primer lugar, queremos
@@ -502,51 +324,28 @@ otro llamado ``Otros'' en que en el resto de variables contenga la
 información referente al resto de paises distintos de los cuáles
 poseemos datos concretos.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Cambiar el nombre de las filas}
-\NormalTok{paises }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais)}
-\NormalTok{paises[paises}\SpecialCharTok{==}\StringTok{"Total"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Otros"}
-\FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Pais) }\OtherTok{\textless{}{-}}\NormalTok{ paises}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{instance-engineering-de-gasto_total}{%
 \subsubsection{Instance engineering de
-Gasto\_total}\label{instance-engineering-de-gasto_total}}
+Gasto\_total}\label{instance-engineering-de-gasto_total}
 
 Para la variable Gasto\_total, las filas correspondientes a ``Otros'' de
 la variable Pais y las filas correspondientes a ``Total'' se relacionan
-de la siguiente manera con
-\(pais\in\{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido, Otros\}\):
+de la siguiente manera con \(pais\in\) \{Alemania, Francia, Italia,
+Países Nórdicos, Reino Unido\}:
 
-\[ \text{Gasto total}_{\text{Pais = total}} = \sum_{pais}{\text{Gasto total}_{pais}}\]
-Luego el gasto total de ``Otros'' es el gasto de ``Total'' menos el
-gasto de cada uno de los otros 5 paises disponibles por separado.
+\[ \text{Gasto total}_{\text{Total}} = \sum_{pais}{\text{Gasto total}_{pais}}\]
+Luego el gasto total de ``Otros'' es el gasto de los valores ``Total''
+de Pais menos el gasto de cada uno de los otros 5 paises disponibles por
+separado.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{comunidades }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{CCAA)}
-\NormalTok{anos }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Periodo)}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
-  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
-\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_total"}\NormalTok{]}
-\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_total"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ aux[}\FunctionTok{length}\NormalTok{(aux),] }\SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,])  }
-\NormalTok{  \}}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}{%
 \subsubsection{Instance engineering de Gasto\_medio\_persona,
 Gasto\_medio\_diario\_persona y
-Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}}
+Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}
 
 Como en estas variables se trata de una media, no podemos emplear el
 método usado para Gasto\_total. En su lugar consideramos una media
 ponderada. Si consideramos que el número de paises totales es 194
-tenemos que para
-\(pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}\)
+tenemos que para \(pais \in\) \{Alemania, Francia, Italia, Países
+Nórdicos, Reino Unido\}:
 
 \[
  \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
@@ -554,83 +353,14 @@ tenemos que para
 
 De esta manera, concemos el valor de \(\overline{Media\ Total}\) y de
 \({Valor\ medio}_{pais}\) y podemos calcular el valor de los valores
-medios para las filas ``Otros'' de la variable Pais, otorgandoles un
+medios para las filas ``Otros'' de la variable Pais, otorgándoles un
 mayor peso de manera proporcional al número de países considerados en
 esta categoría.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Duracion media}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
-  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
-\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Duracion\_media"}\NormalTok{]}
-\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Duracion\_media"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
-\NormalTok{  \}}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
+\section{Resumen de los datos}\label{resumen-de-los-datos}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Gasto\_medio\_persona}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
-  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
-\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}
-\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
-\NormalTok{  \}}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Gasto\_medio\_diario\_persona}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ comunidades)\{}
-  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in}\NormalTok{ anos)\{}
-\NormalTok{  aux }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}
-\NormalTok{datos[datos}\SpecialCharTok{$}\NormalTok{CCAA}\SpecialCharTok{==}\NormalTok{i }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==}\NormalTok{ j }\SpecialCharTok{\&}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{==} \StringTok{"Otros"}\NormalTok{, }\StringTok{"Gasto\_medio\_diario\_persona"}\NormalTok{]}\OtherTok{\textless{}{-}}\NormalTok{ (aux[}\FunctionTok{length}\NormalTok{(aux),]}\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{5}\SpecialCharTok{/}\DecValTok{194}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(aux[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(aux)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,]))}\SpecialCharTok{*}\DecValTok{194}\SpecialCharTok{/}\NormalTok{(}\DecValTok{194{-}5}\NormalTok{)}
-\NormalTok{  \}}
-\NormalTok{\}}
-
-\FunctionTok{rm}\NormalTok{(i,j,anos,comunidades, paises, aux) }\CommentTok{\# Borrar variables auxiliares}
-\end{Highlighting}
-\end{Shaded}
-
-Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver
-un resumen de las variables.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(datos)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##               Pais                      CCAA       Periodo    
-##  Alemania       :56   Andalucía           :48   Min.   :2016  
-##  Francia        :56   Illes Balears       :48   1st Qu.:2018  
-##  Italia         :56   Canarias            :48   Median :2020  
-##  Países Nórdicos:56   Cataluña            :48   Mean   :2020  
-##  Reino Unido    :56   Comunitat Valenciana:48   3rd Qu.:2021  
-##  Otros          :56   Comunidad de Madrid :48   Max.   :2023  
-##                       Otras CCAA          :48                 
-##   Gasto_total       Gasto_medio_persona Gasto_medio_diario_persona
-##  Min.   :   22.28   Min.   : 383.0      Min.   : 56.0             
-##  1st Qu.:  396.06   1st Qu.: 838.2      1st Qu.:107.8             
-##  Median :  857.80   Median :1003.0      Median :132.0             
-##  Mean   : 2714.09   Mean   :1005.2      Mean   :135.9             
-##  3rd Qu.: 2562.09   3rd Qu.:1165.5      3rd Qu.:156.0             
-##  Max.   :21318.75   Max.   :1743.9      Max.   :300.8             
-##                                                                   
-##  Duracion_media  
-##  Min.   : 3.610  
-##  1st Qu.: 6.060  
-##  Median : 7.630  
-##  Mean   : 7.756  
-##  3rd Qu.: 9.198  
-##  Max.   :14.270  
-## 
-\end{verbatim}
+Una vez hemos concluido el pre-procesamiento de los datos, observamos el
+resultado en la Tabla \ref{tab:unnamed-chunk-27}.
 
 \begin{table}[H]
 
@@ -656,200 +386,204 @@ un resumen de las variables.
     \end{adjustwidth}
 \end{table}
 
-\textbf{NOTA}: Hay dos conjuntos de datos para representar: datos :
-quitando totales para poder ver relaciones por pais, comunidad autonoma
-etc datos\_totales: Aqui estan guardados todos los datos que he
-modificado o borrado del dataset original referentes a valores totales
-por si se necesitan en algun momento
+Vamos un resumen de los datos y de las variables disponibles. En la
+Tabla \ref{tab:codebook} se ha realizado un pequeño codebook con las
+variables del dataset.
 
-\hypertarget{prueba-de-ggplot}{%
-\section{Prueba de ggplot}\label{prueba-de-ggplot}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Visualización de los datos e interpretación de los posibles patrones}
-
-\CommentTok{\# Visualización previa para tener una idea de ciertas variables de los datos}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Periodo, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{color =}\NormalTok{ CCAA, }\AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Evolución del gasto total de turistas por año"}\NormalTok{, }\AttributeTok{x  =} \StringTok{"Años"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto total en millones de euros"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año}
-\FunctionTok{ggplot}\NormalTok{(datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2023}\NormalTok{, ], }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Pais, }\SpecialCharTok{{-}}\NormalTok{Gasto\_total), }\AttributeTok{y =}\NormalTok{ Gasto\_total)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+}
-  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto por país de residencia en 2023"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Gasto total en millones de euros"}\NormalTok{, }\AttributeTok{y =} \StringTok{"País"}\NormalTok{) }\SpecialCharTok{+}  
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{facet\_grid}\NormalTok{(.}\SpecialCharTok{\textasciitilde{}}\NormalTok{CCAA[}\StringTok{"i"}\NormalTok{],}\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en Andalucía"}\NormalTok{, }\AttributeTok{x =} \StringTok{"País"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-21-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Para todas las Comunidades Autónomas por separado}
-\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Duracion\_media)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"purple"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ CCAA, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{) }\SpecialCharTok{+}  
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Duración media del viaje por país en cada Comunidad Autónoma"}\NormalTok{, }
-       \AttributeTok{x =} \StringTok{"País"}\NormalTok{, }
-       \AttributeTok{y =} \StringTok{"Duración media del viaje"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{90}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf}
-
-\hypertarget{probamos-a-analizar-el-efecto-del-covid-en-el-gasto-de-los-turistas-asuxed-como-los-pauxedses-que-muxe1s-reducieron-su-gasto-debido-a-la-pandemia.}{%
-\section{Probamos a analizar el efecto del COVID en el gasto de los
-turistas, así como los países que más reducieron su gasto debido a la
-pandemia.}\label{probamos-a-analizar-el-efecto-del-covid-en-el-gasto-de-los-turistas-asuxed-como-los-pauxedses-que-muxe1s-reducieron-su-gasto-debido-a-la-pandemia.}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyr)}
-
-\NormalTok{covid }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{==} \DecValTok{2020}\NormalTok{, ]}
-\NormalTok{no\_covid }\OtherTok{\textless{}{-}}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Periodo }\SpecialCharTok{!=} \DecValTok{2020}\NormalTok{, ]}
-\NormalTok{media\_sin\_covid }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(no\_covid}\SpecialCharTok{$}\NormalTok{Gasto\_total[])}
-\NormalTok{media\_covid }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(covid}\SpecialCharTok{$}\NormalTok{Gasto\_total)}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"La media del gasto total durante el COVID es de"}\NormalTok{, media\_covid,}\StringTok{"millones de euros}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## La media del gasto total durante el COVID es de 719.3212 millones de euros
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{cat}\NormalTok{(}\StringTok{"Mientras que sin COVID es de"}\NormalTok{, media\_sin\_covid,}\StringTok{"millones de euros}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Mientras que sin COVID es de 2999.059 millones de euros
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{datos }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(Periodo), }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ (Periodo }\SpecialCharTok{==} \DecValTok{2020}\NormalTok{))) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"grey"}\NormalTok{, }\StringTok{"red"}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Año"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Gasto Total de Turistas"}\NormalTok{, }\AttributeTok{title =} \StringTok{"Comparación del Gasto Total de Turistas por Año"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{covid\_sin\_otros }\OtherTok{\textless{}{-}}\NormalTok{ covid[covid}\SpecialCharTok{$}\NormalTok{Pais }\SpecialCharTok{!=} \StringTok{"Otros"}\NormalTok{, ] }\CommentTok{\# Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.}
-\NormalTok{covid\_sin\_otros }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Pais, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ Pais)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto total de los distintos países durante el COVID"}\NormalTok{) }\CommentTok{\# Reino Unido gastó más en COVID que el resto de países, Italia el que menos.}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#¿En qué comunidad autónoma se viajó más durante el COVID?}
-\NormalTok{covid\_sin\_otros }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ CCAA, }\AttributeTok{y =}\NormalTok{ Gasto\_total, }\AttributeTok{fill =}\NormalTok{ CCAA)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gasto total en las distintas comunidades autónomas durante el COVID"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?}
-\end{Highlighting}
-\end{Shaded}
-
-Filtraremos los datos totales por el Periodo y recogeremos solo la
-variable que nos sirve para representar la magnitud de valores en el
-mapa de visualización, en este caso el gasto medio por persona
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}}\NormalTok{ datos\_total\_por\_residencia }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{select}\NormalTok{ (Pais, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{ (Periodo }\SpecialCharTok{==} \StringTok{\textquotesingle{}2016\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ Pais }\SpecialCharTok{!=} \StringTok{"Total"}\NormalTok{)}
-
-\NormalTok{gastos\_medio\_residencia\_PN }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{select}\NormalTok{ (Pais, Gasto\_medio\_persona, Periodo) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Pais }\SpecialCharTok{==} \StringTok{"Países Nórdicos"}\NormalTok{)}
-
-\CommentTok{\# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa}
-
-\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(gastos\_medio\_residencia, gastos\_medio\_residencia\_PN,}
-\NormalTok{                                 gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN, gastos\_medio\_residencia\_PN)}
-
-\NormalTok{año\_ref }\OtherTok{\textless{}{-}} \DecValTok{2016}
-
-\CommentTok{\# Datos}
-\NormalTok{countries }\OtherTok{\textless{}{-}} \FunctionTok{gisco\_get\_countries}\NormalTok{(}\AttributeTok{year =}\NormalTok{ año\_ref,}
-                        \AttributeTok{resolution =} \DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(CNTR\_ID, NAME\_ENGL, geometry) }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{st\_transform}\NormalTok{(}\DecValTok{3035}\NormalTok{)}
-
-\NormalTok{paises\_english }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}United Kingdom\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Denmark\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Germany\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}France\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Italy\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Sweden\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Norway\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Iceland\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Finland\textquotesingle{}}\NormalTok{)}
-\NormalTok{countries\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ countries }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(NAME\_ENGL }\SpecialCharTok{\%in\%}\NormalTok{ paises\_english)}
-
-\CommentTok{\# Incluir columna de identificación de los países para unir con las coordenadas de los mapas}
-
-\NormalTok{CNTR\_ID }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}UK\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}DK\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}DE\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}FR\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}IT\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}SE\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NO\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}IS\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}FI\textquotesingle{}}\NormalTok{)}
-\NormalTok{gastos\_medio\_residencia }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(gastos\_medio\_residencia, CNTR\_ID)}
+\begin{table}[H]
+ \caption{\label{tab:codebook} Descripción de las variables}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+             \centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+Nombre variable & Unidad & Valores \\ \midrule
+Pais & - & \begin{tabular}[c]{@{}c@{}}Alemania, Italia, Países Nórdicos, Francia, \\ Reino Unido, Otros\end{tabular} \\
+CCAA & - & \begin{tabular}[c]{@{}c@{}}Andalucía, Illes Balears, Canarias, Cataluña, Comunitat Valenciana, \\ Comunidad de Madrid, Otras CCAA\end{tabular} \\
+Periodo & Año & 2016-2023 \\
+Gasto\_total & Millones de euros & Numérico \\
+Gasto\_medio\_persona & Euros & Numérico \\
+Gasto\_medio\_diario\_persona & Euros & Numérico \\
+Duración\_media & Días & Numérico \\ \bottomrule
+\end{tabular}
 
 
-\NormalTok{gastos\_medio\_viz }\OtherTok{\textless{}{-}}\NormalTok{ gastos\_medio\_residencia }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(countries, }\AttributeTok{by=}\FunctionTok{join\_by}\NormalTok{(CNTR\_ID }\SpecialCharTok{==}\NormalTok{ CNTR\_ID))}
+\end{adjustwidth}
+\end{table}
 
+Finalmente, antes de comenzar a visualizar datos y detectar patrones
+veamos un pequeño resumen de los datos:
 
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0349}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1977}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2791}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3140}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1744}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Gasto total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Gasto medio por persona
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Gasto medio diario/persona
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Duración media
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& Min. : 22.28 & Min. : 383.0 & Min. : 56.0 & Min. : 3.610 \\
+& 1st Qu.: 396.06 & 1st Qu.: 838.2 & 1st Qu.:107.8 & 1st Qu.: 6.060 \\
+& Median : 857.80 & Median :1003.0 & Median :132.0 & Median : 7.630 \\
+& Mean : 2714.09 & Mean :1005.2 & Mean :135.9 & Mean : 7.756 \\
+& 3rd Qu.: 2562.09 & 3rd Qu.:1165.5 & 3rd Qu.:156.0 & 3rd Qu.: 9.198 \\
+& Max. :21318.75 & Max. :1743.9 & Max. :300.8 & Max. :14.270 \\
+\end{longtable}
 
-\CommentTok{\# Mapa base }
-\FunctionTok{ggplot}\NormalTok{(gastos\_medio\_viz) }\SpecialCharTok{+}
-  \FunctionTok{geom\_sf}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{geometry=}\NormalTok{ geometry, }\AttributeTok{fill=}\NormalTok{Gasto\_medio\_persona)) }\SpecialCharTok{+}
-  \FunctionTok{xlim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2200000}\NormalTok{, }\DecValTok{7150000}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{ylim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1380000}\NormalTok{, }\DecValTok{5500000}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\section{Primeras visualizaciones}\label{primeras-visualizaciones}
 
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf}
+A continuación se muestran una serie de figuras en las que se puede observar la tendencia de los datos, en cada una de ellas veremos una pequeña conclusión con el fin de entender mejor el conjunto de datos seleccionado.\\
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué}
+En primer lugar, tenemos la distribución del gasto total de los disntintos países en cada Comunidad Autónoma durante el periodo 2016-2023 en España:
 
-\CommentTok{\# Gráfico}
-\CommentTok{\# ggplot(gastos\_medio\_viz) +}
-\CommentTok{\#   \# Primera capa con todos los países}
-\CommentTok{\#   geom\_sf(aes(geometry= geometry), data = gastos\_medio\_viz, fill = "grey80", color = NA) +}
-\CommentTok{\#   \# Establece límites}
-\CommentTok{\#   xlim(c(2200000, 7150000)) +}
-\CommentTok{\#   ylim(c(1380000, 5500000))}
-\end{Highlighting}
-\end{Shaded}
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1} \caption{Gasto total por CCAA y año.\label{fig:GastototalporCCAAyaño}}\label{fig:unnamed-chunk-22}
+\end{figure}
 
+Como se puede observar, el gasto total en Canarias es mayor al resto de comunidades autónomas, seguido de Islas Baleares y Andalucía, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.\\
+
+Para observar qué países gastan más en los viajes en las distintas Comunidades Autónomas, presentamos el siguiente gráfico:
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1} \caption{Gasto total por país y CCAA .\label{fig:GastototalporpaísyCCAA}}\label{fig:unnamed-chunk-23}
+\end{figure}
+
+Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.\\
+
+Para obtener una comparación entre el gasto medio por persona, la duración media del viaje y el gasto total en las distintas CCAAs:
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1} \caption{Gasto medio por persona en función de duración media, CCAA y gasto total. .\label{fig:bubblegraph}}\label{fig:unnamed-chunk-24}
+\end{figure}
+
+Las Islas Baleares (en verde) muestran varias burbujas con mayor duración media, de 10 a 12 días, lo que indica que los turistas suelen quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una duración media más corta (entre 6 y 9 días), pero con una alta densidad de puntos en términos de gasto medio por persona.
+
+Por otro lado, aunque las burbujas más grandes están distribuidas, algunas comunidades como las Islas Baleares, presentan altos valores en gasto medio por persona (más de 1500 euros), posiblemente por la naturaleza del turismo, puede deberse al ser una zona con mucha costa y mucha fiesta.
+Sin embargo, comunidades como Andalucía y Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto más bajos (800-1200 euros).
+
+Finalmente, las comunidades autónomas con las burbujas más grandes, como Cataluña,Canarias, Andalucía y las Islas Baleares, son líderes en gasto turístico total. Esto puede deberse a su capacidad para atraer un gran número de turistas o a una combinación de mayor gasto medio por persona y mayor duración media.
+
+Destacar que hay una gran densidad de puntos en torno a la duración media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo que sugiere que este es el rango promedio más común para la mayoría de las Comunidades Autónomas.\\
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1} \caption{Distribución del Gasto Total por País a lo largo de los Años.\label{fig:ridgelineplot}}\label{fig:unnamed-chunk-25}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1} \caption{Distribución de gasto medio por persona por CCAA. .\label{fig:cajas}}\label{fig:unnamed-chunk-26}
+\end{figure}
+
+\section{Efecto del covid-19}\label{efecto-del-covid-19}
+
+Probamos a analizar el efecto del COVID en el gasto de los turistas, así
+como estudiar los países que más reducieron su gasto debido a la
+pandemia.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1} \caption{Gasto total de turistas en millones de euros por año. .\label{fig:gastototalporaño}}\label{fig:gasto total covid}
+\end{figure}
+
+La media del gasto total durante el COVID es de 719.32 millones de euros
+mientras que sin COVID es de 2999.06 millones de euros, una diferencia
+más que notable tal y como se observa en la gráfica
+\ref{fig:gastototalporaño}, con un descenso drástico en 2020 (COVID) y
+una posterior recuperación. En el
+gráfico\ref{fig:gastototalporpaisescovid} vemos que Reino Unido gastó
+más en COVID que el resto de países, Italia el que menos.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1} \caption{Gasto total de los distintos países durante el COVID. .\label{fig:gastototalporpaisescovid}}\label{fig:gasto paises covid}
+\end{figure}
+
+Por otro lado, podemos observar que la Comunidad Autónoma a la que más
+se viajo durante el año del covid 2020 fueron las islas Canarias. Esto
+puede tener diversas explicaciones. Por un lado, los primeros meses del
+año, antes de las restricciones, el turismo en las islas Canarias es
+mayor debido al buen tiempo incluso en los meses de invierno. Por otro
+lado, el impacto del Covid en las islas puedo haber sido menor y haber
+impuesto menos restricciones. Otro posible motivo es la gran dependencia
+económica del turismo de las islas y una mayor disposición a atraer y
+recuperar el turismo perdido lo antes posible.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1} \caption{Gasto total en las distintas comunidades autónomas durante el COVID. .\label{fig:gastototalporCCAAcovid}}\label{fig:gasto comunidades covid}
+\end{figure}
+
+\section{Análisis bivariante de variables
+cuantitativas}\label{anuxe1lisis-bivariante-de-variables-cuantitativas}
+
+Realizamos una visualización previa para detectar relaciones entre
+variables cuantitativas. En el gráfico \ref{fig:correlaciones}, se
+observan 3 relaciones que podemos estudiar un poco más a fondo: el gasto
+medio por persona frente al gasto medio diario, el gasto medio por
+persona frente a la duración media y el gasto medio diario frente a la
+duración media.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1} \caption{Gráficos de dispersión y correlaciones entre variables cuantitativas.\label{fig:correlaciones}}\label{fig:unnamed-chunk-28}
+\end{figure}
+
+\subsection{Gasto medio por persona y duración
+media}\label{gasto-medio-por-persona-y-duraciuxf3n-media}
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\label{fig:gastomediovsduracionmedia}}\label{fig:unnamed-chunk-29}
+\end{figure}
+
+Se observa una relación aproximadamente lineal para la mayoría de
+países, donde se distinguen claramente la tendencia de duración de los
+viajes en las distintas comunidades autónomas, casi siempre mayor en la
+Comunitat Valenciana (salvo en Italia, probablemente por cercanía),
+excepto en la categoría de otros países. Debido a que esta categoría
+engloba al resto de países del mundo, es más díficil encontrar
+relaciones.
+
+\subsection{Gasto medio por persona frente al gasto medio diario por
+persona}\label{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}
+
+Esta parece a priori la relación más obvia entre variables.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-30}
+\end{figure}
+
+En la Comunitat Valenciana es donde hay una peor correlación, esto puede
+estar relacionado con que es también el destino de mayor duración de los
+viajes, lo que puede provocar un menor gasto medio diario.
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-31}
+\end{figure}
+
+En el gráfico \ref{fig:gastomediovsgastomediodiarioconduracion} se puede
+ver que generalmente a mayor gasto medio por persona también se produce
+un mayor gasto medio diario. Sin embargo, observamos que aparentemente
+un aumento de la duración de los viajes provoca una disminución del
+gasto medio diario. Vamos a visualizar esto más claramente a
+continuación.
+
+\subsection{Gasto medio diario y duracion
+media}\label{gasto-medio-diario-y-duracion-media}
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-32}
+\end{figure}
+
+Ahora podemos observar en el Gráfico
+\ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor
+duración de los viajes se produce un menor gasto medio por persona.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

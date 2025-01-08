@@ -20,23 +20,18 @@ affiliation:
     address: |
       Máster en Ciencia de Datos
     email: memuiz@alumni.uv.es
-
-# document options
 correspondence: |
-  email@email.com; Tel.: +XX-000-00-0000.
+  Máster en Ciencia de Datos, Universitá de Valencia.
 journal: data
 type: article
 status: submit
-# front matter
 simplesummary: |
   Resumen del trabajo
 abstract: |
-  abstract
-# back matter
+  Estudiar la evolución del gasto total, el gasto medio por persona y el gasto medio diario en el periodo de 2016 a 2023 de turistas con diversos países de residencia en distintas comunidades autónomas. Estudio de la duración media de dichos viajes y su relación con el gasto por persona.
 keywords: |
   keyword 1; keyword 2; keyword 3 (list three to ten pertinent keywords specific 
   to the article, yet reasonably common within the subject discipline.).
-
 # abbreviations:
 #   - short: MDPI
 #     long: Multidisciplinary Digital Publishing Institute
@@ -51,47 +46,62 @@ appendix: appendix.tex
 endnotes: false
 output: 
   rticles::mdpi_article:
-  extra_dependencies: longtable
   fontsize: 10pt  # Tamaño de fuente ajustado a 10p
+  extra_dependencies: longtable
+always_allow_html: true
 ---
 
-```{r setup, include=FALSE,width = 60}
+```{r setup, include=FALSE,width = 60, warning = FALSE}
 # Setup Chunk
 library(here)  
 library(knitr)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)  # Los chunks no aparecen por defecto, pero si se ejecutan y aparecen los resultados.
 knitr::opts_knit$set(root.dir = here::here()) # Setwd() a la carpeta del 
 #proyecto ProyectoAED2024 debido a que por defecto el Rmd trabaja en el working 
 #directory de la carpeta ProyectoAED2024_Rmd
 #knitr::opts_chunk$set(size = "footnotesize") # use smaller font in the chunks
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
+knitr::opts_chunk$set(fig.width = 5, fig.height  = 3.5)
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "") # Obligar a que las figuras se muestren en la posición del chunk correspondiente
 
 ```
 
 # Introducción
 
+El turismo es uno de los sectores claves de la economía española. España se encuentra entre uno de los mayores destinos turísticos del mundo y una gran parte de este proviene de extranjeros. En este trabajo, se realiza un análisis detallado del gasto total, el gasto medio y la duración media de los viajes realizados por turistas extranjeros en diversas comunidades autónomas de España durante el periodo comprendido entre los años 2016 y 2020.
+
+La identificación de patrones de gasto y comportamiento turístico puede aportar información valiosa por lo que se pretende responder a preguntas como cuáles son las comunidades autónomas con mayor gasto turístico, qué factores podrían estar relacionados con la duración media de las estancias, y cómo ha evolucionado a lo largo del tiempo.
+
+El periodo de estudio es especialmente interesante, ya que incluye tanto años de relativa estabilidad económica como el inicio de la pandemia de COVID-19, que tuvo un impacto significativo en el sector turístico debido a la gran cantidad de restricciones impuestas, y también los años posteriores donde estudiaremos si ha habido una recuperación a niveles prepandémicos 
+
+
+
 # Carga de librerías e importación del fichero
 
-Antes de comenzar, eliminamos todas las variables guardadas.
+Antes de comenzar, eliminamos todas las variables guardadas y cargamos todas las librerías a emplear (readr, dplyr, tidyr,ggplot2,sf, giscoR,ggiraph,GGally,ggridges...) e importamos los datos "Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv" obtenidos de la base de datos del Instituto Nacional de Estadística (INE).
 
 ```{r}
 rm(list=ls())  # Borrado de todas las variables
 ```
 
-```{r}
-library(readr)  # Librería para importación de datos
-library(dplyr) # Librería para arreglo de datos
-library(tidyr) # Librería para arreglo de datos
-library(ggplot2) # Librería para gráficas
-library(sf) # Librería para generar el mapa geográfico
-library(giscoR) # Librería para generar el mapa geográfico
-library(ggiraph) # Librería para añadir interactividad al mapa geográfico
+```{r, message = FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(readr, dplyr, tidyr,ggplot2,sf, giscoR,ggiraph,GGally,ggridges)
+# library(readr)  # Librería para importación de datos
+# library(dplyr) # Librería para arreglo de datos
+# library(tidyr) # Librería para arreglo de datos
+# library(ggplot2) # Librería para gráficas
+# library(sf) # Librería para generar el mapa geográfico
+# library(giscoR) # Librería para generar el mapa geográfico
+# library(ggiraph) # Librería para añadir interactividad al mapa geográfico
+# library(GGally)  # Librería para ggpairs
+
 ```
 
-Importamos los datos
 
-```{r}
+
+```{r, message = FALSE}
 gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisresidencia.csv",  delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 ```
@@ -100,30 +110,62 @@ gastos<- read_delim("data/Gasto_turistas_internacionales_segun_comunidad_paisres
 
 ## Tranformación a tidydata
 
-Observamos que las variables no están correctamente colocadas en columnas.
+Antes de comenzar con el preprocesamiento de los datos, observamos el conjunto de datos importado en la Tabla \ref{tab:unnamed-chunk-4}.
 
-```{r}
+```{r, eval = FALSE, include = FALSE}
+knitr::kable(gastos[1:10, ], format = "latex", 
+             booktabs = TRUE, 
+             caption = "10 primeras filas de los datos importados", 
+             align = 'ccc', centering = FALSE,
+             table.envir = "table", position = "H")
+```
+
+\begin{table}[H]
+
+\caption{\label{tab:unnamed-chunk-4}10 primeras filas de los datos importados}
+\begin{adjustwidth}{-\extralength}{0cm}
+             \small
+\begin{tabular}[t]{cccccc}
+\toprule
+País de residencia & Total Nacional y CCAA & Tipo de dato & Gastos y duración media de los viajes & Periodo & Total\\
+\midrule
+Total & Total & Dato base & Gasto total & 2023 & 108.789,41\\
+Total & Total & Dato base & Gasto total & 2022 & 87.138,19\\
+Total & Total & Dato base & Gasto total & 2021 & 34.903,37\\
+Total & Total & Dato base & Gasto total & 2020 & 19.786,78\\
+Total & Total & Dato base & Gasto total & 2019 & 91.911,97\\
+Total & Total & Dato base & Gasto total & 2018 & 89.750,75\\
+Total & Total & Dato base & Gasto total & 2017 & 87.003,93\\
+Total & Total & Dato base & Gasto total & 2016 & 77.415,54\\
+Total & Total & Dato base & Gasto medio por persona & 2023 & 1.277\\
+Total & Total & Dato base & Gasto medio por persona & 2022 & 1.216\\
+\bottomrule
+\end{tabular}
+	\end{adjustwidth}
+\end{table}
+
+
+Transformamos este conjunto de datos a un conjunto tidy, donde cada variable se encuentre en una columna y eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante.De esta manera, obtenemos 4 variables a partir de la columna Gastos y duración media de los viajes: el gasto total, el gasto medio por persona, el gasto medio diario por persona y la duración media de los viajes; cuyos valores son los correspondientes a la columna Total. Por otro lado, en la columna Tipo de dato contamos con dos valores: Dato base y Tasa de variación anual. Vamos a trabajar únicamente con los datos base, por lo que eliminamos las filas correspondientes a Tasa de variación anual y eliminamos la columna Tipo de dato, que ahora aporta información redundante. Renombramos las columnas de manera apropiada (sin espacios y con nombres representativos de las variables). Los nombres de las variables son los siguientes: Pais, CCAA, Periodo, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media.
+
+```{r, include = FALSE}
 tipos_datos <- unique(gastos$`Gastos y duración media de los viajes`)
 tipos_datos # Vemos cuantas variables tenemos que transformar a columnas
-datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total)
+datos <-pivot_wider(gastos,names_from=`Gastos y duración media de los viajes`, values_from=Total) 
 ```
 
 
-Eliminamos filas que no vamos a emplear en el estudio (tasa de variación) y columnas redudantes o que contienen información irrelevante,
-```{r}
+```{r, include=FALSE}
 unique(datos$`Tipo de dato`)
 
 # Nos quedamos únicamente con los datos base, quitando las tasas de variación
 datos <- subset(datos, datos$`Tipo de dato`== unique(datos$`Tipo de dato`)[1])
-# Quito la columna irrelevante
+# Quitamos la columna irrelevante
 datos <- subset(datos, select = -`Tipo de dato`)
 ```
-## Cambios de nombres de las columnas
 
-Vamos a renombrar las columnas de manera apropiada (sin espacios y con nombres representativos).
 
-```{r}
 
+```{r, include = FALSE}
 nombres_columnas <- c("Pais", "CCAA", "Periodo", "Gasto_total", "Gasto_medio_persona", "Gasto_medio_diario_persona", "Duracion_media")
 colnames(datos)<- nombres_columnas
 colnames(datos)
@@ -132,13 +174,13 @@ colnames(datos)
 
 ## Transformación de clases
 
-Todas las variables han sido importadas como tipo carácter.Vamos a transformar las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente.
+Todas las variables han sido importadas como tipo carácter. Transformamos las variables Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media a numérico, donde previamente transformamos la cadena de carácteres a una que sea interpretable como número para poder aplicar la función as.numeric() correctamente (eliminando el punto de miles y sustituyendo la coma decimal por un punto decimal). Comprobamos si al realizar la transformación se han introducido datos NA y a continuación, transformamos a factor las variables Pais y CCAA.
 
-```{r}
-# lapply(datos,class)
+```{r, include = FALSE}
+lapply(datos,class)
 ```
 
-```{r}
+```{r, include=FALSE}
 # Quitar punto de miles
 datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) gsub("\\.", "", x))
 # Sustituir coma decimal por punto decimal
@@ -148,32 +190,33 @@ datos[, 4:ncol(datos)] <- lapply(datos[, 4:ncol(datos)], function(x) as.numeric(
 # Comprobamos la clase
 # lapply(datos,class)
 ```
-Comprobamos si al realizar la transformación se han introducido datos NA.
-```{r}
+
+```{r, include = FALSE}
 any(is.na(datos))
 ```
-A continuación, transformamos a factor las variables País de residencia y Comunidades Autónomas.
-```{r}
+
+```{r, include=FALSE}
 # unique(datos$`País de residencia`)
 # Transformacion a factor de paises de residencia
 datos$Pais <- as.factor(datos$Pais)
 ```
 
-Quitamos algunas filas irrelevantes que contienen datos que consisten en la suma total de los datos de la columna de Comunidades Autónomas para el análisis exploratorio. Sin embargo, los recogeremos en una variable a parte para presentarlo en una visualización más compleja.
+Quitamos algunas filas que contienen datos que consisten en la suma total de los datos de la columna CCA (más adelante eliminaremos también los valores correspondientes a Total de la variable Pais). Sin embargo, recogeremos estos valores en datasets datos_totales y datos_total_por_residencia para hacer uso de ellos y obtener información relevante.
+Cambiamos los nombres de los niveles del factor CCAA a los siguientes: "Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA".
 
-```{r}
+```{r, include = FALSE}
 # Guardamos los datos totales por si resultan útiles en el futuro
 datos_totales <- subset(datos,datos$Pais == "Total" | datos$CCAA == "Total")
 datos_total_por_residencia <- subset(datos, datos$CCAA == "Total")
 ```
 
 
-```{r}
+```{r, include = FALSE}
 # Quitar filas de total de columna comunidades autonomas
 datos <- subset(datos,datos$CCAA != "Total")
 ```
 
-```{r}
+```{r, include=FALSE}
 # Transformacion a factor de nombres de comunidades
 #unique(datos$`Total Nacional y CCAA`)
 datos$CCAA<- as.factor(datos$CCAA)
@@ -184,12 +227,11 @@ levels(datos$CCAA) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","C
 ```
 
 
-
 ## Instance engineering
 
 Vamos a trabajar con valores de las filas para obtener un dataset más apropiado al estudio que deseamos realizar. En primer lugar, queremos deshacernos del nivel "Total" en la variable Pais y transformarla en otro llamado "Otros" en que en el resto de variables contenga la información referente al resto de paises distintos de los cuáles poseemos datos concretos.
 
-```{r}
+```{r, include=FALSE}
 # Cambiar el nombre de las filas
 paises <- levels(datos$Pais)
 paises[paises=="Total"] <- "Otros"
@@ -199,11 +241,12 @@ levels(datos$Pais) <- paises
 
 ### Instance engineering de Gasto_total
 
-Para la variable Gasto_total, las filas correspondientes a "Otros" de la variable Pais y las filas correspondientes a "Total" se relacionan de la siguiente manera con $pais\in\{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido, Otros\}$:
+Para la variable Gasto_total, las filas correspondientes a "Otros" de la variable Pais y las filas correspondientes a "Total" se relacionan de la siguiente manera con $pais\in$ {Alemania, Francia, Italia, Países Nórdicos, Reino Unido}:
 
-$$ \text{Gasto total}_{\text{Pais = total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
-Luego el gasto total de "Otros" es el gasto de "Total" menos el gasto de cada uno de los otros 5 paises disponibles por separado.
-```{r}
+$$ \text{Gasto total}_{\text{Total}} = \sum_{pais}{\text{Gasto total}_{pais}}$$
+Luego el gasto total de "Otros" es el gasto de los valores "Total" de Pais menos el gasto de cada uno de los otros 5 paises disponibles por separado.
+```{r, include=FALSE}
+
 comunidades <- levels(datos$CCAA)
 anos <- unique(datos$Periodo)
 for (i in comunidades){
@@ -219,15 +262,16 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_total"]
 
 ### Instance engineering de Gasto_medio_persona, Gasto_medio_diario_persona y Duracion_media
 
-Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el número de paises totales es 194 tenemos que para $pais \in \{Alemania, Francia,Italia, Países\ Nórdicos, Reino\ Unido\}$
+Como en estas variables se trata de una media, no podemos emplear el método usado para Gasto_total. En su lugar consideramos una media ponderada. Si consideramos que el número de paises totales es 194 tenemos que para $pais \in$ 
+{Alemania, Francia, Italia, Países Nórdicos, Reino Unido}:
 
 $$
  \overline{Media\ Total} = \frac{5}{194}*\sum_{pais}{Valor\ medio}_{pais} + \frac{194-5}{194}*Valor \ Medio_{otros}
 $$
 
-De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgandoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
+De esta manera, concemos el valor de $\overline{Media\ Total}$ y de ${Valor\ medio}_{pais}$ y podemos calcular el valor de los valores medios para las filas "Otros" de la variable Pais, otorgándoles un mayor peso de manera proporcional al número de países considerados en esta categoría.
 
-```{r}
+```{r, include=FALSE}
 # Duracion media
 for (i in comunidades){
   for (j in anos){
@@ -238,7 +282,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Duracion_medi
 
 ```
 
-```{r}
+```{r, include=FALSE}
 # Gasto_medio_persona
 for (i in comunidades){
   for (j in anos){
@@ -249,7 +293,7 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_p
 
 ```
 
-```{r}
+```{r, include=FALSE}
 # Gasto_medio_diario_persona
 for (i in comunidades){
   for (j in anos){
@@ -261,12 +305,13 @@ datos[datos$CCAA==i & datos$Periodo == j & datos$Pais == "Otros", "Gasto_medio_d
 rm(i,j,anos,comunidades, paises, aux) # Borrar variables auxiliares
 ```
 
-Una vez hemos concluido el pre-procesamiento de los datos, vamos a ver un resumen de las variables.
 
-```{r}
-summary(datos)
-```
-```{r, include=FALSE}
+# Resumen de los datos
+
+Una vez hemos concluido el pre-procesamiento de los datos, observamos el resultado en la Tabla \ref{tab:unnamed-chunk-27}.
+
+
+```{r, eval=FALSE, include = FALSE}
 knitr::kable(datos[1:10, ], format = "latex", 
              booktabs = TRUE, 
              caption = "This is a table caption. Tables should be placed in the 
@@ -301,96 +346,381 @@ knitr::kable(datos[1:10, ], format = "latex",
 	\end{adjustwidth}
 \end{table} 
 
+Vamos un resumen de los datos y de las variables disponibles. En la Tabla \ref{tab:codebook} se ha realizado un pequeño codebook con las variables del dataset.
 
-**NOTA**: Hay dos conjuntos de datos para representar: 
- datos : quitando totales para poder ver relaciones por pais, comunidad autonoma etc
- datos_totales: Aqui estan guardados todos los datos que he modificado o borrado del dataset original referentes                 a valores totales por si se necesitan en algun momento
+\begin{table}[H]
+ \caption{\label{tab:codebook} Descripción de las variables}
+             \begin{adjustwidth}{-\extralength}{0cm}
+             \small
+             \centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+Nombre variable & Unidad & Valores \\ \midrule
+Pais & - & \begin{tabular}[c]{@{}c@{}}Alemania, Italia, Países Nórdicos, Francia, \\ Reino Unido, Otros\end{tabular} \\
+CCAA & - & \begin{tabular}[c]{@{}c@{}}Andalucía, Illes Balears, Canarias, Cataluña, Comunitat Valenciana, \\ Comunidad de Madrid, Otras CCAA\end{tabular} \\
+Periodo & Año & 2016-2023 \\
+Gasto\_total & Millones de euros & Numérico \\
+Gasto\_medio\_persona & Euros & Numérico \\
+Gasto\_medio\_diario\_persona & Euros & Numérico \\
+Duración\_media & Días & Numérico \\ \bottomrule
+\end{tabular}
 
 
-# Prueba de ggplot
+\end{adjustwidth}
+\end{table}
 
-```{r fig.width=5, fig.height=3}
-# Visualización de los datos e interpretación de los posibles patrones
+Finalmente, antes de comenzar a visualizar datos y detectar patrones vemos un pequeño resumen de los datos:
+```{r}
+datos_resumen <- datos[4:7]
+names(datos_resumen) <- c("Gasto total", "Gasto medio por persona", "Gasto medio diario/persona", "Duración media")
 
-# Visualización previa para tener una idea de ciertas variables de los datos
-ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
-  geom_point() +
-  labs(title = "Evolución del gasto total de turistas por año", x  = "Años", y = "Gasto total en millones de euros")
-
-# Nos centramos en un año en concreto y visualizamos el gasto total por país en ese año
-ggplot(datos[datos$Periodo == 2023, ], aes(x = reorder(Pais, -Gasto_total), y = Gasto_total)) +
-  geom_bar(stat = "identity", aes(fill = Pais)) +
-  coord_flip() +
-  labs(title = "Gasto por país de residencia en 2023", x = "Gasto total en millones de euros", y = "País") +  
-  theme(legend.position = "none")
-
-# Para analizar únicamente una variable por país en una sola Comunidad Autónoma.
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "red") +
-  facet_grid(.~CCAA["i"],scales = "free") +
-  labs(title = "Duración media del viaje por país en Andalucía", x = "País", y = "Duración media del viaje")
+kable(summary(datos_resumen), format = "markdown")
 ```
 
+# Primeras visualizaciones
 
-```{r fig.width=5, fig.height=5}
-# Para todas las Comunidades Autónomas por separado
-ggplot(datos, aes(x = Pais, y = Duracion_media)) + 
-  geom_bar(stat = "identity", fill = "purple") +
-  facet_wrap(~ CCAA, scales = "free_y") +  
-  labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
-       x = "País", 
-       y = "Duración media del viaje") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+```{r fig.width=5.5, fig.height=3, fig.cap="Gasto total por CCAA y año.\\label{fig:GastototalporCCAAyaño}"}
+datos <- datos %>%
+  group_by(Pais, CCAA) %>%                 
+  mutate(Media_Gasto = mean(Gasto_total, na.rm = TRUE)) %>% 
+  ungroup()   
+ggplot(datos %>% filter(Pais != "Otros"), aes(x = factor(Periodo), y = Media_Gasto, fill = CCAA)) +
+  geom_col(position = "dodge",colour = "black") +
+  labs(
+    title = "Gasto total por Comunidad Autónoma y año",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+Como se puede observar, el gasto total en Canarias es mayor al resto de comunidades autónomas, seguido de Islas Baleares y Andalucía, comunidades con climas más calurosos y sobretodo con zonas de playa. Además, cuentan con una variada gastronomía y poca lluvia, constituyendo así una gran atracción para el turismo. Por otro lado, en puestos bajos está la capital, la comunidad de Madrid, que atrae menos turismo que la costa, ya sea por el clima como por las actividades a realizar. Destacar que tenemos un pico en el año 2023, tendencia que se observaba ya en el año 2022 tras la relajación de las restricciones por COVID-19 y la disminución casi total de casos.
+
+```{r fig.width=5, fig.height=4, fig.cap="Gasto total por país y CCAA .\\label{fig:GastototalporpaísyCCAA}"}
+# ggplot(datos, aes(x = CCAA, y = Gasto_total, fill = Pais)) +
+#   geom_bar(stat = "identity", position = "dodge") +
+#   labs(
+#     title = "Gasto total por país y CCAA",
+#     x = "CCAA",
+#     y = "Gasto total"
+#   ) +
+#   theme_minimal()
+
+# Sin otros para observar las tendencias entre los países principales
+# Añadimos la variable Media_gasto para comparar así el gasto total por pais en las distintas CCAA
+ggplot(datos %>% filter(Pais != "Otros"), 
+       aes(x = CCAA, y = Media_Gasto, fill = Pais)) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(width = 0.8),
+    width = 0.7,
+    colour = 'black'
+  ) +
+  labs(
+    title = "Gasto total por país en las distintas Comunidades Autónomas (CCAA)",
+    x = "CCAA",
+    y = "Gasto total"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+Por otro lado, en esta gráfica observamos como Reino Unido es el país con mayor gasto en todas las comunidades autónomas. Seguido de cerca por Alemania y Francia. Destacar que en Cataluña, el mayor gasto de los turistas es por parte de Italia.
+
+```{r fig.width=5, fig.height=5,  fig.cap="Gasto medio por persona en función de duración media, CCAA y gasto total. .\\label{fig:bubblegraph}"}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, size = Gasto_total, fill = CCAA)) +
+  geom_point(shape = 21, alpha = 0.7, color = "black", stroke = 0.8) +
+  scale_size_continuous(range = c(1, 15)) +
+  labs(
+    title = "Comparación entre el gasto medio por persona, 
+    la duración media del viaje y el gasto total en las 
+    distintas CCAAs",
+    x = "Duración media",
+    y = "Gasto medio por persona",
+    size = "Gasto total"
+  ) +
+  theme_minimal() 
+```
+Las Islas Baleares (en verde) muestran varias burbujas con mayor duración media, de 10 a 12 días, lo que indica que los turistas suelen quedarse más tiempo allí. Regiones como Andalucía y Cataluña tienen una duración media más corta (entre 6 y 9 días), pero con una alta densidad de puntos en términos de gasto medio por persona.
+
+Por otro lado, aunque las burbujas más grandes están distribuidas, algunas comunidades como las Islas Baleares, presentan altos valores en gasto medio por persona (más de 1500 euros), posiblemente por la naturaleza del turismo, puede deberse al ser una zona con mucha costa y mucha fiesta.
+Sin embargo, comunidades como Andalucía y Comunidad Valenciana tienen mayor densidad de puntos en rangos de gasto más bajos (800-1200 euros).
+
+Finalmente, las comunidades autónomas con las burbujas más grandes, como Cataluña,Canarias, Andalucía y las Islas Baleares, son líderes en gasto turístico total. Esto puede deberse a su capacidad para atraer un gran número de turistas o a una combinación de mayor gasto medio por persona y mayor duración media.
+
+Destacar que hay una gran densidad de puntos en torno a la duración media de 6 a 9 días y un gasto medio por persona de 900 a 1200 euros, lo que sugiere que este es el rango promedio más común para la mayoría de las Comunidades Autónomas.
+
+```{r fig.width=5, fig.height=4, fig.cap= "Distribución del Gasto Total por País a lo largo de los Años.\\label{fig:ridgelineplot}", message = FALSE}
+
+# 
+# ggplot(datos, aes(x = Gasto_total, 
+#                y = factor(Periodo), 
+#                fill = Pais)) +
+#   geom_density_ridges(alpha = 0.7, scale = 1.2) +
+#   scale_fill_brewer(palette = "Set3") + 
+#   labs(
+#     title = "Distribución del Gasto Total por País a lo largo de los Años",
+#     subtitle = "Ridgeline plot para una visualización elegante de densidades",
+#     x = "Gasto Total",
+#     y = "Año",
+#     fill = "País"
+#   ) +
+#   theme_minimal(base_size = 12) +
+#   theme(
+#     legend.position = "bottom",
+#     plot.title = element_text(face = "bold")
+#   )
+
+#Ahora sin otros, para observar mejor los países principales
+ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total, 
+               y = factor(Periodo), 
+               fill = Pais)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.2) +
+  scale_fill_brewer(palette = "Set3") + 
+  labs(
+    title = "Distribución del Gasto Medio Turístico en 
+    España (2016-2023)",
+    x = "Gasto Total",
+    y = "Año",
+    fill = "País"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+```
+Cada curva representa la densidad de la distribución del gasto total, con áreas más altas indicando rangos de gasto donde se concentra la mayor parte de los turistas. Se observa un aumento progresivo del gasto en los años más recientes, especialmente en 2021 y 2022, donde las curvas se desplazan hacia valores más altos. Esto es debido a un incremento en el gasto turístico promedio, posiblemente impulsado por la recuperación del sector tras la pandemia. Los turistas de los Países Nórdicos y, en menor medida, del Reino Unido, destacan con distribuciones que se extienden hacia valores de gasto más altos en comparación con otros países como Italia y Francia, que muestran concentraciones en valores más bajos
+
+
+```{r fig.width=5.5, fig.height=2.5,  fig.cap="Distribución de gasto medio por persona por CCAA. .\\label{fig:cajas}"}
+ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Distribución de gasto medio por persona
+    en las distintas Comunidades Autónomas (CCAA)",
+    x = "CCAA",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",        # Si deseas quitar la leyenda
+    axis.text.x = element_text(angle = 45, hjust = 1)  # Rotar etiquetas
+  )
 
 ```
+Observamos que destinos insulares como las Islas Baleares y Canarias lideran en términos de gasto, mientras que comunidades como Cataluña, Comunitat Valenciana y otras CCAA tienen gastos más modestos. Esto puede estar influenciado por el perfil de turistas que visitan estas regiones, la duración de la estancia y las actividades disponibles.
 
-# Probamos a analizar el efecto del COVID en el gasto de los turistas, así como los países que más reducieron su gasto debido a la pandemia.
+Tanto en la comunidad de Madrid como en el resto de CCAA, tenemos valores atípicos, estos resaltan la presencia de turistas con comportamientos de gasto excepcionales. Aunque no son representativos de la mayoría de los turistas, estos turistas de alto gasto pueden ser clave para estrategias de marketing dirigidas a captar segmentos de lujo o actividades premium.
+
+
+# Efecto del covid-19  
+
+Probamos a analizar el efecto del COVID en el gasto de los turistas, así como estudiar los países que más reducieron su gasto debido a la pandemia. 
+```{r gasto total covid,fig.width= 5, fig.height = 2.5, fig.cap="Gasto total de turistas en millones de euros por año. .\\label{fig:gastototalporaño}"}
+datos_summary <- datos %>%
+  group_by(Periodo) %>%
+  summarize(Gasto_total_anual = sum(Gasto_total, na.rm = TRUE))
+
+datos_summary <- datos_summary %>%
+  mutate(highlight = if_else(Periodo == 2020, "2020 (COVID)", "Otros años"))
+
+  
+ggplot(datos_summary, aes(x = factor(Periodo), y = Gasto_total_anual, fill = highlight)) +
+  geom_col(colour = 'black') +
+  scale_fill_manual(values = c("2020 (COVID)" = "#e63946",
+                               "Otros años"   = "#457b9d")) +
+  labs(
+    title = "Evolución del Gasto Total",
+    #subtitle = "Se observa un descenso en 2020 (COVID) y una posterior recuperación",
+    x = "Año",
+    y = "Gasto Total"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"
+  ) +
+  # Anotación adicional
+  annotate("text",
+           x = which(levels(factor(datos_summary$Periodo)) == "2020"), # posición x del año 2020
+           y = datos_summary$Gasto_total_anual[datos_summary$Periodo == 2020] + 1000, 
+           label = "Caída por COVID",
+           color = "#e63946",
+           fontface = "italic",
+           size = 3.5,
+           vjust = -0.5)
+```
 
 ```{r}
-library(tidyr)
-
 covid <- datos[datos$Periodo == 2020, ]
 no_covid <- datos[datos$Periodo != 2020, ]
 media_sin_covid <- mean(no_covid$Gasto_total[])
 media_covid <- mean(covid$Gasto_total)
-cat("La media del gasto total durante el COVID es de", media_covid,"millones de euros\n")
-cat("Mientras que sin COVID es de", media_sin_covid,"millones de euros\n")
+```
+La media del gasto total durante el COVID es de `r round(media_covid,2)` millones de euros mientras que sin COVID es de `r round(media_sin_covid,2)` millones de euros, una diferencia más que notable tal y como se observa en la gráfica \ref{fig:gastototalporaño}, con un descenso drástico en 2020 (COVID) y una posterior recuperación. En el gráfico\ref{fig:gastototalporpaisescovid} vemos que Reino Unido gastó más en COVID que el resto de países, Italia el que menos. 
 
 
+```{r gasto paises covid, fig.width=5, fig.height = 2.5, fig.cap="Gasto total de los distintos países durante el COVID. .\\label{fig:gastototalporpaisescovid}"}
+covid_sin_otros <- covid[covid$Pais != "Otros", ]
 
-
-datos %>% ggplot(aes(x = factor(Periodo), y = Gasto_total, fill = (Periodo == 2020))) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("grey", "red")) +
-  labs(x = "Año", y = "Gasto Total de Turistas", title = "Comparación del Gasto Total de Turistas por Año") +
+covid_sin_otros %>%
+  ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) +
+  geom_bar(stat = "identity",colour = 'black') +
+  labs(title = "Gasto total de los distintos países durante el COVID", x = "País", y = "Gasto Total") +
   theme_minimal() +
-  theme(legend.position = "none")
-
-covid_sin_otros <- covid[covid$Pais != "Otros", ] # Elimino los datos correspondientes a otros países ya que son una suma y no se representa correctamente la tendencia.
-covid_sin_otros %>% ggplot(aes(x = Pais, y = Gasto_total, fill = Pais)) + geom_bar(stat = "identity") + labs(title = "Gasto total de los distintos países durante el COVID") # Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
+  theme(
+    legend.position = "none",                  
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  )
+ 
 ```
 
 
-```{r fig.width= 12}
-#¿En qué comunidad autónoma se viajó más durante el COVID?
-covid_sin_otros %>% ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) + geom_bar(stat = "identity")  + labs(title = "Gasto total en las distintas comunidades autónomas durante el COVID")
+Por otro lado, podemos observar que la Comunidad Autónoma a la que más se viajo durante el año del covid 2020 fueron las islas Canarias. Esto puede tener diversas explicaciones. Por un lado, los primeros meses del año, antes de las restricciones, el turismo en las islas Canarias es mayor debido al buen tiempo incluso en los meses de invierno. Por otro lado, el impacto del Covid en las islas puedo haber sido menor y haber impuesto menos restricciones. Otro posible motivo es la gran dependencia económica del turismo de las islas y una mayor disposición a atraer y recuperar el turismo perdido lo antes posible. 
 
-# En Canarias el gasto de turistas fue mayor que en el resto de Comunidades Autónomas durante el COVID, ¿menor regulación?
+```{r gasto comunidades covid, fig.width= 5, fig.height = 2.5,  fig.cap="Gasto total en las distintas comunidades autónomas durante el COVID. .\\label{fig:gastototalporCCAAcovid}"}
+
+covid_sin_otros %>%
+  ggplot(aes(x = CCAA, y = Gasto_total, fill = CCAA)) +
+  geom_bar(stat = "identity", colour = 'black') +
+  labs(
+    title = "Gasto total en las distintas comunidades autónomas 
+    durante el COVID",
+    x = NULL,  # Eliminar la etiqueta del eje x
+    y = "Gasto Total"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(),  # Quitar nombres del eje x
+    axis.ticks.x = element_blank(), # Quitar las marcas del eje x
+    #legend.position = "none"        # Opcional: quitar la leyenda
+  )
+
+
 ```
 
-Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona
+
+
+
+
+
+
+
+
+
+# Análisis bivariante de variables cuantitativas
+
+Realizamos una visualización previa para detectar relaciones entre variables cuantitativas. En el gráfico \ref{fig:correlaciones}, se observan 3 relaciones que podemos estudiar un poco más a fondo: el gasto medio por persona frente al gasto medio diario, el gasto medio por persona frente a la duración media y el gasto medio diario frente a la duración media.
+```{r, message = FALSE, fig.cap="Gráficos de dispersión y correlaciones entre variables cuantitativas.\\label{fig:correlaciones}", fig.pos='H'}
+ggpairs(datos[4:7])+theme(axis.text = element_blank()) # Quita los números de los ejes
+# Gráficos de dispersión y correlaciones entre variables cuantitativas
+``` 
+
+##  Gasto medio por persona y duración media
+
+
+```{r, fig.cap="Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\\label{fig:gastomediovsduracionmedia}", fig.pos='H'}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Duracion_media, color = CCAA)) + geom_point() + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Gasto medio por persona y duración media\n por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.5, vjust = 1.1, size = 3, color = "black"
+  )+
+  theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+
+
+Se observa una relación aproximadamente lineal para la mayoría de países, donde se distinguen claramente la tendencia de duración de los viajes en las distintas comunidades autónomas, casi siempre mayor en la Comunitat Valenciana (salvo en Italia, probablemente por cercanía), excepto en la categoría de otros países. Debido a que esta categoría engloba al resto de países del mundo, es más díficil encontrar relaciones.
+
+## Gasto medio por persona frente al gasto medio diario por persona
+
+
+Esta parece a priori la relación más obvia entre variables.
+```{r,  fig.cap="Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\\label{fig:gastomediovsgastomediodiario}", fig.pos='H', fig.height=4}
+
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(CCAA) %>%
+  summarise(correlacion = cor(Gasto_medio_persona, Gasto_medio_diario_persona))
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Pais)) + geom_point(size = 1) + facet_wrap(~ CCAA, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y gasto\nmedio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)") + theme_minimal() +
+   geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust = 1.6, vjust = 1, size = 3, color = "black"
+  ) +
+   theme(axis.text.x = element_blank())   # Quita los números del eje X
+```
+
+En la Comunitat Valenciana es donde hay una peor correlación, esto puede estar relacionado con que es también el destino de mayor duración de los viajes, lo que puede provocar un menor gasto medio diario.
+
+
+```{r, fig.cap="Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\\label{fig:gastomediovsgastomediodiarioconduracion}", fig.pos='H'}
+
+ggplot(data = datos, aes(x=Gasto_medio_persona, y =Gasto_medio_diario_persona, color = Duracion_media)) + geom_point(size = 2)  + scale_color_gradient(low = "lightgreen", high = "darkgreen") +  # Gradiente en tonos de verde
+  labs(title = "Relación entre gasto medio por persona y gasto\nmedio diario por comunidad autónoma",
+       x = "Gasto medio por persona (euros)",
+       y = "Gasto medio diario por persona (días)",
+       color = "Duración media (días)") + theme_minimal() 
+```
+
+En el gráfico \ref{fig:gastomediovsgastomediodiarioconduracion} se puede ver que generalmente a mayor gasto medio por persona también se produce un mayor gasto medio diario. Sin embargo, observamos que aparentemente un aumento de la duración de los viajes provoca una disminución del gasto medio diario. Vamos a visualizar esto más claramente a continuación.
+
+## Gasto medio diario y duracion media 
+
+
+```{r,fig.cap="Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\\label{fig:gastomediodiariovsduracionmedia}", fig.pos='H'}
+# Cálculo de las correlaciones
+correlaciones <- datos %>%
+  group_by(Pais) %>%
+  summarise(correlacion = cor(Gasto_medio_diario_persona, Duracion_media))
+
+
+ggplot(data = datos, aes(x=Gasto_medio_diario_persona, y =Duracion_media, color = CCAA)) + geom_point(size = 1) + facet_wrap(~ Pais, labeller = label_wrap_gen(width = 15)) +
+  labs(title = "Relación entre gasto medio por persona y duración\nmedia por país de residencia",
+       x = "Gasto medio por persona (euros)",
+       y = "Duración media de los viajes (días)") + theme_minimal() +
+  geom_text(
+    data = correlaciones,
+    aes(label = paste("Cor.:", round(correlacion, 2))),
+    x = Inf, y = Inf, hjust =1, vjust = 1, size = 3, color = "black"
+  )
+```
+
+Ahora podemos observar en el Gráfico \ref{fig:gastomediodiariovsduracionmedia} de manera clara que a mayor duración de los viajes se produce un menor gasto medio por persona.
+
+
+
+
+
+<!-- # Desglose por países -->
+
+
+<!-- Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona -->
 
 ```{r}
 # Tomamos los distintos periodos que existen en nuestro conjunto de datos para diferenciar temporalmente
 periodos <- unique(datos_total_por_residencia$Periodo)
 
 #Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
-datos_total_residencia <- datos_total_por_residencia %>% 
+datos_total_residencia <- datos_total_por_residencia %>%
   select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
   filter (Periodo %in% periodos & Pais != "Total")
 
-datos_total_residencia_PN <- datos_total_residencia %>% 
+datos_total_residencia_PN <- datos_total_residencia %>%
   select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
   filter(Pais == "Países Nórdicos")
 
@@ -426,17 +756,21 @@ datos_total_residencia <- cbind(datos_total_residencia, Country_Ids)
 
 datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
 
+#gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
+```
 
 
-# Mapa base 
- geographic_map_gasto_medio <-  ggplot(datos_total_residencia_viz)  + 
-   geom_sf(aes(geometry= geometry,      
-          fill=Gasto_medio_persona), 
+
+```{r, fig.pos='H'}
+# Mapa base
+ geographic_map_gasto_medio <-  ggplot(datos_total_residencia_viz)  +
+   geom_sf(aes(geometry= geometry,
+          fill=Gasto_medio_persona),
           linewidth=0.5) + facet_wrap(~Periodo) +
    theme(
-    axis.text.x = element_blank(),  
+    axis.text.x = element_blank(),
     axis.text.y = element_blank(),
-    axis.ticks = element_blank())  
+    axis.ticks = element_blank())
 
   geographic_map_gasto_medio <- geographic_map_gasto_medio +
   xlim(c(2200000, 7150000)) +
@@ -453,7 +787,6 @@ datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by
   )
 girafe(ggobj = geographic_map_gasto_medio)
 
-# Marta: Te comenté esta parte porque me estaba dando problemas al hacer knit no se por qué
 
 # Gráfico
 # ggplot(datos_total_residencia_viz) +
@@ -491,6 +824,9 @@ geographic_map_gasto_medio_diario <-  ggplot(datos_total_residencia_viz)  +
 girafe(ggobj = geographic_map_gasto_medio_diario)
 ```
 
+
+
+
 ```{r}
 geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  + 
    geom_sf(aes(geometry= geometry,      
@@ -516,6 +852,7 @@ geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  +
   )
 girafe(ggobj = geographic_map_gasto_total)
 ```
+
 
 ```{r}
 geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  + 
@@ -543,7 +880,9 @@ geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  +
 girafe(ggobj = geographic_map_duracion_media)
 ```
 
-```{r}
+
+
+```{r, include = FALSE}
 # Datos
 año_ref <- 2021
 spain_CCAAs <- gisco_get_nuts(year = año_ref,
@@ -1023,3 +1362,82 @@ spain_CCAAs %>%
     linewidth = 0.5
   )  + facet_wrap(~Periodo) + ggtitle(label = "Duración Media Persona de viajeros del resto de Europa a España", subtitle = "desde 2016 hasta 2023")
 ```
+
+<!-- # Otros gráficos de interés -->
+
+```{r, eval = FALSE}
+# Visualización de los datos e interpretación de los posibles patrones
+
+# Visualización previa para tener una idea de ciertas variables de los datos
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = 1)) +
+  geom_point() +
+  labs(title = "Evolución del gasto total de turistas por año", x  = "Años", y = "Gasto total en millones de euros")
+```
+
+
+```{r fig.width=10, fig.height=5, eval = FALSE}
+# Para todas las Comunidades Autónomas por separado
+ggplot(datos, aes(x = Pais, y = Duracion_media, fill = Pais)) + 
+  geom_bar(stat = "identity") +
+  facet_wrap(~ CCAA, scales = "free_y") +  
+  labs(title = "Duración media del viaje por país en cada Comunidad Autónoma", 
+       x = "País", 
+       y = "Duración media del viaje") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+
+<!-- Para ver cómo cambia el gasto total a lo largo de los años y compararlo entre distintas Comunidades Autónomas: -->
+
+```{r fig.width=10, fig.height=5, eval = FALSE}
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA, group = CCAA)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  labs(
+    title = "Evolución del gasto total por CCAA",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+```
+
+<!-- Para explorar la relación entre el gasto medio por persona y la duración media del viaje, por ejemplo: -->
+
+```{r fig.width=10, fig.height=5, eval = FALSE}
+ggplot(datos, aes(x = Duracion_media, y = Gasto_medio_persona, color = CCAA)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Relación entre duración media y gasto medio por persona",
+    x = "Duración media (días)",
+    y = "Gasto medio por persona"
+  ) +
+  theme_minimal()
+```
+
+
+
+
+<!-- Para observar cómo varían los viajes por país de origen y CCAA de destino, hay varias opciones. -->
+
+<!-- Para ver el gato total por CCAA a lo largo del tiempo, separado por país: -->
+
+```{r fig.width=10, fig.height=5, eval = FALSE}
+ggplot(datos, aes(x = Periodo, y = Gasto_total, color = CCAA)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Pais) +
+  labs(
+    title = "Gasto total por CCAA a lo largo del tiempo, separado por país",
+    x = "Año",
+    y = "Gasto total"
+  ) +
+  theme_minimal()
+
+```
+
+# Conclusiones
+
+
+
+

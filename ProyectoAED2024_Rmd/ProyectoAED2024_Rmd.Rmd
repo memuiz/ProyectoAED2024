@@ -676,7 +676,7 @@ no_covid <- datos[datos$Periodo != 2020, ]
 media_sin_covid <- mean(no_covid$Gasto_total[])
 media_covid <- mean(covid$Gasto_total)
 ```
-La media del gasto total durante el COVID es de `r round(media_covid,2)` millones de euros mientras que sin COVID es de `r round(media_sin_covid,2)` millones de euros, una diferencia más que notable tal y como se observa en la gráfica \ref{fig:gastototalporaño}, con un descenso drástico en 2020 (COVID) y una posterior recuperación. En el gráfico\ref{fig:gastototalporpaisescovid} vemos que Reino Unido gastó más en COVID que el resto de países, Italia el que menos. 
+La media del gasto total durante el COVID es de `r round(media_covid,2)` millones de euros mientras que sin COVID es de `r round(media_sin_covid,2)` millones de euros, una diferencia más que notable tal y como se observa en la gráfica \ref{fig:gastototalporaño}, con un descenso drástico en 2020 (COVID) y una posterior recuperación. 
 
 
 ```{r gasto paises covid, fig.width=5, fig.height = 2.5, fig.cap="Gasto total de los distintos países durante el COVID. .\\label{fig:gastototalporpaisescovid}"}
@@ -697,10 +697,8 @@ covid_sin_otros %>%
   )
  
 ```
-
-
-Por otro lado, podemos observar que la Comunidad Autónoma a la que más se viajo durante el año del covid 2020 fueron las islas Canarias. Esto puede tener diversas explicaciones. Por un lado, los primeros meses del año, antes de las restricciones, el turismo en las islas Canarias es mayor debido al buen tiempo incluso en los meses de invierno. Por otro lado, el impacto del Covid en las islas puedo haber sido menor y haber impuesto menos restricciones. Otro posible motivo es la gran dependencia económica del turismo de las islas y una mayor disposición a atraer y recuperar el turismo perdido lo antes posible. 
-
+ En el gráfico\ref{fig:gastototalporpaisescovid} vemos que Reino Unido gastó más en COVID que el resto de países, Italia el que menos.
+ 
 ```{r gasto comunidades covid, fig.width= 5, fig.height = 2.5,  fig.cap="Gasto total en las distintas comunidades autónomas durante el COVID. .\\label{fig:gastototalporCCAAcovid}"}
 
 covid_sin_otros %>%
@@ -721,11 +719,7 @@ covid_sin_otros %>%
 
 
 ```
-
-
-
-
-
+Por otro lado, podemos observar que la Comunidad Autónoma a la que más se viajo durante el año del covid 2020 fueron las islas Canarias. Esto puede tener diversas explicaciones. Por un lado, los primeros meses del año, antes de las restricciones, el turismo en las islas Canarias es mayor debido al buen tiempo incluso en los meses de invierno. Por otro lado, el impacto del Covid en las islas puedo haber sido menor y haber impuesto menos restricciones. Otro posible motivo es la gran dependencia económica del turismo de las islas y una mayor disposición a atraer y recuperar el turismo perdido lo antes posible.
 
 
 

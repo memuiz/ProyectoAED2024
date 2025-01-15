@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  15 JAN 2025 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  15 JAN 2025 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1326,15 +1326,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [9 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf, id=220, 361.35pt x 180.675pt>
+<ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf, id=219, 361.35pt x 180.675pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf  used on input line 598.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf  used on input line 596.
 (pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
 <ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf, id=221, 361.35pt x 180.675pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf  used on input line 612.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf  used on input line 603.
 (pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
 
 
@@ -1349,12 +1349,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf, id=241, 361.35pt x 252.945pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 627.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 628.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 <ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf, id=242, 361.35pt x 252.945pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf  used on input line 635.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf  used on input line 636.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
 
@@ -1369,7 +1369,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf, id=261, 361.35pt x 289.08pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf  used on input line 656.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf  used on input line 657.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 
 
@@ -1384,7 +1384,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf, id=273, 361.35pt x 252.945pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf  used on input line 668.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf  used on input line 669.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
 
@@ -1399,7 +1399,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf, id=294, 361.35pt x 252.945pt>
 File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf  used on input line 683.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf  used on input line 684.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
 
@@ -1440,7 +1440,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  123i,16n,135p,1016b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.375pk><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProyectoAED2024_Rmd.pdf (15 pages, 755880 bytes).
+Output written on ProyectoAED2024_Rmd.pdf (15 pages, 755386 bytes).
 PDF statistics:
  370 PDF objects out of 1000 (max. 8388607)
  286 compressed objects within 3 object streams

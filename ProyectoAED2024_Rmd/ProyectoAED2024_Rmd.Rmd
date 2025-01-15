@@ -84,7 +84,7 @@ Antes de comenzar, eliminamos todas las variables guardadas y cargamos todas las
 rm(list=ls())  # Borrado de todas las variables
 ```
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning=FALSE}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(readr, dplyr, tidyr,ggplot2,sf, giscoR,ggiraph,GGally,ggridges)
 # library(readr)  # Librería para importación de datos
@@ -495,6 +495,78 @@ ggplot(datos %>% filter(Pais != "Otros"), aes(x = Gasto_total,
 Cada curva representa la densidad de la distribución del gasto total, con áreas más altas indicando rangos de gasto donde se concentra la mayor parte de los turistas. Se observa un aumento progresivo del gasto en los años más recientes, especialmente en 2021 y 2022, donde las curvas se desplazan hacia valores más altos. Esto es debido a un incremento en el gasto turístico promedio, posiblemente impulsado por la recuperación del sector tras la pandemia y el aumento generalizado de los precios debido a la inflación. Los turistas de los Países Nórdicos y, en menor medida, del Reino Unido, destacan con distribuciones que se extienden hacia valores de gasto más altos en comparación con otros países como Italia y Francia, que muestran concentraciones en valores más bajos probablemente debido al mayor poder adquisitivo de estos países.
 
 
+Otra forma de visualizar estos datos puede ser mostrando los países en una disposición geográfica dentro de un mapa, donde también se puede comparar la reducción del gasto Total a causa de la pandemia entre 2020 y 2021
+
+```{r, warning=FALSE}
+# Tomamos los distintos periodos que existen en nuestro conjunto de datos para diferenciar temporalmente
+periodos <- unique(datos_total_por_residencia$Periodo)
+
+#Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
+datos_total_residencia <- datos_total_por_residencia %>%
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
+  filter (Periodo %in% periodos & Pais != "Total")
+
+datos_total_residencia_PN <- datos_total_residencia %>%
+  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
+  filter(Pais == "Países Nórdicos")
+
+# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
+
+datos_total_residencia <- rbind(datos_total_residencia, datos_total_residencia_PN,
+                                 datos_total_residencia_PN, datos_total_residencia_PN, datos_total_residencia_PN)
+
+# El ano de referencia de los mapas determina el año en que se recogió la información de las coordenadas y la división de los países (como no hay ninguna división o cambio de coordenadas importante para los países y los períodos importantes no es muy relevante)
+año_ref <- 2020
+
+# Datos
+countries <- gisco_get_countries(year = año_ref,
+                        resolution = 20) %>%
+  select(CNTR_ID, NAME_ENGL, geometry) %>%
+           st_transform(3035)
+
+# En los datos que podemos recoger de la librería que nos determina las coordenadas de los países necesitamos filtrar por los que vamos a estudiar en base a nuestro conjunto de datos.
+paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
+countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
+
+# Incluir columna de identificación de los países para unir con las coordenadas de los mapas
+CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
+Country_Ids <- c()
+for(pais in CNTR_ID)
+{
+  Country_aux <- rep(pais, times = length(periodos))
+  Country_Ids <- c(Country_Ids, Country_aux)
+}
+
+datos_total_residencia <- cbind(datos_total_residencia, Country_Ids)
+
+
+datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
+
+#gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
+```
+
+```{r , fig.width=7, fig.height=4,  fig.cap="Distribución de gasto Total por país a lo largo de los años. .\\label{fig:geografGastoTotal}"}
+geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  + 
+   geom_sf(aes(geometry= geometry,      
+          fill=Gasto_total), 
+          linewidth=0.5) + coord_sf(expand = FALSE) + facet_wrap(~Periodo) +
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  
+
+  geographic_map_gasto_total <- geographic_map_gasto_total +
+  xlim(c(2200000, 7150000)) +
+  ylim(c(1380000, 5500000)) +
+    labs(
+    title = "Distribución de gasto Total por países
+     extranjeros en España (2016-2023)"
+  )
+  
+  geographic_map_gasto_total
+```
+
+
 ```{r fig.width=5.5, fig.height=3,  fig.cap="Distribución de gasto medio por persona por CCAA. .\\label{fig:cajas}"}
 ggplot(datos, aes(x = CCAA, y = Gasto_medio_persona, fill = CCAA)) +
   geom_boxplot(alpha = 0.7) +
@@ -515,6 +587,49 @@ Observamos que destinos insulares como las Islas Baleares y Canarias presentan u
 
 Tanto en la comunidad de Madrid como en el resto de CCAA, tenemos valores atípicos, estos resaltan la presencia de turistas con comportamientos de gasto excepcionales. Aunque no son representativos de la mayoría de los turistas, estos turistas de alto gasto pueden ser clave para estrategias de marketing dirigidas a captar segmentos de lujo o actividades premium.
 
+```{r, warning=FALSE, fig.width=7, fig.height=4, fig.cap="Distribución de gasto medio por persona por CCAA en mapa geográfico por años. .\\label{fig:GeografGastoMedio}"}
+datos_totales_por_CCAA <- subset(datos_totales,datos_totales$Pais == "Total" & datos_totales$CCAA != "Total")
+datos_totales_por_CCAA$CCAA <- as.factor(datos_totales_por_CCAA$CCAA) 
+datos_totales_por_CCAA$CCAA <- droplevels(datos_totales_por_CCAA$CCAA)
+# Cambiamos de nombre los niveles del factor
+
+año_ref <- 2021
+spain_CCAAs <- gisco_get_nuts(year = año_ref,
+                              country = "Spain",
+                        resolution = 20) 
+
+
+levels(datos_totales_por_CCAA$CCAA) <- c("Andalucía", "Illes Balears","Canarias", "Cataluña","Comunitat Valenciana", "Comunidad de Madrid", "Otras CCAA")
+spain_Comunities_Total <- spain_CCAAs %>% filter(LEVL_CODE == 2 & NUTS_NAME %in% unique(datos_totales_por_CCAA$CCAA))
+spain_Comunities_Total <- spain_Comunities_Total %>% inner_join(datos_totales_por_CCAA, by=join_by(NUTS_NAME == CCAA))
+
+spain_Other_Comunities_Total <- spain_CCAAs %>% filter(LEVL_CODE == 2 & !NUTS_NAME %in% unique(datos_totales_por_CCAA$CCAA))
+spain_Other_Comunities_Total <- cbind(spain_Other_Comunities_Total, CCAA = c("Otras CCAA"))
+spain_Other_Comunities_Total <- spain_Other_Comunities_Total %>% inner_join(datos_totales_por_CCAA, by=join_by(CCAA == CCAA))
+
+spain_Comunities_Total %>% 
+  ggplot(aes(geometry = geometry)) +
+  geom_sf(
+    data = spain_Comunities_Total,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = spain_Other_Comunities_Total,
+    aes(fill = Gasto_medio_persona),
+    color = "black",
+    linewidth = 0.5
+  )+ coord_sf(expand = FALSE)  + facet_wrap(~Periodo) + ggtitle(label = "Gasto Medio por persona en las distintas comunidades", subtitle = "desde 2016 hasta 2023") + 
+   theme(
+    axis.text.x = element_blank(),  
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()) 
+```
+
+Comparando las distribuciones anteriores respecto del gasto medio por persona podemos observar como se comparten las afirmaciones para un mapa geográfico agrupado por los distintos años disponibles. Canarias y Baleares suelen representar el mismo tono de color (lo que significa que los valores para cada año son similares) mientras que en el resto de comunidades muestran una variación mayor (la distribución de valores es más variable). 
+
+A partir de esta variable se puede observar como el periodo de covid no afecta prácticamente (Las personas se siguen gastando lo mismo de media aunque no viajen tantas), sin embargo, durante los periodos de 2022 y 2023 se puede observar un incremento en el gasto lo cual es consecuencia del aumento de los precios en España.
 
 # Efecto del covid-19  
 
@@ -718,57 +833,9 @@ Ahora podemos observar en el Gráfico \ref{fig:gastomediodiariovsduracionmedia} 
 
 <!-- Filtraremos los datos totales por el Periodo y recogeremos solo la variable que nos sirve para representar la magnitud de valores en el mapa de visualización, en este caso el gasto medio por persona -->
 
-```{r}
-# Tomamos los distintos periodos que existen en nuestro conjunto de datos para diferenciar temporalmente
-periodos <- unique(datos_total_por_residencia$Periodo)
-
-#Separamos los gastos por países Nórdicos y el resto ya que se querrá hacer una subdivisión más para estos
-datos_total_residencia <- datos_total_por_residencia %>%
-  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
-  filter (Periodo %in% periodos & Pais != "Total")
-
-datos_total_residencia_PN <- datos_total_residencia %>%
-  select (Pais, Gasto_total, Gasto_medio_persona, Gasto_medio_diario_persona, Duracion_media, Periodo) %>%
-  filter(Pais == "Países Nórdicos")
-
-# Introducimos 4 filas iguales sobre los países nórdicos para separar con el join estos y poder representarlos en el mapa
-
-datos_total_residencia <- rbind(datos_total_residencia, datos_total_residencia_PN,
-                                 datos_total_residencia_PN, datos_total_residencia_PN, datos_total_residencia_PN)
-
-# El ano de referencia de los mapas determina el año en que se recogió la información de las coordenadas y la división de los países (como no hay ninguna división o cambio de coordenadas importante para los países y los períodos importantes no es muy relevante)
-año_ref <- 2020
-
-# Datos
-countries <- gisco_get_countries(year = año_ref,
-                        resolution = 20) %>%
-  select(CNTR_ID, NAME_ENGL, geometry) %>%
-           st_transform(3035)
-
-# En los datos que podemos recoger de la librería que nos determina las coordenadas de los países necesitamos filtrar por los que vamos a estudiar en base a nuestro conjunto de datos.
-paises_english <- c('United Kingdom', 'Denmark', 'Germany', 'France', 'Italy', 'Sweden', 'Norway', 'Iceland', 'Finland')
-countries_filtered <- countries %>% filter(NAME_ENGL %in% paises_english)
-
-# Incluir columna de identificación de los países para unir con las coordenadas de los mapas
-CNTR_ID <- c('UK','DK', 'DE', 'FR', 'IT', 'SE', 'NO','IS', 'FI')
-Country_Ids <- c()
-for(pais in CNTR_ID)
-{
-  Country_aux <- rep(pais, times = length(periodos))
-  Country_Ids <- c(Country_Ids, Country_aux)
-}
-
-datos_total_residencia <- cbind(datos_total_residencia, Country_Ids)
 
 
-datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by=join_by(Country_Ids == CNTR_ID))
-
-#gastos_medio_viz <- gastos_medio_residencia %>% left_join(countries, by=join_by(CNTR_ID == CNTR_ID))
-```
-
-
-
-```{r, fig.pos='H'}
+```{r, fig.pos='H', include = FALSE}
 # Mapa base
  geographic_map_gasto_medio <-  ggplot(datos_total_residencia_viz)  +
    geom_sf(aes(geometry= geometry,
@@ -781,19 +848,9 @@ datos_total_residencia_viz <- datos_total_residencia %>% left_join(countries, by
 
   geographic_map_gasto_medio <- geographic_map_gasto_medio +
   xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000)) +
-  geom_sf_interactive(
-    fill = NA,
-    aes(
-      data_id = Country_Ids,
-      geometry = geometry,
-      tooltip = Gasto_medio_persona
-    ),
-    color = "black",
-    linewidth = 0.1
-  )
-girafe(ggobj = geographic_map_gasto_medio)
-
+  ylim(c(1380000, 5500000)) 
+  
+  geographic_map_gasto_medio
 
 # Gráfico
 # ggplot(datos_total_residencia_viz) +
@@ -805,7 +862,7 @@ girafe(ggobj = geographic_map_gasto_medio)
 
 ```
 
-```{r}
+```{r, include = FALSE}
 geographic_map_gasto_medio_diario <-  ggplot(datos_total_residencia_viz)  + 
    geom_sf(aes(geometry= geometry,      
           fill=Gasto_medio_diario_persona), 
@@ -817,51 +874,17 @@ geographic_map_gasto_medio_diario <-  ggplot(datos_total_residencia_viz)  +
 
   geographic_map_gasto_medio_diario <- geographic_map_gasto_medio_diario +
   xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000)) +
-  geom_sf_interactive(
-    fill = NA,
-    aes(
-      data_id = Country_Ids,
-      geometry = geometry,
-      tooltip = Gasto_medio_diario_persona
-    ),
-    color = "black",
-    linewidth = 0.1
-  )
-girafe(ggobj = geographic_map_gasto_medio_diario)
+  ylim(c(1380000, 5500000))
+  
+  geographic_map_gasto_medio_diario
+
 ```
 
 
 
 
-```{r}
-geographic_map_gasto_total <-  ggplot(datos_total_residencia_viz)  + 
-   geom_sf(aes(geometry= geometry,      
-          fill=Gasto_total), 
-          linewidth=0.5) + facet_wrap(~Periodo) +
-   theme(
-    axis.text.x = element_blank(),  
-    axis.text.y = element_blank(),
-    axis.ticks = element_blank())  
 
-  geographic_map_gasto_total <- geographic_map_gasto_total +
-  xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000)) +
-  geom_sf_interactive(
-    fill = NA,
-    aes(
-      data_id = Country_Ids,
-      geometry = geometry,
-      tooltip = Gasto_total
-    ),
-    color = "black",
-    linewidth = 0.1
-  )
-girafe(ggobj = geographic_map_gasto_total)
-```
-
-
-```{r}
+```{r, include = FALSE}
 geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  + 
    geom_sf(aes(geometry= geometry,      
           fill=Duracion_media), 
@@ -873,18 +896,9 @@ geographic_map_duracion_media <-  ggplot(datos_total_residencia_viz)  +
 
   geographic_map_duracion_media <- geographic_map_duracion_media +
   xlim(c(2200000, 7150000)) +
-  ylim(c(1380000, 5500000)) +
-  geom_sf_interactive(
-    fill = NA,
-    aes(
-      data_id = Country_Ids,
-      geometry = geometry,
-      tooltip = Duracion_media
-    ),
-    color = "black",
-    linewidth = 0.1
-  )
-girafe(ggobj = geographic_map_duracion_media)
+  ylim(c(1380000, 5500000)) 
+  
+  geographic_map_duracion_media
 ```
 
 

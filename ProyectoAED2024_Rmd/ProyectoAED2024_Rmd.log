@@ -1,1027 +1,737 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.23)  8 JAN 2025 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  15 JAN 2025 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./ProyectoAED2024_Rmd.tex
-(ProyectoAED2024_Rmd.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-03-30> (Definitions/mdpi.cls
+**ProyectoAED2024_Rmd.tex
+(./ProyectoAED2024_Rmd.tex
+LaTeX2e <2024-11-01> patch level 1
+L3 programming layer <2024-12-25>
+(./Definitions/mdpi.cls
 Document Class: Definitions/mdpi 25/03/2023 MDPI paper class
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cl
-s
-Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
-File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
-\abovecaptionskip=\skip48
-\belowcaptionskip=\skip49
-\bibindent=\dimen140
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.st
-y
+\c@part=\count196
+\c@section=\count197
+\c@subsection=\count198
+\c@subsubsection=\count199
+\c@paragraph=\count266
+\c@subparagraph=\count267
+\c@figure=\count268
+\c@table=\count269
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen141
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.s
-ty
-Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
-) (C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.st
-y
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count193
-\calc@Bcount=\count194
-\calc@Adimen=\dimen141
-\calc@Bdimen=\dimen142
-\calc@Askip=\skip50
-\calc@Bskip=\skip51
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count270
+\calc@Bcount=\count271
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count195
-\calc@Cskip=\skip52
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tools\indentfir
-st.sty
-Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyh
-dr.sty
-Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
-
-\f@nch@headwidth=\skip53
-\f@nch@O@elh=\skip54
-\f@nch@O@erh=\skip55
-\f@nch@O@olh=\skip56
-\f@nch@O@orh=\skip57
-\f@nch@O@elf=\skip58
-\f@nch@O@erf=\skip59
-\f@nch@O@olf=\skip60
-\f@nch@O@orf=\skip61
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphi
-cx.sty
+\calc@Ccount=\count272
+\calc@Cskip=\skip53
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/01/07 v5.1.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip54
+\f@nch@offset@elh=\skip55
+\f@nch@offset@erh=\skip56
+\f@nch@offset@olh=\skip57
+\f@nch@offset@orh=\skip58
+\f@nch@offset@elf=\skip59
+\f@nch@offset@erf=\skip60
+\f@nch@offset@olf=\skip61
+\f@nch@offset@orf=\skip62
+\f@nch@height=\skip63
+\f@nch@footalignment=\skip64
+\f@nch@widthL=\skip65
+\f@nch@widthC=\skip66
+\f@nch@widthR=\skip67
+\@temptokenb=\toks19
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval
-.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks18
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphi
-cs.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.s
-ty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\gr
-aphics.cfg
+\KV@toks@=\toks20
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 107.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pd
-ftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+Package graphics Info: Driver file: pdftex.def on input line 106.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen143
-\Gin@req@width=\dimen144
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\ep
-stopdf.sty
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
 Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\inf
-warerr.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.s
-ty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/grfext/grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\
-kvdefinekeys.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvopt
-ions.sty
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcm
-ds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvset
-keys.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pd
-ftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.s
-ty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\ep
-stopdf-base.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstop
-df-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-)))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpa
-ge.sty
-Package: lastpage 2023/04/12 v2.0b lastpage: 2.09 or 2e? (HMM)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpa
-ge2e.sty
-Package: lastpage2e 2023/04/12 v2.0b Decide which 2e lastpage version to use (H
-MM)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpa
-gemodern.sty
-Package: lastpagemodern 2023-04-12 v2.0b Refers to last page's name (HMM; JPG)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2024/11/24 v2.1d lastpage: 2.09 or 2e? (HMM)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+Package: lastpage2e 2024/11/24 v2.1d Decide which 2e lastpage version to use (HMM)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+Package: lastpagemodern 2024-11-24 v2.1d Refers to last page's name (HMM; JPG)
+\c@lastpagecount=\count273
 ) 
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
-Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count196
-\float@exts=\toks19
-\float@box=\box51
-\@float@everytoks=\toks20
-\@floatcapt=\box52
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath
-.sty
-Package: amsmath 2022/04/08 v2.17n AMS math features
-\@mathmargin=\skip62
+\c@float@type=\count274
+\float@exts=\toks21
+\float@box=\box52
+\@float@everytoks=\toks22
+\@floatcapt=\box53
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip68
 For additional information on amsmath, use the `?' option.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext
-.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.
-sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks21
-\ex@=\dimen145
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.
-sty
+\@emptytoks=\toks23
+\ex@=\dimen146
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen146
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.
-sty
+\pmbraise@=\dimen147
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count197
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count198
-\leftroot@=\count199
-LaTeX Info: Redefining \overline on input line 399.
-LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count266
-\DOTSCASE@=\count267
-LaTeX Info: Redefining \ldots on input line 496.
-LaTeX Info: Redefining \dots on input line 499.
-LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box53
-\strutbox@=\box54
-LaTeX Info: Redefining \big on input line 722.
-LaTeX Info: Redefining \Big on input line 723.
-LaTeX Info: Redefining \bigg on input line 724.
-LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen147
-LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count268
-LaTeX Info: Redefining \bmod on input line 905.
-LaTeX Info: Redefining \pmod on input line 910.
-LaTeX Info: Redefining \smash on input line 940.
-LaTeX Info: Redefining \relbar on input line 970.
-LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count269
-\dotsspace@=\muskip16
-\c@parentequation=\count270
-\dspbrk@lvl=\count271
-\tag@help=\toks22
-\row@=\count272
-\column@=\count273
-\maxfields@=\count274
-\andhelp@=\toks23
-\eqnshift@=\dimen148
-\alignsep@=\dimen149
-\tagshift@=\dimen150
-\tagwidth@=\dimen151
-\totwidth@=\dimen152
-\lineht@=\dimen153
-\@envbody=\toks24
-\multlinegap=\skip63
-\multlinetaggap=\skip64
-\mathdisplay@stack=\toks25
+\inf@bad=\count275
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count276
+\leftroot@=\count277
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count278
+\DOTSCASE@=\count279
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box54
+\strutbox@=\box55
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen148
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count280
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count281
+\dotsspace@=\muskip17
+\c@parentequation=\count282
+\dspbrk@lvl=\count283
+\tag@help=\toks24
+\row@=\count284
+\column@=\count285
+\maxfields@=\count286
+\andhelp@=\toks25
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
+\@envbody=\toks26
+\multlinegap=\skip69
+\multlinetaggap=\skip70
+\mathdisplay@stack=\toks27
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssym
-b.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfon
-ts.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/lineno\lineno.s
-ty
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2023/05/20 line numbers on paragraphs v5.3
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolb
-ox.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count275
+\etb@tempcnta=\count287
 )
-\linenopenalty=\count276
-\output=\toks26
-\linenoprevgraf=\count277
-\linenumbersep=\dimen154
-\linenumberwidth=\dimen155
-\c@linenumber=\count278
-\c@pagewiselinenumber=\count279
-\c@LN@truepage=\count280
-\c@internallinenumber=\count281
-\c@internallinenumbers=\count282
-\quotelinenumbersep=\dimen156
-\bframerule=\dimen157
-\bframesep=\dimen158
-\bframebox=\box55
-\linenoamsmath@ams@eqpen=\count283
+\linenopenalty=\count288
+\output=\toks28
+\linenoprevgraf=\count289
+\linenumbersep=\dimen155
+\linenumberwidth=\dimen156
+\c@linenumber=\count290
+\c@pagewiselinenumber=\count291
+\c@LN@truepage=\count292
+\c@internallinenumber=\count293
+\c@internallinenumbers=\count294
+\quotelinenumbersep=\dimen157
+\bframerule=\dimen158
+\bframesep=\dimen159
+\bframebox=\box56
+\linenoamsmath@ams@eqpen=\count295
 LaTeX Info: Redefining \\ on input line 3180.
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspa
-ce.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumit
-em.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip65
-\enit@outerparindent=\dimen159
-\enit@toks=\toks27
-\enit@inbox=\box56
-\enit@count@id=\count284
-\enitdp@description=\count285
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\mathpazo
-.sty
+\labelindent=\skip71
+\enit@outerparindent=\dimen160
+\enit@toks=\toks29
+\enit@inbox=\box57
+\enit@count@id=\count296
+\enitdp@description=\count297
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/mathpazo.sty
 Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
 \symupright=\mathgroup6
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\bookta
-bs.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen160
-\lightrulewidth=\dimen161
-\cmidrulewidth=\dimen162
-\belowrulesep=\dimen163
-\belowbottomsep=\dimen164
-\aboverulesep=\dimen165
-\abovetopsep=\dimen166
-\cmidrulesep=\dimen167
-\cmidrulekern=\dimen168
-\defaultaddspace=\dimen169
-\@cmidla=\count286
-\@cmidlb=\count287
-\@aboverulesep=\dimen170
-\@belowrulesep=\dimen171
-\@thisruleclass=\count288
-\@lastruleclass=\count289
-\@thisrulewidth=\dimen172
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titles
-ec.sty
-Package: titlesec 2021/07/05 v2.14 Sectioning titles
-\ttl@box=\box57
-\beforetitleunit=\skip66
-\aftertitleunit=\skip67
-\ttl@plus=\dimen173
-\ttl@minus=\dimen174
-\ttl@toksa=\toks28
-\titlewidth=\dimen175
-\titlewidthlast=\dimen176
-\titlewidthfirst=\dimen177
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tabto-ltx\tabto
-.sty
+\heavyrulewidth=\dimen161
+\lightrulewidth=\dimen162
+\cmidrulewidth=\dimen163
+\belowrulesep=\dimen164
+\belowbottomsep=\dimen165
+\aboverulesep=\dimen166
+\abovetopsep=\dimen167
+\cmidrulesep=\dimen168
+\cmidrulekern=\dimen169
+\defaultaddspace=\dimen170
+\@cmidla=\count298
+\@cmidlb=\count299
+\@aboverulesep=\dimen171
+\@belowrulesep=\dimen172
+\@thisruleclass=\count300
+\@lastruleclass=\count301
+\@thisrulewidth=\dimen173
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2025/01/04 v2.17 Sectioning titles
+\ttl@box=\box58
+\beforetitleunit=\skip72
+\aftertitleunit=\skip73
+\ttl@plus=\dimen174
+\ttl@minus=\dimen175
+\ttl@toksa=\toks30
+\titlewidth=\dimen176
+\titlewidthlast=\dimen177
+\titlewidthfirst=\dimen178
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tabto-ltx/tabto.sty
 Package: tabto 2018/12/28  v 1.4  Another tabbing mechanism
-\CurrentLineWidth=\dimen178
-\TabPrevPos=\dimen179
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.s
-ty
-Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\co
-lor.cfg
+\CurrentLineWidth=\dimen179
+\TabPrevPos=\dimen180
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 227.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathco
-lor.ltx)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
-Package xcolor Info: Model `RGB' extended on input line 1369.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen181
+\ar@mcellbox=\box59
+\extrarowheight=\dimen182
+\NC@list=\toks31
+\extratabsurround=\skip74
+\backup@length=\skip75
+\ar@cellbox=\box60
 )
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colort
-bl.sty
-Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
-Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen180
-\ar@mcellbox=\box58
-\extrarowheight=\dimen181
-\NC@list=\toks29
-\extratabsurround=\skip68
-\backup@length=\skip69
-\ar@cellbox=\box59
-)
-\everycr=\toks30
-\minrowclearance=\skip70
-\rownum=\count290
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul.sty
+\everycr=\toks32
+\minrowclearance=\skip76
+\rownum=\count302
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/soul/soul.sty
 Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul-ori
-.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/soul/soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks31
-\SOUL@lasttoken=\toks32
-\SOUL@syllable=\toks33
-\SOUL@cmds=\toks34
-\SOUL@buffer=\toks35
-\SOUL@token=\toks36
-\SOUL@syllgoal=\dimen182
-\SOUL@syllwidth=\dimen183
-\SOUL@charkern=\dimen184
-\SOUL@hyphkern=\dimen185
-\SOUL@dimen=\dimen186
-\SOUL@dimeni=\dimen187
-\SOUL@minus=\count291
-\SOUL@comma=\count292
-\SOUL@apo=\count293
-\SOUL@grave=\count294
-\SOUL@spaceskip=\skip71
-\SOUL@ttwidth=\dimen188
-\SOUL@uldp=\dimen189
-\SOUL@ulht=\dimen190
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etex
-cmds.sty
+\SOUL@word=\toks33
+\SOUL@lasttoken=\toks34
+\SOUL@syllable=\toks35
+\SOUL@cmds=\toks36
+\SOUL@buffer=\toks37
+\SOUL@token=\toks38
+\SOUL@syllgoal=\dimen183
+\SOUL@syllwidth=\dimen184
+\SOUL@charkern=\dimen185
+\SOUL@hyphkern=\dimen186
+\SOUL@dimen=\dimen187
+\SOUL@dimeni=\dimen188
+\SOUL@minus=\count303
+\SOUL@comma=\count304
+\SOUL@apo=\count305
+\SOUL@grave=\count306
+\SOUL@spaceskip=\skip77
+\SOUL@ttwidth=\dimen189
+\SOUL@uldp=\dimen190
+\SOUL@ulht=\dimen191
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multir
-ow.sty
-Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip72
-\multirow@cntb=\count295
-\multirow@dima=\skip73
-\bigstrutjot=\dimen191
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\micro
-type.sty
-Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
-\MT@toks=\toks37
-\MT@tempbox=\box60
-\MT@count=\count296
-LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
-LaTeX Info: Redefining \leftprotrusion on input line 1060.
-\MT@prot@toks=\toks38
-LaTeX Info: Redefining \rightprotrusion on input line 1078.
-LaTeX Info: Redefining \textls on input line 1368.
-\MT@outer@kern=\dimen192
-LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
-\MT@listname@count=\count297
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\micro
-type-pdftex.def
-File: microtype-pdftex.def 2023/03/13 v3.1a Definitions specific to pdftex (RS)
-
-LaTeX Info: Redefining \lsstyle on input line 902.
-LaTeX Info: Redefining \lslig on input line 902.
-\MT@outer@space=\skip74
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip78
+\multirow@cntb=\count307
+\multirow@dima=\skip79
+\bigstrutjot=\dimen192
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2024/12/12 v3.2 Micro-typographical refinements (RS)
+\MT@toks=\toks39
+\MT@tempbox=\box61
+\MT@count=\count308
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1075.
+LaTeX Info: Redefining \leftprotrusion on input line 1076.
+\MT@prot@toks=\toks40
+LaTeX Info: Redefining \rightprotrusion on input line 1095.
+LaTeX Info: Redefining \textls on input line 1437.
+\MT@outer@kern=\dimen193
+LaTeX Info: Redefining \microtypecontext on input line 2041.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2058.
+\MT@listname@count=\count309
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2024/12/12 v3.2 Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip80
 )
 Package microtype Info: Loading configuration file microtype.cfg.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\micro
-type.cfg
-File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlay
-er\tikz.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\
-pgf.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\p
-gfrcs.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfutil-common.tex
-\pgfutil@everybye=\toks39
-\pgfutil@tempdima=\dimen193
-\pgfutil@tempdimb=\dimen194
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2024/12/12 v3.2 microtype main configuration file (RS)
 )
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfutil-latex.def
-\pgfutil@abb=\box61
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfrcs.code.tex
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revis
-ion.tex)
+LaTeX Info: Redefining \microtypesetup on input line 3053.
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks41
+\pgfutil@tempdima=\dimen194
+\pgfutil@tempdimb=\dimen195
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box62
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\
-pgfcore.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer
-\pgfsys.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgfsys.code.tex
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks40
-\pgfkeys@temptoks=\toks41
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks42
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks42
+\pgfkeys@temptoks=\toks43
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks44
 ))
-\pgf@x=\dimen195
-\pgf@y=\dimen196
-\pgf@xa=\dimen197
-\pgf@ya=\dimen198
-\pgf@xb=\dimen199
-\pgf@yb=\dimen256
-\pgf@xc=\dimen257
-\pgf@yc=\dimen258
-\pgf@xd=\dimen259
-\pgf@yd=\dimen260
+\pgf@x=\dimen196
+\pgf@y=\dimen197
+\pgf@xa=\dimen198
+\pgf@ya=\dimen199
+\pgf@xb=\dimen256
+\pgf@yb=\dimen257
+\pgf@xc=\dimen258
+\pgf@yc=\dimen259
+\pgf@xd=\dimen260
+\pgf@yd=\dimen261
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count298
-\c@pgf@countb=\count299
-\c@pgf@countc=\count300
-\c@pgf@countd=\count301
-\t@pgf@toka=\toks43
-\t@pgf@tokb=\toks44
-\t@pgf@tokc=\toks45
-\pgf@sys@id@count=\count302
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgf.cfg
+\c@pgf@counta=\count310
+\c@pgf@countb=\count311
+\c@pgf@countc=\count312
+\c@pgf@countd=\count313
+\t@pgf@toka=\toks45
+\t@pgf@tokb=\toks46
+\t@pgf@tokc=\toks47
+\pgf@sys@id@count=\count314
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
 Driver file for pgf: pgfsys-pdftex.def
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgfsys-pdftex.def
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgfsys-common-pdf.def
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
-)))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgfsyssoftpath.code.tex
+))) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count303
-\pgfsyssoftpath@bigbuffer@items=\count304
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlay
-er\pgfsysprotocol.code.tex
+\pgfsyssoftpath@smallbuffer@items=\count315
+\pgfsyssoftpath@bigbuffer@items=\count316
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcore.code.tex
+
+LaTeX Warning: Package "xcolor" has already been loaded: ignoring load-time
+(LaTeX)        option "pdftex".
+
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-ath.code.tex
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athutil.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athparser.code.tex
-\pgfmath@dimen=\dimen261
-\pgfmath@count=\count305
-\pgfmath@box=\box62
-\pgfmath@toks=\toks46
-\pgfmath@stack@operand=\toks47
-\pgfmath@stack@operation=\toks48
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.basic.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.trigonometric.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.random.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.comparison.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.base.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.round.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.misc.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfunctions.integerarithmetics.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athcalc.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-athfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count306
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfi
-nt.code.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorepoints.code.tex
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen262
+\pgfmath@count=\count317
+\pgfmath@box=\box63
+\pgfmath@toks=\toks48
+\pgfmath@stack@operand=\toks49
+\pgfmath@stack@operation=\toks50
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count318
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen262
-\pgf@picmaxx=\dimen263
-\pgf@picminy=\dimen264
-\pgf@picmaxy=\dimen265
-\pgf@pathminx=\dimen266
-\pgf@pathmaxx=\dimen267
-\pgf@pathminy=\dimen268
-\pgf@pathmaxy=\dimen269
-\pgf@xx=\dimen270
-\pgf@xy=\dimen271
-\pgf@yx=\dimen272
-\pgf@yy=\dimen273
-\pgf@zx=\dimen274
-\pgf@zy=\dimen275
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorepathconstruct.code.tex
+\pgf@picminx=\dimen263
+\pgf@picmaxx=\dimen264
+\pgf@picminy=\dimen265
+\pgf@picmaxy=\dimen266
+\pgf@pathminx=\dimen267
+\pgf@pathmaxx=\dimen268
+\pgf@pathminy=\dimen269
+\pgf@pathmaxy=\dimen270
+\pgf@xx=\dimen271
+\pgf@xy=\dimen272
+\pgf@yx=\dimen273
+\pgf@yy=\dimen274
+\pgf@zx=\dimen275
+\pgf@zy=\dimen276
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen276
-\pgf@path@lasty=\dimen277
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorepathusage.code.tex
+\pgf@path@lastx=\dimen277
+\pgf@path@lasty=\dimen278
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen278
-\pgf@shorten@start@additional=\dimen279
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorescopes.code.tex
+\pgf@shorten@end@additional=\dimen279
+\pgf@shorten@start@additional=\dimen280
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box63
-\pgf@hbox=\box64
-\pgf@layerbox@main=\box65
-\pgf@picture@serial@count=\count307
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoregraphicstate.code.tex
+\pgfpic=\box64
+\pgf@hbox=\box65
+\pgf@layerbox@main=\box66
+\pgf@picture@serial@count=\count319
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen280
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoretransformations.code.tex
+\pgflinewidth=\dimen281
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen281
-\pgf@pt@y=\dimen282
-\pgf@pt@temp=\dimen283
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorequick.code.tex
+\pgf@pt@x=\dimen282
+\pgf@pt@y=\dimen283
+\pgf@pt@temp=\dimen284
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoreobjects.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorepathprocessing.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorearrows.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen284
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoreshade.code.tex
+\pgfarrowsep=\dimen285
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen285
-\pgf@sys@shading@range@num=\count308
-\pgf@shadingcount=\count309
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoreimage.code.tex
+\pgf@max=\dimen286
+\pgf@sys@shading@range@num=\count320
+\pgf@shadingcount=\count321
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoreexternal.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box66
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorelayers.code.tex
+\pgfexternal@startupbox=\box67
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcoretransparency.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorepatterns.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclaye
-r\pgfcorerdf.code.tex
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\p
-gfmoduleshapes.code.tex
+))) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box67
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\p
-gfmoduleplot.code.tex
+\pgfnodeparttextbox=\box68
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibili
-ty\pgfcomp-version-0-65.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen286
-\pgf@nodesepend=\dimen287
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibili
-ty\pgfcomp-version-1-18.sty
+\pgf@nodesepstart=\dimen287
+\pgf@nodesepend=\dimen288
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\p
-gffor.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\p
-gfkeys.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgfkeys.code.tex))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmat
-h.sty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfm
-ath.code.tex))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities
-\pgffor.code.tex
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen288
-\pgffor@skip=\dimen289
-\pgffor@stack=\toks49
-\pgffor@toks=\toks50
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendl
-ayer/tikz\tikz.code.tex
+\pgffor@iter=\dimen289
+\pgffor@skip=\dimen290
+\pgffor@stack=\toks51
+\pgffor@toks=\toks52
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries
-\pgflibraryplothandlers.code.tex
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count310
-\pgfplotmarksize=\dimen290
+\pgf@plot@mark@count=\count322
+\pgfplotmarksize=\dimen291
 )
-\tikz@lastx=\dimen291
-\tikz@lasty=\dimen292
-\tikz@lastxsaved=\dimen293
-\tikz@lastysaved=\dimen294
-\tikz@lastmovetox=\dimen295
-\tikz@lastmovetoy=\dimen296
-\tikzleveldistance=\dimen297
-\tikzsiblingdistance=\dimen298
-\tikz@figbox=\box68
-\tikz@figbox@bg=\box69
-\tikz@tempbox=\box70
-\tikz@tempbox@bg=\box71
-\tikztreelevel=\count311
-\tikznumberofchildren=\count312
-\tikznumberofcurrentchild=\count313
-\tikz@fig@count=\count314
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\p
-gfmodulematrix.code.tex
+\tikz@lastx=\dimen292
+\tikz@lasty=\dimen293
+\tikz@lastxsaved=\dimen294
+\tikz@lastysaved=\dimen295
+\tikz@lastmovetox=\dimen296
+\tikz@lastmovetoy=\dimen297
+\tikzleveldistance=\dimen298
+\tikzsiblingdistance=\dimen299
+\tikz@figbox=\box69
+\tikz@figbox@bg=\box70
+\tikz@tempbox=\box71
+\tikz@tempbox@bg=\box72
+\tikztreelevel=\count323
+\tikznumberofchildren=\count324
+\tikznumberofcurrentchild=\count325
+\tikz@fig@count=\count326
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count315
-\pgfmatrixcurrentcolumn=\count316
-\pgf@matrix@numberofcolumns=\count317
+\pgfmatrixcurrentrow=\count327
+\pgfmatrixcurrentcolumn=\count328
+\pgf@matrix@numberofcolumns=\count329
 )
-\tikz@expandcount=\count318
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendl
-ayer/tikz/libraries\tikzlibrarytopaths.code.tex
+\tikz@expandcount=\count330
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/totcount\totcou
-nt.sty
-Package: totcount 2011/01/25 v1.2 package for gettingthe total value of LaTeX c
-ounters
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/changepage\chan
-gepage.sty
+))) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/totcount/totcount.sty
+Package: totcount 2011/01/25 v1.2 package for gettingthe total value of LaTeX counters
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count319
-\cp@tempcnt=\count320
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/frankenstein\at
-trib.sty
-Package: attrib 2001/08/31 v1.3 attribution of block elements (Frankenstein's h
-at)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/frankenstein\mo
-redefs.sty
+\c@cp@cntr=\count331
+\cp@tempcnt=\count332
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/frankenstein/attrib.sty
+Package: attrib 2001/08/31 v1.3 attribution of block elements (Frankenstein's hat)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/frankenstein/moredefs.sty
 Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
-
-\sc@toks@a=\toks51
-\sc@toks@b=\toks52
+\sc@toks@a=\toks53
+\sc@toks@b=\toks54
 )
-\AttribMinSkip=\skip75
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/was\upgreek.sty
+\AttribMinSkip=\skip81
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/was/upgreek.sty
 Package: upgreek 2003/02/12 v2.0 (WaS)
 Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
 \symugrf@m=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
 (Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.
-sty
-Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
-\TX@col@width=\dimen299
-\TX@old@table=\dimen300
-\TX@old@col=\dimen301
-\TX@target=\dimen302
-\TX@delta=\dimen303
-\TX@cols=\count321
-\TX@ftn=\toks53
-) (C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/pbox\pbox.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen300
+\TX@old@table=\dimen301
+\TX@old@col=\dimen302
+\TX@target=\dimen303
+\TX@delta=\dimen304
+\TX@cols=\count333
+\TX@ftn=\toks55
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pbox/pbox.sty
 Package: pbox 2011/12/07 v1.2 Dynamic parboxes
-\pb@xlen=\skip76
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged
-2e.sty
-Package: ragged2e 2023/04/04 v3.5 ragged2e Package
-\CenteringLeftskip=\skip77
-\RaggedLeftLeftskip=\skip78
-\RaggedRightLeftskip=\skip79
-\CenteringRightskip=\skip80
-\RaggedLeftRightskip=\skip81
-\RaggedRightRightskip=\skip82
-\CenteringParfillskip=\skip83
-\RaggedLeftParfillskip=\skip84
-\RaggedRightParfillskip=\skip85
-\JustifyingParfillskip=\skip86
-\CenteringParindent=\skip87
-\RaggedLeftParindent=\skip88
-\RaggedRightParindent=\skip89
-\JustifyingParindent=\skip90
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft
-.sty
+\pb@xlen=\skip82
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip83
+\RaggedLeftLeftskip=\skip84
+\RaggedRightLeftskip=\skip85
+\CenteringRightskip=\skip86
+\RaggedLeftRightskip=\skip87
+\RaggedRightRightskip=\skip88
+\CenteringParfillskip=\skip89
+\RaggedLeftParfillskip=\skip90
+\RaggedRightParfillskip=\skip91
+\JustifyingParfillskip=\skip92
+\CenteringParindent=\skip93
+\RaggedLeftParindent=\skip94
+\RaggedRightParindent=\skip95
+\JustifyingParindent=\skip96
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 51.
-\cftparskip=\skip91
-\cftbeforetoctitleskip=\skip92
-\cftaftertoctitleskip=\skip93
-\cftbeforepartskip=\skip94
-\cftpartnumwidth=\skip95
-\cftpartindent=\skip96
-\cftbeforesecskip=\skip97
-\cftsecindent=\skip98
-\cftsecnumwidth=\skip99
-\cftbeforesubsecskip=\skip100
-\cftsubsecindent=\skip101
-\cftsubsecnumwidth=\skip102
-\cftbeforesubsubsecskip=\skip103
-\cftsubsubsecindent=\skip104
-\cftsubsubsecnumwidth=\skip105
-\cftbeforeparaskip=\skip106
-\cftparaindent=\skip107
-\cftparanumwidth=\skip108
-\cftbeforesubparaskip=\skip109
-\cftsubparaindent=\skip110
-\cftsubparanumwidth=\skip111
-\cftbeforeloftitleskip=\skip112
-\cftafterloftitleskip=\skip113
-\cftbeforefigskip=\skip114
-\cftfigindent=\skip115
-\cftfignumwidth=\skip116
-\c@lofdepth=\count322
-\c@lotdepth=\count323
-\cftbeforelottitleskip=\skip117
-\cftafterlottitleskip=\skip118
-\cftbeforetabskip=\skip119
-\cfttabindent=\skip120
-\cfttabnumwidth=\skip121
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/marginnote\marg
-innote.sty
-Package: marginnote 2018/08/09 v1.4b non floating margin notes for LaTeX
-\c@mn@abspage=\count324
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/marginfix\margi
-nfix.sty
+\cftparskip=\skip97
+\cftbeforetoctitleskip=\skip98
+\cftaftertoctitleskip=\skip99
+\cftbeforepartskip=\skip100
+\cftpartnumwidth=\skip101
+\cftpartindent=\skip102
+\cftbeforesecskip=\skip103
+\cftsecindent=\skip104
+\cftsecnumwidth=\skip105
+\cftbeforesubsecskip=\skip106
+\cftsubsecindent=\skip107
+\cftsubsecnumwidth=\skip108
+\cftbeforesubsubsecskip=\skip109
+\cftsubsubsecindent=\skip110
+\cftsubsubsecnumwidth=\skip111
+\cftbeforeparaskip=\skip112
+\cftparaindent=\skip113
+\cftparanumwidth=\skip114
+\cftbeforesubparaskip=\skip115
+\cftsubparaindent=\skip116
+\cftsubparanumwidth=\skip117
+\cftbeforeloftitleskip=\skip118
+\cftafterloftitleskip=\skip119
+\cftbeforefigskip=\skip120
+\cftfigindent=\skip121
+\cftfignumwidth=\skip122
+\c@lofdepth=\count334
+\c@lotdepth=\count335
+\cftbeforelottitleskip=\skip123
+\cftafterlottitleskip=\skip124
+\cftbeforetabskip=\skip125
+\cfttabindent=\skip126
+\cfttabnumwidth=\skip127
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/marginnote/marginnote.sty
+Package: marginnote 2018/08/09 1.4b non floating margin notes for LaTeX
+\c@mn@abspage=\count336
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/marginfix/marginfix.sty
 Package: marginfix 2020/05/06 v1.2 Fix Margin Paragraphs
 \Mfx@inject@insert=\insert252
-\Mfx@marginbox=\box72
-\Mfx@marginpos@min=\dimen304
-\Mfx@marginpos@max=\dimen305
-\Mfx@marginspace=\dimen306
-\Mfx@marginheight=\dimen307
-\Mfx@piece@content=\box73
-\Mfx@piece@count=\count325
-\Mfx@mparshift=\dimen308
-\marginheightadjustment=\dimen309
-\marginposadjustment=\dimen310
-\Mfx@strutheight=\dimen311
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/enotez\enotez.s
-ty
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.
-sty
-Package: expl3 2023-03-30 L3 programming layer (loader) 
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3bac
-kend-pdftex.def
-File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count326
-\l__pdf_internal_box=\box74
-))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xpar
-se\xparse.sty
-Package: xparse 2023-02-02 L3 Experimental document command parser
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3ke
-ys2e\l3keys2e.sty
-Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtem
-plate\xtemplate.sty
-Package: xtemplate 2023-02-02 L3 Experimental prototype document functions
-\l__xtemplate_tmp_dim=\dimen312
-\l__xtemplate_tmp_int=\count327
-\l__xtemplate_tmp_muskip=\muskip17
-\l__xtemplate_tmp_skip=\skip122
+\Mfx@marginbox=\box73
+\Mfx@marginpos@min=\dimen305
+\Mfx@marginpos@max=\dimen306
+\Mfx@marginspace=\dimen307
+\Mfx@marginheight=\dimen308
+\Mfx@piece@content=\box74
+\Mfx@piece@count=\count337
+\Mfx@mparshift=\dimen309
+\marginheightadjustment=\dimen310
+\marginposadjustment=\dimen311
+\Mfx@strutheight=\dimen312
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/enotez/enotez.sty (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-12-25 L3 programming layer (loader) 
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count338
+\l__pdf_internal_box=\box75
+)) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-08-16 L3 Experimental document command parser
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
 )
 Package: enotez 2022/01/04 v0.10d Endnotes for LaTeX2e
-\l__enotez_list_preamble_skip=\skip123
-\l__enotez_list_postamble_skip=\skip124
-\g__enotez_endnote_id_int=\count328
-\g__enotez_endnote_mark_int=\count329
-\c@endnote=\count330
-\g__enotez_list_printed_int=\count331
-\l__enotez_tmpa_int=\count332
+\l__enotez_list_preamble_skip=\skip128
+\l__enotez_list_postamble_skip=\skip129
+\g__enotez_endnote_id_int=\count339
+\g__enotez_endnote_mark_int=\count340
+\c@endnote=\count341
+\g__enotez_list_printed_int=\count342
+\l__enotez_tmpa_int=\count343
 
-Package xtemplate Info: Declaring object type 'enotez-list' taking 1
-(xtemplate)             argument(s) on line 473.
+LaTeX template Info: Declaring template type 'enotez-list' taking 1
+(template)           argument(s) on line 473.
 
 \l__enotez_list_notes_sep_dim=\dimen313
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/translations\tr
-anslations.sty
-Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
- (CN)
-)) (Definitions/journalnames.tex)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.s
-ty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/translations/translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
+)) (./Definitions/journalnames.tex) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks54
-\thm@bodyfont=\toks55
-\thm@headfont=\toks56
-\thm@notefont=\toks57
-\thm@headpunct=\toks58
-\thm@preskip=\skip125
-\thm@postskip=\skip126
-\thm@headsep=\skip127
-\dth@everypar=\toks59
+\thm@style=\toks56
+\thm@bodyfont=\toks57
+\thm@headfont=\toks58
+\thm@notefont=\toks59
+\thm@headpunct=\toks60
+\thm@preskip=\skip130
+\thm@postskip=\skip131
+\thm@headsep=\skip132
+\dth@everypar=\toks61
 )
-\c@theorem=\count333
-\c@lemma=\count334
-\c@corollary=\count335
-\c@proposition=\count336
-\c@characterization=\count337
-\c@property=\count338
-\c@problem=\count339
-\c@example=\count340
-\c@examplesanddefinitions=\count341
-\c@remark=\count342
-\c@definition=\count343
-\c@hypothesis=\count344
-\c@notation=\count345
-\c@assumption=\count346
-\c@algorithm=\count347
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.s
-ty
+\c@theorem=\count344
+\c@lemma=\count345
+\c@corollary=\count346
+\c@proposition=\count347
+\c@characterization=\count348
+\c@property=\count349
+\c@problem=\count350
+\c@example=\count351
+\c@examplesanddefinitions=\count352
+\c@remark=\count353
+\c@definition=\count354
+\c@hypothesis=\count355
+\c@notation=\count356
+\c@assumption=\count357
+\c@algorithm=\count358
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip128
-\bibsep=\skip129
+\bibhang=\skip133
+\bibsep=\skip134
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count348
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-extend.sty
-Package: scrextend 2023/07/07 v3.41 KOMA-Script package (extend other classes w
-ith features of KOMA-Script classes)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-kbase.sty
-Package: scrkbase 2023/07/07 v3.41 KOMA-Script package (KOMA-Script-dependent b
-asics and keyval usage)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-base.sty
-Package: scrbase 2023/07/07 v3.41 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-lfile.sty
-Package: scrlfile 2023/07/07 v3.41 KOMA-Script package (file load hooks)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-lfile-hook.sty
-Package: scrlfile-hook 2023/07/07 v3.41 KOMA-Script package (using LaTeX hooks)
-
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scr
-logo.sty
-Package: scrlogo 2023/07/07 v3.41 KOMA-Script package (logo)
+\c@NAT@ctr=\count359
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrextend.sty
+Package: scrextend 2024/10/24 v3.43 KOMA-Script package (extend other classes with features of KOMA-Script classes)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2024/10/24 v3.43 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2024/10/24 v3.43 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2024/10/24 v3.43 KOMA-Script package (file load hooks)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2024/10/24 v3.43 KOMA-Script package (using LaTeX hooks)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2024/10/24 v3.43 KOMA-Script package (logo)
 )))
-Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
-Already applied: [0000/00/00] Usage of raw or classic option list on input line
- 368.
-))) (C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line 370.
+))) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@page@totc=\count349
-\MyLen=\skip130
-\MyBox=\box75
-\leftcolumnlength=\skip131
-\extralength=\skip132
-\fulllength=\skip133
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geomet
-ry.sty
+\c@page@totc=\count360
+\MyLen=\skip135
+\MyBox=\box76
+\leftcolumnlength=\skip136
+\extralength=\skip137
+\fulllength=\skip138
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.
-sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count350
-\Gm@cntv=\count351
-\c@Gm@tempcnt=\count352
+\Gm@cnth=\count361
+\Gm@cntv=\count362
+\c@Gm@tempcnt=\count363
 \Gm@bindingoffset=\dimen314
 \Gm@wd@mp=\dimen315
 \Gm@odd@mp=\dimen316
@@ -1030,44 +740,34 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen319
 \Gm@layouthoffset=\dimen320
 \Gm@layoutvoffset=\dimen321
-\Gm@dimlist=\toks60
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geomet
-ry.cfg))
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/newfloat\newflo
-at.sty
+\Gm@dimlist=\toks62
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/newfloat/newfloat.sty
 Package: newfloat 2023/10/01 v1.2 Defining new floating environments (AR)
 )
 Package newfloat Info: New float `listing' with options `' on input line 1360.
-\c@listing=\count353
+\c@listing=\count364
 Package newfloat Info: float type `listing'=4 on input line 1360.
-\c@lolistingdepth=\count354
-Package newfloat Info: New float `boxenv' with options `name=Box' on input line
- 1361.
-\c@boxenv=\count355
+\c@lolistingdepth=\count365
+Package newfloat Info: New float `boxenv' with options `name=Box' on input line 1361.
+\c@boxenv=\count366
 Package newfloat Info: float type `boxenv'=8 on input line 1361.
-\c@loboxenvdepth=\count356
+\c@loboxenvdepth=\count367
 Package newfloat Info: New float `chart' with options `' on input line 1362.
-\c@chart=\count357
+\c@chart=\count368
 Package newfloat Info: float type `chart'=16 on input line 1362.
-\c@lochartdepth=\count358
+\c@lochartdepth=\count369
 Package newfloat Info: New float `scheme' with options `' on input line 1363.
-\c@scheme=\count359
+\c@scheme=\count370
 Package newfloat Info: float type `scheme'=32 on input line 1363.
-\c@loschemedepth=\count360
-Package newfloat Info: New float `figurewide' with options `' on input line 136
-4.
-\c@figurewide=\count361
+\c@loschemedepth=\count371
+Package newfloat Info: New float `figurewide' with options `' on input line 1364.
+\c@figurewide=\count372
 Package newfloat Info: float type `figurewide'=64 on input line 1364.
-\c@lofigurewidedepth=\count362
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption
-.sty
-Package: caption 2023/03/12 v3.6j Customizing captions (AR)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption
-3.sty
-Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
+\c@lofigurewidedepth=\count373
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen322
 \captionmargin=\dimen323
 \caption@leftmargin=\dimen324
@@ -1078,8 +778,8 @@ Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
 \caption@hangindent=\dimen329
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count363
-\c@continuedfloat=\count364
+\c@caption@flags=\count374
+\c@continuedfloat=\count375
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen330
 \caption@adjustwidth@linewidth=\dimen331
@@ -1088,178 +788,140 @@ Package caption Info: scrextend package is loaded.
 \caption@addmargin@hsize=\dimen332
 \caption@addmargin@linewidth=\dimen333
 )
-\@justcentbox=\box76
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/seqsplit\seqspl
-it.sty
-Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins,
- etc.) 
+\@justcentbox=\box77
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/seqsplit/seqsplit.sty
+Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins, etc.) 
 )
-\cellWidtha=\skip134
-\cellWidthb=\skip135
-\cellWidthc=\skip136
-\cellWidthd=\skip137
-\cellWidthe=\skip138
-\cellWidthf=\skip139
-\cellWidthg=\skip140
-\cellWidthh=\skip141
-\cellWidthi=\skip142
-\cellWidthj=\skip143
-\cellWidthk=\skip144
-\cellWidthl=\skip145
-\cellWidthm=\skip146
-\cellWidthn=\skip147
-\cellWidtho=\skip148
-\cellWidthp=\skip149
-\cellWidthq=\skip150
-\cellWidthr=\skip151
-\cellWidths=\skip152
-\cellWidtht=\skip153
-\cellWidthu=\skip154
-\cellWidthv=\skip155
-\cellWidthw=\skip156
-\cellWidthx=\skip157
-\cellWidthy=\skip158
-\cellWidthz=\skip159
-\cellWidthA=\skip160
-\cellWidthB=\skip161
-\cellWidthC=\skip162
-\cellWidthD=\skip163
-\cellWidthE=\skip164
-\cellWidthF=\skip165
-\cellWidthG=\skip166
-\cellWidthH=\skip167
-\cellWidthI=\skip168
-\cellWidthJ=\skip169
-\cellWidthK=\skip170
-\cellWidthL=\skip171
-\cellWidthM=\skip172
-\cellWidthN=\skip173
-\cellWidthO=\skip174
-\cellWidthP=\skip175
-\cellWidthQ=\skip176
-\cellWidthR=\skip177
-\cellWidthS=\skip178
-\cellWidthT=\skip179
-\cellWidthU=\skip180
-\cellWidthV=\skip181
-\cellWidthW=\skip182
-\cellWidthX=\skip183
-\cellWidthY=\skip184
-\cellWidthZ=\skip185
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable
-.sty
-Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip186
-\LTright=\skip187
-\LTpre=\skip188
-\LTpost=\skip189
-\LTchunksize=\count365
+\cellWidtha=\skip139
+\cellWidthb=\skip140
+\cellWidthc=\skip141
+\cellWidthd=\skip142
+\cellWidthe=\skip143
+\cellWidthf=\skip144
+\cellWidthg=\skip145
+\cellWidthh=\skip146
+\cellWidthi=\skip147
+\cellWidthj=\skip148
+\cellWidthk=\skip149
+\cellWidthl=\skip150
+\cellWidthm=\skip151
+\cellWidthn=\skip152
+\cellWidtho=\skip153
+\cellWidthp=\skip154
+\cellWidthq=\skip155
+\cellWidthr=\skip156
+\cellWidths=\skip157
+\cellWidtht=\skip158
+\cellWidthu=\skip159
+\cellWidthv=\skip160
+\cellWidthw=\skip161
+\cellWidthx=\skip162
+\cellWidthy=\skip163
+\cellWidthz=\skip164
+\cellWidthA=\skip165
+\cellWidthB=\skip166
+\cellWidthC=\skip167
+\cellWidthD=\skip168
+\cellWidthE=\skip169
+\cellWidthF=\skip170
+\cellWidthG=\skip171
+\cellWidthH=\skip172
+\cellWidthI=\skip173
+\cellWidthJ=\skip174
+\cellWidthK=\skip175
+\cellWidthL=\skip176
+\cellWidthM=\skip177
+\cellWidthN=\skip178
+\cellWidthO=\skip179
+\cellWidthP=\skip180
+\cellWidthQ=\skip181
+\cellWidthR=\skip182
+\cellWidthS=\skip183
+\cellWidthT=\skip184
+\cellWidthU=\skip185
+\cellWidthV=\skip186
+\cellWidthW=\skip187
+\cellWidthX=\skip188
+\cellWidthY=\skip189
+\cellWidthZ=\skip190
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip191
+\LTright=\skip192
+\LTpre=\skip193
+\LTpost=\skip194
+\LTchunksize=\count376
 \LTcapwidth=\dimen334
-\LT@head=\box77
-\LT@firsthead=\box78
-\LT@foot=\box79
-\LT@lastfoot=\box80
-\LT@gbox=\box81
-\LT@cols=\count366
-\LT@rows=\count367
-\c@LT@tables=\count368
-\c@LT@chunks=\count369
-\LT@p@ftn=\toks61
+\LT@head=\box78
+\LT@firsthead=\box79
+\LT@foot=\box80
+\LT@lastfoot=\box81
+\LT@gbox=\box82
+\LT@cols=\count377
+\LT@rows=\count378
+\c@LT@tables=\count379
+\c@LT@chunks=\count380
+\LT@p@ftn=\toks63
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box83
+\fn@width=\dimen335
 )
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/footnotehyper\f
-ootnotehyper.sty
-Package: footnotehyper 2021/08/13 v1.1e hyperref aware footnote.sty (JFB)
-\FNH@notes=\box82
-\FNH@width=\dimen335
-\FNH@toks=\toks62
-)
-Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperr
-ef.sty
-Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdf
-escape.sty
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor
-.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\let
-ltxmacro.sty
-Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook
-.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\namere
-f.sty
-Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcou
-nt.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestrin
-g\gettitlestring.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count370
+\c@section@level=\count381
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen336
-\Hy@linkcounter=\count371
-\Hy@pagecounter=\count372
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc
-.def
-File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
+\Hy@linkcounter=\count382
+\Hy@pagecounter=\count383
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intca
-lc.sty
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count373
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.
-def
-File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
+\Hy@SavedSpaceFactor=\count384
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4060.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 4060.
-Package hyperref Info: Option `pdffitwindow' set `true' on input line 4060.
-Package hyperref Info: Option `colorlinks' set `true' on input line 4060.
-Package hyperref Info: Option `hyperfootnotes' set `true' on input line 4060.
-Package hyperref Info: Hyper figures OFF on input line 4177.
-Package hyperref Info: Link nesting OFF on input line 4182.
-Package hyperref Info: Hyper index ON on input line 4185.
-Package hyperref Info: Plain pages OFF on input line 4192.
-Package hyperref Info: Backreferencing OFF on input line 4197.
+Package hyperref Info: Option `unicode' set `true' on input line 4040.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4040.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 4040.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4040.
+Package hyperref Info: Option `hyperfootnotes' set `true' on input line 4040.
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4425.
-\c@Hy@tempcnt=\count374
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count385
 LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen337
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset
-.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bi
-gintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count375
+\Fld@menulength=\count386
 \Field@Width=\dimen338
 \Fld@charsize=\dimen339
 Package hyperref Info: Hyper figures OFF on input line 6042.
@@ -1269,46 +931,32 @@ Package hyperref Info: backreferencing OFF on input line 6057.
 Package hyperref Info: Link coloring ON on input line 6060.
 Package hyperref Info: Link coloring with OCG OFF on input line 6067.
 Package hyperref Info: PDF/A mode OFF on input line 6072.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-l
-tx.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count376
-\c@Item=\count377
-\c@Hfootnote=\count378
+\Hy@abspage=\count387
+\c@Item=\count388
+\c@Hfootnote=\count389
 )
 Package hyperref Info: Driver: hpdftex.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdfte
-x.def
-File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-
-ltx.sty
-Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
-kage
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count379
-\c@bookmark@seq@number=\count380
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\
-rerunfilecheck.sty
+\Fld@listcount=\count390
+\c@bookmark@seq@number=\count391
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter
-\uniquecounter.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-85.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip190
-)
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/cleveref\clever
-ef.sty
+\Hy@SectionHShift=\skip195
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
 LaTeX Info: Redefining \cref on input line 2370.
@@ -1323,12 +971,10 @@ LaTeX Info: Redefining \labelcref on input line 2370.
 LaTeX Info: Redefining \labelcpageref on input line 2370.
 Package cleveref Info: `amsthm' support loaded on input line 3026.
 )
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 20
-7.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ppl.fd
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
-) (ProyectoAED2024_Rmd.aux)
+) (./ProyectoAED2024_Rmd.aux)
 \openout1 = `ProyectoAED2024_Rmd.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 207.
@@ -1349,28 +995,13 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 207.
 LaTeX Font Info:    ... okay on input line 207.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 207.
 LaTeX Font Info:    ... okay on input line 207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\sup
-p-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count381
-\scratchdimen=\dimen340
-\scratchbox=\box83
-\nofMPsegments=\count382
-\nofMParguments=\count383
-\everyMPshowfont=\toks63
-\MPscratchCnt=\count384
-\MPscratchDim=\dimen341
-\MPnumerator=\count385
-\makeMPintoPDFobject=\count386
-\everyMPtoPDFconversion=\toks64
-)
 LaTeX Info: Redefining \microtypecontext on input line 207.
 Package microtype Info: Applying patch `item' on input line 207.
 Package microtype Info: Applying patch `toc' on input line 207.
 Package microtype Info: Applying patch `eqnum' on input line 207.
 Package microtype Info: Applying patch `footnote' on input line 207.
 Package microtype Info: Applying patch `verbatim' on input line 207.
+LaTeX Info: Redefining \microtypesetup on input line 207.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1381,18 +1012,12 @@ LaTeX Info: Redefining \showhyphens on input line 207.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-pp
-l.cfg
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+) (c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/translations/di
-cts\translations-basic-dictionary-english.trsl
-File: translations-basic-dictionary-english.trsl (english translation file `tra
-nslations-basic-dictionary')
-)
-Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 207.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 207.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
@@ -1430,66 +1055,42 @@ Package newfloat Info: `float' package detected.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcapti
-on.sty
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-Package footnotehyper Info: Using the \@makefntext{} approach (see doc).
-(footnotehyper)    In case of dysfunctional footnote environments, you can
-(footnotehyper)    try sending the author a small illustrative document.
-(footnotehyper)    To turn off this message, add \footnotehyperwarnfalse
-(footnotehyper)    to the preamble.
 Package hyperref Info: Link coloring ON on input line 207.
-(ProyectoAED2024_Rmd.out) (ProyectoAED2024_Rmd.out)
+(./ProyectoAED2024_Rmd.out) (./ProyectoAED2024_Rmd.out)
 \@outlinefile=\write4
 \openout4 = `ProyectoAED2024_Rmd.out'.
 
-LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
-07.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.f
-d
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 207--207
 [][]\T1/ppl/m/n/7 (+20) creativecommons.org/licenses/by/[][]
  []
 
-LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 2
-07.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ppl.f
-d
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlzplm.
-fd
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omszplm.
-fd
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxzplm.
-fd
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 10.42007pt on input line 207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ms
-a.cfg
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
@@ -1498,29 +1099,22 @@ LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 207.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 10.42007pt on input line 207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ms
-b.cfg
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 7.91925pt on input line 207.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 207.
-LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-207.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1zplm.
-fd
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 207.
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zplm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-eu
-r.cfg
+(c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
 LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 207.
@@ -1528,10 +1122,8 @@ LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
 (Font)                  U/msb/m/n --> U/msb/m/n on input line 207.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
 (Font)                  U/msb/m/n --> U/msb/m/n on input line 207.
-Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 20
-7.
-Package marginnote Info: right page because not two side mode on input line 207
-.
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 207.
+Package marginnote Info: right page because not two side mode on input line 207.
 
 Underfull \hbox (badness 10000) in paragraph at lines 207--207
 [][]\T1/ppl/m/n/7 (+20) creativecommons.org/licenses/by/[][]
@@ -1539,25 +1131,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 207--207
 
 Package marginnote Info: xpos seems to be 167.01753pt on input line 207.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
-(epstopdf)                    date: 2025-01-03 09:33:41
+(epstopdf)                    date: 2024-10-21 18:49:56
 (epstopdf)                    size: 736802 bytes
-(epstopdf)             Output file: <Definitions/logo-mdpi-eps-converted-to.pdf
->
-(epstopdf)                    date: 2025-01-03 09:33:41
+(epstopdf)             Output file: <Definitions/logo-mdpi-eps-converted-to.pdf>
+(epstopdf)                    date: 2024-10-21 18:49:56
 (epstopdf)                    size: 43966 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-mdp
-i-eps-converted-to.pdf Definitions/logo-mdpi.eps>
+(epstopdf)             Command: <repstopdf --outfile=Definitions/logo-mdpi-eps-converted-to.pdf Definitions/logo-mdpi.eps>
 (epstopdf)             \includegraphics on input line 207.
 Package epstopdf Info: Output file is already uptodate.
 
 
-pdfTeX warning: pdflatex.exe (file ./Definitions/logo-mdpi-eps-converted-to.pdf
-): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Definitions/logo-mdpi-eps-converted-to.pdf, id=77, 88.33pt x 58.2175pt>
+pdfTeX warning: pdflatex.exe (file ./Definitions/logo-mdpi-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Definitions/logo-mdpi-eps-converted-to.pdf, id=78, 88.33pt x 58.2175pt>
 File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-mdpi-eps-converted-to.pdf>
-Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on in
-put line 207.
+Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on input line 207.
 (pdftex.def)             Requested size: 43.16885pt x 28.45274pt.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 207.
@@ -1567,298 +1155,295 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 207.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 5.21004pt on input line 207.
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
-07.
-(C:\Users\Media Service\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
-File: t1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-)
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 258.
+(Font)              scaled to size 9.37807pt on input line 263.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 258.
+(Font)              scaled to size 7.29405pt on input line 263.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 258.
+(Font)              scaled to size 9.37807pt on input line 263.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 258.
+(Font)              scaled to size 7.29405pt on input line 263.
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 20.0pt, for example:
 (fancyhdr)                \setlength{\headheight}{20.0pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-8.0pt}.
 
 [1
 
-{C:/Users/Media Service/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Us
-ers/Media Service/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <.
-/Definitions/logo-mdpi-eps-converted-to.pdf>]
+{c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc} <./Definitions/logo-mdpi-eps-converted-to.pdf>]
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [2]
-Overfull \hbox (15.26184pt too wide) in paragraph at lines 368--384
+Overfull \hbox (15.26184pt too wide) in paragraph at lines 379--395
 [][] 
  []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [3]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf, id=116, 397.485
-pt x 216.81pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf Graphic fil
-e (type pdf)
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf, id=126, 397.485pt x 216.81pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-2-1.pdf  used on input line 447.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 459.
 (pdftex.def)             Requested size: 397.48402pt x 216.80946pt.
 
-Overfull \hbox (3.1288pt too wide) in paragraph at lines 447--447
+Overfull \hbox (3.1288pt too wide) in paragraph at lines 459--459
 [][] 
  []
 
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf, id=117, 361.35p
-t x 289.08pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf Graphic fil
-e (type pdf)
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf, id=127, 361.35pt x 289.08pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-3-1.pdf  used on input line 463.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf  used on input line 475.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [4 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf, id=129, 361.35p
-t x 361.35pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf Graphic fil
-e (type pdf)
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf, id=140, 361.35pt x 361.35pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-4-1.pdf  used on input line 473.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf  used on input line 485.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [5 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-23-1.pdf>]
-Overfull \hbox (0.26021pt too wide) in paragraph at lines 490--495
-[]\T1/ppl/m/n/10 (-20) Finalmente, las co-mu-nidades autóno-mas con las bur-bu-
-jas más grandes, como Cataluña,
+Overfull \hbox (0.26021pt too wide) in paragraph at lines 502--507
+[]\T1/ppl/m/n/10 (-20) Finalmente, las co-mu-nidades autóno-mas con las bur-bu-jas más grandes, como Cataluña,
  []
 
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf, id=140, 361.35p
-t x 289.08pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf Graphic fil
-e (type pdf)
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf, id=151, 361.35pt x 289.08pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-5-1.pdf  used on input line 502.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf  used on input line 514.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
 [6 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-24-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1.pdf, id=154, 397.485
-pt x 216.81pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-6-1.pdf  used on input line 520.
-(pdftex.def)             Requested size: 397.48402pt x 216.80946pt.
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf, id=166, 505.89pt x 289.08pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf  used on input line 537.
+(pdftex.def)             Requested size: 505.88875pt x 289.07928pt.
 
-Overfull \hbox (3.1288pt too wide) in paragraph at lines 520--520
+Overfull \hbox (111.53352pt too wide) in paragraph at lines 537--537
 [][] 
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
 
-(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
-
-[7 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf> <./Proyect
-oAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf, id=180, 361.35
-pt x 180.675pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf Graphic fi
-le (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto total cov
-id-1.pdf  used on input line 546.
-(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
-<ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf, id=183, 361.3
-5pt x 180.675pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf Graphic f
-ile (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto paises co
-vid-1.pdf  used on input line 558.
-(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[8 <./ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf> <./Proyec
-toAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf, id=202, 
-361.35pt x 180.675pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf Grap
-hic file (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidad
-es covid-1.pdf  used on input line 572.
-(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf, id=204, 361.35p
-t x 252.945pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf Graphic fil
-e (type pdf)
+[7 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-25-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf, id=182, 397.485pt x 216.81pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-8-1.pdf  used on input line 586.
-(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf, id=205, 361.35p
-t x 252.945pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-2
-9-1.pdf  used on input line 593.
-(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf  used on input line 541.
+(pdftex.def)             Requested size: 397.48402pt x 216.80946pt.
+
+Overfull \hbox (3.1288pt too wide) in paragraph at lines 541--541
+[][] 
+ []
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[9 <./ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf> <./
-ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf, id=222, 361.35p
-t x 289.08pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-3
-0-1.pdf  used on input line 613.
+[8 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1.pdf> <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf, id=204, 505.89pt x 289.08pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf  used on input line 561.
+(pdftex.def)             Requested size: 505.88875pt x 289.07928pt.
+
+Overfull \hbox (111.53352pt too wide) in paragraph at lines 561--561
+[][] 
+ []
+
+<ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf, id=205, 361.35pt x 180.675pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf  used on input line 586.
+(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[9 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf, id=220, 361.35pt x 180.675pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf  used on input line 598.
+(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
+<ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf, id=221, 361.35pt x 180.675pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf  used on input line 612.
+(pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[10 <./ProyectoAED2024_Rmd_files/figure-latex/gasto total covid-1.pdf> <./ProyectoAED2024_Rmd_files/figure-latex/gasto paises covid-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf, id=241, 361.35pt x 252.945pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf  used on input line 627.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf, id=242, 361.35pt x 252.945pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf  used on input line 635.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
+
+[11 <./ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1.pdf> <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf, id=261, 361.35pt x 289.08pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf  used on input line 656.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[10 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf, id=233, 361.35p
-t x 252.945pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-3
-1-1.pdf  used on input line 625.
+[12 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf, id=273, 361.35pt x 252.945pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf  used on input line 668.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[11 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1.pdf> <./Proyec
-toAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1.pdf>]
-<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf, id=252, 361.35p
-t x 252.945pt>
-File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf Graphic fil
-e (type pdf)
-<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-3
-2-1.pdf  used on input line 639.
+[13 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1.pdf> <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1.pdf>]
+<ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf, id=294, 361.35pt x 252.945pt>
+File: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type pdf)
+<use ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf>
+Package pdftex.def Info: ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf  used on input line 683.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[12 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1.pdf>] (appendi
-x.tex)
+[14 <./ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1.pdf>] (./appendix.tex)
 No file ProyectoAED2024_Rmd.bbl.
 
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.18796pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
+(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-4.18796pt}.
 
-[13] 
-enddocument/afterlastpage: lastpage setting LastPage.
-(ProyectoAED2024_Rmd.aux)
+[15] 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+(./ProyectoAED2024_Rmd.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 1
+L3 programming layer <2024-12-25>
+ ***********
 Package rerunfilecheck Info: File `ProyectoAED2024_Rmd.out' has not changed.
 (rerunfilecheck)             Checksum: 30754036A3A2ADB2F8DCC0E0F94A5211;3739.
  ) 
 Here is how much of TeX's memory you used:
- 34055 strings out of 476331
- 661217 string characters out of 5783953
- 1883660 words of memory out of 5000000
- 53483 multiletter control sequences out of 15000+600000
- 578751 words of font info for 339 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 123i,16n,120p,1018b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Media Service\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
-375\ecss0800.pk><C:/Users/Media Service/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><C:/Users/Media Service/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Media Service/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/Media S
-ervice/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Us
-ers/Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a
-.pfb><C:/Users/Media Service/AppData/Local/Programs/MiKTeX/fonts/type1/urw/pala
-tino/uplri8a.pfb>
-Output written on ProyectoAED2024_Rmd.pdf (13 pages, 556183 bytes).
+ 33582 strings out of 475178
+ 643469 string characters out of 5764396
+ 1103221 words of memory out of 5000000
+ 55576 multiletter control sequences out of 15000+600000
+ 625460 words of font info for 345 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 123i,16n,135p,1016b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.375pk><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/Users/LENOVO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on ProyectoAED2024_Rmd.pdf (15 pages, 755880 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 47 named destinations out of 1000 (max. 500000)
- 95443 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 370 PDF objects out of 1000 (max. 8388607)
+ 286 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 95453 words of extra memory for PDF output out of 106986 (max. 10000000)
 

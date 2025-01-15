@@ -210,7 +210,8 @@ por persona.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introducción}\label{introducciuxf3n}
+\hypertarget{introducciuxf3n}{%
+\section{Introducción}\label{introducciuxf3n}}
 
 El turismo es uno de los sectores claves de la economía española. España
 se encuentra entre uno de los mayores destinos turísticos del mundo y
@@ -233,8 +234,9 @@ debido a la gran cantidad de restricciones impuestas, y también los años
 posteriores donde estudiaremos si ha habido una recuperación a niveles
 prepandémicos
 
+\hypertarget{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}{%
 \section{Carga de librerías e importación del
-fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}
+fichero}\label{carga-de-libreruxedas-e-importaciuxf3n-del-fichero}}
 
 Antes de comenzar, eliminamos todas las variables guardadas y cargamos
 todas las librerías a emplear (readr, dplyr, tidyr,ggplot2,sf,
@@ -243,9 +245,12 @@ giscoR,ggiraph,GGally,ggridges\ldots) e importamos los datos
 obtenidos de la base de datos del Instituto Nacional de Estadística
 (INE).
 
-\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}
+\hypertarget{preparaciuxf3n-de-los-datos}{%
+\section{Preparación de los datos}\label{preparaciuxf3n-de-los-datos}}
 
-\subsection{Tranformación a tidydata}\label{tranformaciuxf3n-a-tidydata}
+\hypertarget{tranformaciuxf3n-a-tidydata}{%
+\subsection{Tranformación a
+tidydata}\label{tranformaciuxf3n-a-tidydata}}
 
 Antes de comenzar con el preprocesamiento de los datos, observamos el
 conjunto de datos importado en la Tabla \ref{tab:unnamed-chunk-4}.
@@ -291,7 +296,9 @@ de las variables). Los nombres de las variables son los siguientes:
 Pais, CCAA, Periodo, Gasto\_total, Gasto\_medio\_persona,
 Gasto\_medio\_diario\_persona y Duracion\_media.
 
-\subsection{Transformación de clases}\label{transformaciuxf3n-de-clases}
+\hypertarget{transformaciuxf3n-de-clases}{%
+\subsection{Transformación de
+clases}\label{transformaciuxf3n-de-clases}}
 
 Todas las variables han sido importadas como tipo carácter.
 Transformamos las variables Gasto\_total, Gasto\_medio\_persona,
@@ -313,7 +320,8 @@ CCAA a los siguientes: ``Andalucía'', ``Illes Balears'',``Canarias'',
 ``Cataluña'',``Comunitat Valenciana'', ``Comunidad de Madrid'', ``Otras
 CCAA''.
 
-\subsection{Instance engineering}\label{instance-engineering}
+\hypertarget{instance-engineering}{%
+\subsection{Instance engineering}\label{instance-engineering}}
 
 Vamos a trabajar con valores de las filas para obtener un dataset más
 apropiado al estudio que deseamos realizar. En primer lugar, queremos
@@ -322,8 +330,9 @@ otro llamado ``Otros'' en que en el resto de variables contenga la
 información referente al resto de paises distintos de los cuáles
 poseemos datos concretos.
 
+\hypertarget{instance-engineering-de-gasto_total}{%
 \subsubsection{Instance engineering de
-Gasto\_total}\label{instance-engineering-de-gasto_total}
+Gasto\_total}\label{instance-engineering-de-gasto_total}}
 
 Para la variable Gasto\_total, las filas correspondientes a ``Otros'' de
 la variable Pais y las filas correspondientes a ``Total'' se relacionan
@@ -335,9 +344,10 @@ Luego el gasto total de ``Otros'' es el gasto de los valores ``Total''
 de Pais menos el gasto de cada uno de los otros 5 paises disponibles por
 separado.
 
+\hypertarget{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}{%
 \subsubsection{Instance engineering de Gasto\_medio\_persona,
 Gasto\_medio\_diario\_persona y
-Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}
+Duracion\_media}\label{instance-engineering-de-gasto_medio_persona-gasto_medio_diario_persona-y-duracion_media}}
 
 Como en estas variables se trata de una media, no podemos emplear el
 método usado para Gasto\_total. En su lugar consideramos una media
@@ -355,7 +365,8 @@ medios para las filas ``Otros'' de la variable Pais, otorgándoles un
 mayor peso de manera proporcional al número de países considerados en
 esta categoría.
 
-\section{Resumen de los datos}\label{resumen-de-los-datos}
+\hypertarget{resumen-de-los-datos}{%
+\section{Resumen de los datos}\label{resumen-de-los-datos}}
 
 Una vez hemos concluido el pre-procesamiento de los datos, observamos el
 resultado en la Tabla \ref{tab:unnamed-chunk-27}.
@@ -441,7 +452,8 @@ Duración media
 & Max. :21318.75 & Max. :1743.9 & Max. :300.8 & Max. :14.270 \\
 \end{longtable}
 
-\section{Primeras visualizaciones}\label{primeras-visualizaciones}
+\hypertarget{primeras-visualizaciones}{%
+\section{Primeras visualizaciones}\label{primeras-visualizaciones}}
 
 \begin{figure}[H]
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-22-1} \caption{Gasto total por CCAA y año.\label{fig:GastototalporCCAAyaño}}\label{fig:unnamed-chunk-22}
@@ -516,8 +528,17 @@ países como Italia y Francia, que muestran concentraciones en valores
 más bajos probablemente debido al mayor poder adquisitivo de estos
 países.
 
+Otra forma de visualizar estos datos puede ser mostrando los países en
+una disposición geográfica dentro de un mapa, donde también se puede
+comparar la reducción del gasto Total a causa de la pandemia entre 2020
+y 2021
+
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-26-1} \caption{Distribución de gasto medio por persona por CCAA. .\label{fig:cajas}}\label{fig:unnamed-chunk-26}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-27-1} \caption{Distribución de gasto Total por país a lo largo de los años. .\label{fig:geografGastoTotal}}\label{fig:unnamed-chunk-27}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1} \caption{Distribución de gasto medio por persona por CCAA. .\label{fig:cajas}}\label{fig:unnamed-chunk-28}
 \end{figure}
 
 Observamos que destinos insulares como las Islas Baleares y Canarias
@@ -536,7 +557,26 @@ la mayoría de los turistas, estos turistas de alto gasto pueden ser
 clave para estrategias de marketing dirigidas a captar segmentos de lujo
 o actividades premium.
 
-\section{Efecto del covid-19}\label{efecto-del-covid-19}
+\begin{figure}[H]
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1} \caption{Distribución de gasto medio por persona por CCAA en mapa geográfico por años. .\label{fig:GeografGastoMedio}}\label{fig:unnamed-chunk-29}
+\end{figure}
+
+Comparando las distribuciones anteriores respecto del gasto medio por
+persona podemos observar como se comparten las afirmaciones para un mapa
+geográfico agrupado por los distintos años disponibles. Canarias y
+Baleares suelen representar el mismo tono de color (lo que significa que
+los valores para cada año son similares) mientras que en el resto de
+comunidades muestran una variación mayor (la distribución de valores es
+más variable).
+
+A partir de esta variable se puede observar como el periodo de covid no
+afecta prácticamente (Las personas se siguen gastando lo mismo de media
+aunque no viajen tantas), sin embargo, durante los periodos de 2022 y
+2023 se puede observar un incremento en el gasto lo cual es consecuencia
+del aumento de los precios en España.
+
+\hypertarget{efecto-del-covid-19}{%
+\section{Efecto del covid-19}\label{efecto-del-covid-19}}
 
 Probamos a analizar el efecto del COVID en el gasto de los turistas, así
 como estudiar los países que más reducieron su gasto debido a la
@@ -572,8 +612,9 @@ recuperar el turismo perdido lo antes posible.
 \includegraphics{ProyectoAED2024_Rmd_files/figure-latex/gasto comunidades covid-1} \caption{Gasto total en las distintas comunidades autónomas durante el COVID. .\label{fig:gastototalporCCAAcovid}}\label{fig:gasto comunidades covid}
 \end{figure}
 
+\hypertarget{anuxe1lisis-bivariante-de-variables-cuantitativas}{%
 \section{Análisis bivariante de variables
-cuantitativas}\label{anuxe1lisis-bivariante-de-variables-cuantitativas}
+cuantitativas}\label{anuxe1lisis-bivariante-de-variables-cuantitativas}}
 
 Realizamos una visualización previa para detectar relaciones entre
 variables cuantitativas. En el gráfico \ref{fig:correlaciones}, se
@@ -583,14 +624,15 @@ persona frente a la duración media y el gasto medio diario frente a la
 duración media.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-28-1} \caption{Gráficos de dispersión y correlaciones entre variables cuantitativas.\label{fig:correlaciones}}\label{fig:unnamed-chunk-28}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1} \caption{Gráficos de dispersión y correlaciones entre variables cuantitativas.\label{fig:correlaciones}}\label{fig:unnamed-chunk-31}
 \end{figure}
 
+\hypertarget{gasto-medio-por-persona-y-duraciuxf3n-media}{%
 \subsection{Gasto medio por persona y duración
-media}\label{gasto-medio-por-persona-y-duraciuxf3n-media}
+media}\label{gasto-medio-por-persona-y-duraciuxf3n-media}}
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-29-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\label{fig:gastomediovsduracionmedia}}\label{fig:unnamed-chunk-29}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y la duración media de los viajes .\label{fig:gastomediovsduracionmedia}}\label{fig:unnamed-chunk-32}
 \end{figure}
 
 Se observa una relación aproximadamente lineal para la mayoría de
@@ -604,13 +646,14 @@ categoría de otros países es díficil sacar conclusiones ya que engloba
 al resto de países del mundo, y resulta más complicado encontrar
 relaciones.
 
+\hypertarget{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}{%
 \subsection{Gasto medio por persona frente al gasto medio diario por
-persona}\label{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}
+persona}\label{gasto-medio-por-persona-frente-al-gasto-medio-diario-por-persona}}
 
 Esta parece a priori la relación más obvia entre variables.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-30-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-30}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-33-1} \caption{Gráficos de dispersión y correlaciones entre gasto medio por persona y gasto medio diario por persona .\label{fig:gastomediovsgastomediodiario}}\label{fig:unnamed-chunk-33}
 \end{figure}
 
 En general, la correlación es positiva y tiene sentido pensar que un
@@ -622,7 +665,7 @@ de mayor duración de los viajes, lo que puede provocar un menor gasto
 medio diario.
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-31-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-31}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-34-1} \caption{Gráfico de dispersión entre gasto medio por persona y gasto medio diario .\label{fig:gastomediovsgastomediodiarioconduracion}}\label{fig:unnamed-chunk-34}
 \end{figure}
 
 En el gráfico \ref{fig:gastomediovsgastomediodiarioconduracion} se puede
@@ -632,11 +675,12 @@ un aumento de la duración de los viajes provoca una disminución del
 gasto medio diario. Vamos a visualizar esto más claramente a
 continuación.
 
+\hypertarget{gasto-medio-diario-por-persona-y-duracion-media}{%
 \subsection{Gasto medio diario por persona y duracion
-media}\label{gasto-medio-diario-por-persona-y-duracion-media}
+media}\label{gasto-medio-diario-por-persona-y-duracion-media}}
 
 \begin{figure}[H]
-\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-32-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-32}
+\includegraphics{ProyectoAED2024_Rmd_files/figure-latex/unnamed-chunk-35-1} \caption{Gráfico de dispersión entre gasto medio diario por persona y duración media de los viajes .\label{fig:gastomediodiariovsduracionmedia}}\label{fig:unnamed-chunk-35}
 \end{figure}
 
 Ahora podemos observar en el Gráfico
@@ -645,7 +689,8 @@ duración de los viajes se produce un menor gasto medio diario por
 persona, es decir, los turistas con estancias más largas tienden a
 controlar más sus gastos diarios.
 
-\section{Conclusiones}\label{conclusiones}
+\hypertarget{conclusiones}{%
+\section{Conclusiones}\label{conclusiones}}
 
 El gasto de los turistas extranjeros está influenciado por muchos
 factores. Por un lado, observamos claramente que España es un país con
